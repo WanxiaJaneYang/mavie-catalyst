@@ -1,0 +1,28 @@
+import { SvgIcon } from '@mui/material';
+
+function VisionIcon(props) {
+	return (
+		<SvgIcon {...props}>
+			<svg width="79" height="76" viewBox="0 0 79 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<g filter="url(#filter0_d_448_17753)">
+					<ellipse cx="37.5055" cy="35.7373" rx="35.1696" ry="33.7373" fill="#F6F8FA" />
+					<path fillRule="evenodd" clipRule="evenodd" d="M37.7601 28.9219C44.8041 28.9219 50.7327 35.0023 52.5202 37.0399C50.7327 39.0776 44.8041 45.158 37.7601 45.158C30.716 45.158 24.7875 39.0776 23 37.0399C24.7875 35.0023 30.716 28.9219 37.7601 28.9219ZM37.7601 31.9661C35.1568 31.9661 33.0454 34.24 33.0454 37.0399C33.0454 39.8399 35.1583 42.1137 37.7601 42.1137C40.3619 42.1137 42.4748 39.8399 42.4748 37.0399C42.4748 34.24 40.3619 31.9661 37.7601 31.9661ZM37.7601 33.9957C39.3221 33.9957 40.5889 35.359 40.5889 37.0399C40.5889 38.7209 39.3221 40.0842 37.7601 40.0842C36.1981 40.0842 34.9313 38.7209 34.9313 37.0399C34.9313 35.359 36.1981 33.9957 37.7601 33.9957Z" fill="#455468" />
+				</g>
+				<defs>
+					<filter id="filter0_d_448_17753" x="0.335938" y="0" width="78.3359" height="75.4766" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+						<feFlood floodOpacity="0" result="BackgroundImageFix" />
+						<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+						<feOffset dx="2" dy="2" />
+						<feGaussianBlur stdDeviation="2" />
+						<feComposite in2="hardAlpha" operator="out" />
+						<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0" />
+						<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_448_17753" />
+						<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_448_17753" result="shape" />
+					</filter>
+				</defs>
+			</svg>
+		</SvgIcon>
+	);
+}
+
+export default VisionIcon;
