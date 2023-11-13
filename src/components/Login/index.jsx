@@ -4,9 +4,11 @@ import {
 } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import { useEffect } from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import theme from '../../theme';
 import { ReactComponent as EmailIcon } from '../../images/svg/EnvelopeSimple.svg';
 import { ReactComponent as PasswordIcon } from '../../images/svg/LockKey.svg';
+import logo from '../../images/svg/Logo.svg';
 
 function Copyright(props) {
 	return (
@@ -38,11 +40,13 @@ const Login = () => {
 		console.log(theme.palette.primary.main);
 	}, []);
 
+	const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
 	return (
 		<Box
 			sx={{
 				my: {
-					xs: 8,
+					xs: 2,
 					sm: 10,
 					md: 12,
 					lg: 14,
@@ -65,16 +69,43 @@ const Login = () => {
 				alignItems: 'left',
 			}}
 		>
-			<Typography
-				component="h1"
-				fontSize={29}
-				paddingBottom={2}
-				alignSelf="flex-start"
-				fontFamily="Inter"
-				fontWeight={500}
+			<Box
+				sx={
+					{
+						display: 'flex',
+						flexDirection: 'row',
+						alignItems: 'center',
+						justifyContent: 'space-between',
+						mb: 2,
+					}
+				}
 			>
-				Welcome to Mavie
-			</Typography>
+				<Typography
+					component="h1"
+					fontSize={{
+						xs: 25,
+						sm: 29,
+					}}
+					paddingBottom={2}
+					alignSelf="flex-start"
+					fontFamily="Inter"
+					fontWeight={500}
+					align="left"
+				>
+					Welcome to Mavie
+				</Typography>
+				<img
+					src={logo}
+					alt="Company Logo"
+					style={{
+						width: 60,
+						height: 60,
+						display: matches ? 'none' : 'block',
+					}}
+				/>
+
+			</Box>
+
 			<Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
 				<TextField
 					margin="normal"

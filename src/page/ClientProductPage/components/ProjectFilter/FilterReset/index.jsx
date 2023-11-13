@@ -38,6 +38,7 @@ function FilterReset() {
 						fontSize: '14px',
 						color: theme.palette.dark,
 						marginLeft: '-1px',
+						marginRight: '8px',
 					}}
 				>
 					Filters
