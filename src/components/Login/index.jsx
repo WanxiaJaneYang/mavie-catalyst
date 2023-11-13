@@ -3,6 +3,7 @@ import {
 	Box, Button, Checkbox, FormControlLabel, Grid, Link, TextField, Typography,
 } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
+import { useEffect } from 'react';
 import theme from '../../theme';
 import { ReactComponent as EmailIcon } from '../../images/svg/EnvelopeSimple.svg';
 import { ReactComponent as PasswordIcon } from '../../images/svg/LockKey.svg';
@@ -30,6 +31,12 @@ const Login = () => {
 			password: data.get('password'),
 		});
 	};
+
+	// use useEffect to check the theme color
+	useEffect(() => {
+		console.log('theme: ', theme);
+		console.log(theme.palette.primary.main);
+	}, []);
 
 	return (
 		<Box
@@ -125,7 +132,7 @@ const Login = () => {
 				</Grid>
 				<Button
 					fullWidth
-					variant="contained"
+					variant="outlined"
 					sx={{
 						mt: 3,
 						mb: 2,
@@ -138,6 +145,11 @@ const Login = () => {
 							xs: 36,
 							sm: 36,
 							md: 48,
+						},
+						backgroundColor: theme.palette.primary.main,
+						color: theme.palette.primary.contrastText,
+						'&:hover': {
+							backgroundColor: theme.palette.secondary.main,
 						},
 					}}
 					color="primary"
