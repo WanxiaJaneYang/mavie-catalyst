@@ -13,14 +13,12 @@ function App() {
 	const routing = useRoutes(routes);
 
 	return (
-		<div className="App">
-			<Provider store={store}>
-				<ThemeProvider theme={theme}>
-					<CssBaseline />
-					{routing}
-				</ThemeProvider>
-			</Provider>
-		</div>
+		<Provider store={store}>
+			<ThemeProvider theme={theme}>
+				<CssBaseline />
+				{routing}
+			</ThemeProvider>
+		</Provider>
 	);
 }
 
