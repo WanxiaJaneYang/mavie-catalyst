@@ -5,8 +5,8 @@ import IndividualProductPage from '../page/IndividualProductPage';
 
 const routes = [
 	{
-		path: '/*',
-		element: <NotFoundPage />,
+		path: '/',
+		element: <LoginPage />,
 	},
 	{
 		path: '/login',
@@ -21,6 +21,10 @@ const routes = [
 				element: <IndividualProductPage />,
 			},
 		],
+	},
+	{
+		path: '/*',
+		element: <NotFoundPage />,
 	},
 ];
 export default routes;
