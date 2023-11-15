@@ -24,7 +24,7 @@ function Copyright(props) {
 	);
 }
 
-const Login = () => {
+const SharedLogin = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
@@ -154,7 +154,7 @@ const Login = () => {
 						variant="body2"
 						color={theme.palette.text.secondary}
 					>
-						Forgot password?
+						Not a member yet?
 					</Link>
 					<FormControlLabel
 						control={(
@@ -202,4 +202,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default SharedLogin;

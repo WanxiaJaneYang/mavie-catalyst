@@ -2,6 +2,8 @@ import LoginPage from '../page/LoginPage';
 import NotFoundPage from '../page/NotFoundPage';
 import ClientProductPage from '../page/ClientProductPage';
 import IndividualProductPage from '../page/IndividualProductPage';
+import ProtectedRoute from './ProtectedRoute';
+import SharedLoginPage from '../page/SharedLoginPage';
 
 const routes = [
 	{
@@ -13,9 +15,17 @@ const routes = [
 		element: <LoginPage />,
 	},
 	{
+		path: '/shareProduct/:id',
+		element: <SharedLoginPage />,
+	},
+	{
 		path: '/client/:id',
-		element: <ClientProductPage />,
+		element: <ProtectedRoute />,
 		children: [
+			{
+				path: '',
+				element: <ClientProductPage />,
+			},
 			{
 				path: 'product/:id',
 				element: <IndividualProductPage />,

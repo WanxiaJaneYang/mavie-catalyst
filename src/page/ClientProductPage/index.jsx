@@ -15,7 +15,7 @@ function ClientProductPage() {
 			<Grid
 				item
 				md={3}
-				lg={2}
+				lg={3}
 				sx={{ height: '100vh' }}
 			>
 				<ProductSidebar />
@@ -25,7 +25,7 @@ function ClientProductPage() {
 				xs={12}
 				sm={12}
 				md={9}
-				lg={10}
+				lg={9}
 			>
 				<Box
 					sx={
