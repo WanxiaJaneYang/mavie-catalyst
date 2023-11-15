@@ -3,62 +3,60 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { API_BASE_URL } from '../../constants';
 
-const authSlice = createSlice({
-	name: 'auth',
+const shareSlice = createSlice({
+	name: 'share',
 	initialState: {
-		isLoggedIn: true,
-		userId: null,
-		accessToken: null,
 		loading: false,
-		error: null,
-		success: null,
+		error: false,
+		success: false,
+		errorMessage: null,
 	},
 	reducers: {
-		logout: (state) => {
-			state.isLoggedIn = false;
-			state.userId = null;
-			state.accessToken = null;
-			state.success = null;
-		},
-
-		resetProcess: (state) => {
-			state.error = null;
-			state.success = null;
+		resetShare: (state) => {
 			state.loading = false;
+			state.error = null;
+			state.success = false;
 		},
 	},
+
 	extraReducers: (builder) => {
 		builder
-			.addCase(login.pending, (state) => {
+			.addCase(share.pending, (state) => {
 				state.loading = true;
 				state.error = null;
+				state.success = false;
 			})
-			.addCase(login.fulfilled, (state, action) => {
+
+			.addCase(share.fulfilled, (state) => {
 				state.loading = false;
-				state.isLoggedIn = true;
-				state.userId = action.payload;
-				state.accessToken = action.payload;
+				state.error = null;
+				state.success = true;
 			})
-			.addCase(login.rejected, (state, action) => {
+
+			.addCase(share.rejected, (state, action) => {
 				state.loading = false;
 				state.error = action.payload;
+				state.success = false;
 			});
 	},
 });
 
-export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
-	const URL = `${API_BASE_URL}/login`;
+export const share = createAsyncThunk('share', async (data, thunkAPI) => {
+	const state = thunkAPI.getState();
+	const { productId } = state.product.productInfo.productDetail;
+	const { accessToken } = state.auth.accessToken;
+	const URL = `${API_BASE_URL}/product/${productId}/share`;
 	const headers = {
 		'Content-Type': 'application/json',
+		Authorization: `Bearer ${accessToken}`,
 	};
 
 	try {
-		const response = await axios.post(URL, data, { headers });
+		await axios.post(URL, data, { headers });
 		// store the new refreshed access token
 		// dispatch(setAccessToken(response.data.accessToken));
 		// display the success message
-		// write the refresh token at the cookie
-		return response.data;
+		return true;
 	} catch (error) {
 		if (!error.response) {
 			return thunkAPI.rejectWithValue(error.message);
@@ -73,9 +71,6 @@ export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
 	}
 });
 
-export const {
-	logout,
-	resetProcess,
-} =	authSlice.actions;
+export const { resetShare } = shareSlice.actions;
 
-export default authSlice.reducer;
+export default shareSlice.reducer;

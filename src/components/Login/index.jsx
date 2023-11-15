@@ -1,14 +1,19 @@
 /* eslint-disable react/function-component-definition */
 import {
-	Box, Button, Checkbox, FormControlLabel, Grid, Link, TextField, Typography,
+	Box, Checkbox, FormControlLabel, Link, TextField, Typography,
 } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { LoadingButton } from '@mui/lab';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import theme from '../../theme';
 import { ReactComponent as EmailIcon } from '../../images/svg/EnvelopeSimple.svg';
 import { ReactComponent as PasswordIcon } from '../../images/svg/LockKey.svg';
 import logo from '../../images/svg/Logo.svg';
+import { login, resetProcess } from '../../features/auth/authSlice';
+import ErrorMessage from '../ErrorMessage';
 
 function Copyright(props) {
 	return (
@@ -25,19 +30,55 @@ function Copyright(props) {
 }
 
 const Login = () => {
+	const dispatch = useDispatch();
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		console.log({
+		const loginPostData = {
 			email: data.get('email'),
-			password: data.get('password'),
+			password: data.get('password').trim(),
 			rememberMe: rememberMeRef.current.checked,
-		});
+		};
+		dispatch(login(loginPostData));
 	};
 
 	const rememberMeRef = useRef(null);
 
 	const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
+	const {
+		success, loading, error, userId,
+	} = useSelector((state) => state.auth);
+
+	const [openError, setOpenError] = useState(false);
+
+	const navigate = useNavigate();
+
+	const handleCloseError = () => {
+		setOpenError(false);
+		dispatch(resetProcess());
+	};
+
+	useEffect(
+		() => {
+			if (error) {
+				setOpenError(true);
+			}
+		},
+		[error],
+	);
+
+	useEffect(
+		() => {
+			if (success) {
+				// redirect to client/{id}
+				navigate(`/client/${userId}`);
+				dispatch(resetProcess());
+			}
+		},
+		[success, userId, dispatch, navigate],
+	);
 
 	return (
 		<Box
@@ -168,7 +209,7 @@ const Login = () => {
 
 					/>
 				</Box>
-				<Button
+				<LoadingButton
 					fullWidth
 					variant="outlined"
 					sx={{
@@ -192,9 +233,13 @@ const Login = () => {
 					}}
 					color="primary"
 					type="submit"
+					loading={loading}
 				>
 					Login
-				</Button>
+				</LoadingButton>
+				{error && (
+					<ErrorMessage message={error} open={openError} handleClose={handleCloseError} />
+				)}
 
 				<Copyright sx={{ mt: 5 }} />
 			</Box>

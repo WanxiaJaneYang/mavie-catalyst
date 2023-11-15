@@ -6,6 +6,7 @@ import domainFilterSlice from './domainFilterSlice';
 import productListSlice from './productListSlice';
 import genderFilterSlice from './genderFilterSlice';
 import toggleFilterSlice from './toggleFilterSlice';
+import shareSlice from './shareSlice';
 import { RESET_STATE } from '../../constants';
 
 const filters = combineReducers({
@@ -15,6 +16,7 @@ const filters = combineReducers({
 	product: productListSlice,
 	gender: genderFilterSlice,
 	toggle: toggleFilterSlice,
+	share: shareSlice,
 });
 
 const filtersReducer = (state, action) => {
