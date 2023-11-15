@@ -8,6 +8,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Paper } from '@mui/material';
 import CompanyIcon from '../../../../components/ComponyIcon';
 import ProductFilter from '../ProjectFilter';
+import ShareButton from '../ShareButton';
 
 const drawerWidth = 250;
 

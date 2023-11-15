@@ -2,10 +2,9 @@ import Box from '@mui/material/Box';
 import PersonaSelector from './PersonaSelector';
 import DomainSelector from './DomainSelector';
 import ProductSelector from './ProductSelector';
-import AgeSelector from './AgeSelector';
-import GenderSelector from './GenderSelector';
 import ViewToggle from './ViewToggle';
 import FilterReset from './FilterReset';
+import ShareButton from '../ShareButton';
 
 function ProductFilter() {
 	return (
@@ -48,6 +47,7 @@ function ProductFilter() {
 				<PersonaSelector />
 				<DomainSelector />
 				<ViewToggle />
+				<ShareButton />
 			</Box>
 		</Box>
 	);
