@@ -1,13 +1,12 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 import GeneralPersonaCard from './components/GeneralPersonaCard';
 import ProductIntroCard from './components/productIntroCard';
 import DomainCard from '../../components/DomainCard';
 import BrandCard from '../../components/BrandCard';
 
 function IndividualProductPage() {
-	const domainIds = useSelector((state) => state.domain.ids);
-	const selectedDomain = useSelector((state) => state.filters.domain);
 	return (
 		<Box
 			sx={{
@@ -39,19 +38,7 @@ function IndividualProductPage() {
 			</Typography>
 			<ProductIntroCard />
 			<GeneralPersonaCard />
-			<Grid container spacing={2}>
-				{domainIds.map((id) => (
-					selectedDomain[id]
-					&& (
-						<Grid item xs={12} sm={12} md={4}>
-							<DomainCard
-								domainId={id}
-								key={`${id}-domain`}
-							/>
-						</Grid>
-					)
-				))}
-			</Grid>
+			<Outlet />
 		</Box>
 	);
 }

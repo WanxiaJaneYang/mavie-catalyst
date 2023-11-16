@@ -1,5 +1,6 @@
 {
     "name": "mavie",
-    "version": "0.0.1",
-    "homepage": "index.html"
+    "version": "0.0.3.5",
+    "homepage": "index.html",
+    "description": "tried to fixed the deploy problem"
 }

@@ -16,7 +16,7 @@ const CompanyIcon = () => {
 					marginRight: '10px', // optional spacing between text and logo
 				}}
 			>
-				Mavie
+				Mavy
 			</div>
 			<img
 				src={logo}

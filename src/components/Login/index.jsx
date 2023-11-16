@@ -128,7 +128,7 @@ const Login = () => {
 					fontWeight={500}
 					align="left"
 				>
-					Welcome to Mavie
+					Welcome to Mavy
 				</Typography>
 				<img
 					src={logo}

@@ -65,8 +65,13 @@ function ScoreBar({ score, importance, importanceRatingOn }) {
 
 ScoreBar.propTypes = {
 	score: PropTypes.number.isRequired,
-	importance: PropTypes.number.isRequired,
-	importanceRatingOn: PropTypes.bool.isRequired,
+	importance: PropTypes.number,
+	importanceRatingOn: PropTypes.bool,
+};
+
+ScoreBar.defaultProps = {
+	importance: 0,
+	importanceRatingOn: false,
 };
 
 export default ScoreBar;

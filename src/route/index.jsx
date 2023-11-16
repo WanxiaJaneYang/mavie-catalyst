@@ -4,6 +4,7 @@ import ClientProductPage from '../page/ClientProductPage';
 import IndividualProductPage from '../page/IndividualProductPage';
 import ProtectedRoute from './ProtectedRoute';
 import SharedLoginPage from '../page/SharedLoginPage';
+import ProductMetricPage from '../page/ProductMetricPage';
 
 const routes = [
 	{
@@ -32,7 +33,7 @@ const routes = [
 						children: [
 							{
 								path: 'metrics',
-								element: <IndividualProductPage />,
+								element: <ProductMetricPage />,
 							},
 						],
 					},
