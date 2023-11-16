@@ -1,4 +1,6 @@
-import { Box, Typography } from '@mui/material';
+import {
+	Box, Typography, Grid, useMediaQuery,
+} from '@mui/material';
 import propTypes from 'prop-types';
 import DynamicSvgIcon from '../../DynamicSvgIcon';
 import MavieGauge from '../../Gauges';
@@ -6,71 +8,71 @@ import MavieGauge from '../../Gauges';
 function DomainGeneral({
 	icon, score, importanceRatingOn, importance,
 }) {
+	const isSmallScreen = useMediaQuery('(min-width:600px)');
+	const isMediumScreen = useMediaQuery('(min-width:900px)');
+	const isLargeScreen = useMediaQuery('(min-width:1200px)');
+	const isExtraLargeScreen = useMediaQuery('(min-width:1536px)');
+	const gaugeSize = () => {
+		if (isExtraLargeScreen) return 1.5;
+		if (isLargeScreen) return 1.2;
+		if (isMediumScreen) return 1;
+		if (isSmallScreen) return 2;
+		return 1.2;
+	};
 	return (
-		<Box
-			sx={
-				{
-					display: 'flex',
-					flexDirection: 'row',
-					alignItems: 'space-between',
-					justifyContent: 'space-between',
-					padding: '0px',
-				}
-			}
-		>
-			<Box
-				sx={
-					{
+		<Grid container spacing={2} alignItems="center" justifyContent="space-between">
+			<Grid
+				item
+				xs={5}
+				sm={4}
+			>
+				<Box
+					sx={{
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',
-						justifyContent: 'space-between',
-						width: '100%',
-					}
-				}
-			>
-				<DynamicSvgIcon
-					svgData={icon}
-					sx={{
-						width: ['30px', '40px', '50px'],
-						height: ['30px', '40px', '50px'],
 						justifyContent: 'center',
 					}}
-				/>
-				<Typography
-					sx={{
-						color: '#000000',
-						fontFamily: 'Inter, sans-serif',
-						fontWeight: 600,
-						fontSize: '18px',
-						textAlign: 'center',
-					}}
 				>
-					{score}
-				</Typography>
-			</Box>
-			<Box
-				sx={
-					{
+					<DynamicSvgIcon
+						svgData={icon}
+						sx={{
+							width: ['30px', '40px', '50px'],
+							height: ['30px', '40px', '50px'],
+						}}
+					/>
+					<Typography
+						sx={{
+							color: '#000000',
+							fontFamily: 'Inter, sans-serif',
+							fontWeight: 600,
+							fontSize: '18px',
+							textAlign: 'center',
+						}}
+					>
+						{score}
+					</Typography>
+				</Box>
+			</Grid>
+			<Grid item xs={7} sm={8}>
+				<Box
+					sx={{
 						display: 'flex',
 						flexDirection: 'column',
 						alignItems: 'center',
 						justifyContent: 'center',
 						padding: '16px',
-						width: '100%',
-						marginRight: '16px',
-						marginBottom: '7px',
-					}
-				}
-			>
-				<MavieGauge
-					type={importanceRatingOn ? 'importanceRating' : 'default'}
-					value={score}
-					size={1.5}
-					importance={importance}
-				/>
-			</Box>
-		</Box>
+					}}
+				>
+					<MavieGauge
+						type={importanceRatingOn ? 'importanceRating' : 'default'}
+						value={score}
+						size={gaugeSize()}
+						importance={importance}
+					/>
+				</Box>
+			</Grid>
+		</Grid>
 	);
 }
 

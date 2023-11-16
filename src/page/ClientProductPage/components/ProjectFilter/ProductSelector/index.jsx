@@ -39,9 +39,8 @@ function ProductSelector() {
 				Product
 			</Typography>
 			<Select
-				value={currentProduct.productId}
+				value={currentProduct?.productId}
 				onChange={handleChange}
-				displayEmpty
 				inputProps={{ 'aria-label': 'Without label' }}
 				sx={
 					{

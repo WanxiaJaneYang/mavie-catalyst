@@ -4,10 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const productListSlice = createSlice({
 	name: 'productList',
 	initialState: {
-		currentProduct: {
-			productId: 0,
-			productName: 'Senior Smart Watch',
-		},
+		currentProduct: null,
 		products: [
 			{
 				productId: 0,

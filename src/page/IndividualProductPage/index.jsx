@@ -43,7 +43,7 @@ function IndividualProductPage() {
 				{domainIds.map((id) => (
 					selectedDomain[id]
 					&& (
-						<Grid item xs={12} sm={12} md={6} lg={3}>
+						<Grid item xs={12} sm={12} md={4}>
 							<DomainCard
 								domainId={id}
 								key={`${id}-domain`}

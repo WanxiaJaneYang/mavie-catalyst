@@ -19,16 +19,24 @@ const routes = [
 		element: <SharedLoginPage />,
 	},
 	{
-		path: '/client/:id',
+		path: '/client/:clientId',
 		element: <ProtectedRoute />,
 		children: [
 			{
 				path: '',
 				element: <ClientProductPage />,
-			},
-			{
-				path: 'product/:id',
-				element: <IndividualProductPage />,
+				children: [
+					{
+						path: 'product/:productId',
+						element: <IndividualProductPage />,
+						children: [
+							{
+								path: 'metrics',
+								element: <IndividualProductPage />,
+							},
+						],
+					},
+				],
 			},
 		],
 	},
