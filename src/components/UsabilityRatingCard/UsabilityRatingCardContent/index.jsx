@@ -1,5 +1,5 @@
 import {
-	Box, Divider, Grid, Skeleton, Typography,
+	Box, Divider, Grid, Skeleton, Typography, useMediaQuery,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,6 +9,15 @@ import ExpertOpinion from '../ExpertOpinion';
 
 function UsabilityRatingCardContent({ productId }) {
 	const { score } = useSelector((state) => state.product.productData.overall.data);
+	const smallScreen = useMediaQuery('(min-width:600px)');
+	const mediumScreen = useMediaQuery('(min-width:900px)');
+	const largeScreen = useMediaQuery('(min-width:1200px)');
+	const gaugeSize = () => {
+		if (largeScreen) return 2.5;
+		if (mediumScreen) return 2.2;
+		if (smallScreen) return 2;
+		return 1.5;
+	};
 
 	return (
 		<Box>
@@ -29,7 +38,6 @@ function UsabilityRatingCardContent({ productId }) {
 					display="flex"
 					flexDirection="column"
 					justifyContent="space-between"
-					alignItems="center"
 				>
 					<Typography
 						sx={{
@@ -37,7 +45,10 @@ function UsabilityRatingCardContent({ productId }) {
 							fontFamily: 'Inter, sans-serif',
 							fontWeight: 400,
 							fontSize: '18px',
-							justifyContent: 'center',
+							alignItems: 'flex-start',
+							marginLeft: '-30px',
+							marginBottom: ['10px', '18px', '28px'], // [mobile, tablet, desktop
+							justifyContent: 'start',
 						}}
 					>
 						This is the overall rating of the product
@@ -47,7 +58,7 @@ function UsabilityRatingCardContent({ productId }) {
 							color: '#000000',
 							fontFamily: 'Inter, sans-serif',
 							fontWeight: 600,
-							fontSize: '36px',
+							fontSize: ['20px', '30px', '38px'],
 						}}
 					>
 						{score}
@@ -56,7 +67,7 @@ function UsabilityRatingCardContent({ productId }) {
 				</Grid>
 
 				<Grid item xs={8} display="flex" justifyContent="center" alignItems="center">
-					<MavieGauge value={score} size={2.5} />
+					<MavieGauge value={score} size={gaugeSize()} />
 				</Grid>
 			</Grid>
 			<Divider sx={{ marginTop: '10px', marginBottom: '10px', border: '2px solid #E0E0E0' }} />
