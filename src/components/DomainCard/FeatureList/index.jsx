@@ -3,25 +3,15 @@ import {
 	Box, Typography,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
 import FeatureRow from '../FeatureRow';
 
 function FeatureList({ domainId, importanceRatingOn }) {
 	const featureIds = useSelector((state) => state.domain.entities[domainId].features);
 
-	const [showFeatureCard, setShowFeatureCard] = useState(false);
-	const [selectedFeatureId, setSelectedFeatureId] = useState(null);
-
-	const handleFeatureCardClose = () => {
-		setShowFeatureCard(false);
-	};
-
-	const handleFeatureRowClick = () => {
-		setShowFeatureCard(true);
-	};
-
 	const getFeatureScoreRows = () => featureIds.map((featureId) => (
 		<FeatureRow
+			key={`feature-row-${featureId}`}
+			domainId={domainId}
 			featureId={featureId}
 			importanceRatingOn={importanceRatingOn}
 

@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
-import { Alert, Popover } from '@mui/material';
+import { Snackbar, Alert } from '@mui/material';
 
 function ErrorMessage({ message, open, handleClose }) {
 	return (
-		<Popover
+		<Snackbar
 			open={open}
+			autoHideDuration={1200} // Adjust the duration as needed
 			onClose={handleClose}
-			anchorOrigin={
-				{
-					vertical: 'top',
-					horizontal: 'center',
-				}
-			}
+			anchorOrigin={{
+				vertical: 'top',
+				horizontal: 'center',
+			}}
 		>
 			<Alert
+				onClose={handleClose}
 				severity="error"
 				variant="filled"
 				sx={{
@@ -31,7 +31,7 @@ function ErrorMessage({ message, open, handleClose }) {
 			>
 				{message}
 			</Alert>
-		</Popover>
+		</Snackbar>
 	);
 }
 

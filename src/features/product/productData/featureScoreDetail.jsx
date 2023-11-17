@@ -6,11 +6,7 @@ const featureScoreDetailSlice = createSlice({
 	initialState: {
 		loading: false,
 		error: null,
-		featureScoreDetail: {
-			id: 1,
-			score: 3.8,
-			questionImportance: [0.2, 0.2, 0.3, 0.1, 0.2],
-		},
+		questionImportance: [0.2, 0.2, 0.3, 0.1, 0.2],
 	},
 
 	reducers: {

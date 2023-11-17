@@ -1,94 +1,69 @@
+import React from 'react';
 import {
-	Box, Card, CardContent, CardHeader, IconButton, Typography,
+	Box, Card, CardContent, CardHeader, Dialog, IconButton, Typography,
 } from '@mui/material';
 import propType from 'prop-types';
 import { useSelector } from 'react-redux';
 import CloseIcon from '../icons/CloseIcon';
-import MavieGauge from '../Gauges';
+import FeatureCardContent from './FeatureCardContent';
 
-function FeatureCard({ domainId, featureId, handleCloseClick }) {
-	const feature = useSelector((state) => state.product.productData.feature.entities[featureId]);
-	const percentages = useSelector((state) => state.product.productData
-		.featureDetail.questionImportance);
+function FeatureCard({
+	open, domainId, featureId, handleCloseClick,
+}) {
+	const feature = useSelector((state) => state.product.productData.features.entities[featureId]);
+	const domains = useSelector((state) => state.domain.entities);
 
 	return (
-		<Card
+		<Dialog
+			open={open}
 			sx={{
-				display: 'flex',
-				flexDirection: 'column',
-				backgroundColor: '#FFFFFF',
-				width: '100%',
-				height: 'auto',
-				marginBottom: '16px',
+				'& .MuiDialog-paper': {
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					justifyContent: 'center',
+					width: ['300px', '400px', '600px'], // Breakpoints: ['xs', 'sm', 'md', 'lg', 'xl'
+					maxHeight: '90vh',
+				},
 			}}
 		>
-			<CardHeader
+			<Card
 				sx={{
-					alignItems: 'center',
-					justifyContent: 'space-between',
-					width: '100%',
-					padding: '20px',
+					width: '100%', // Adjust as needed, or use maxWidth for responsiveness
+					maxWidth: '600px',
+					marginBottom: '16px',
+					overflow: 'visible', // Ensures shadows and such are not clipped
 				}}
-				titleTypographyProps={{
-					sx: {
-						color: '#000000',
-						fontFamily: 'Inter, sans-serif',
-						fontWeight: 600,
-						fontSize: '18px',
-						textAlign: 'left',
-					},
-				}}
-				title={feature.name}
-				action={(
-					<IconButton>
-						<CloseIcon
-							onClick={handleCloseClick}
-						/>
-					</IconButton>
-				)}
-			/>
-			<CardContent>
-				<Box
+				elevation={0}
+			>
+				<CardHeader
 					sx={{
-						display: 'flex',
-						flexDirection: 'row',
 						alignItems: 'center',
+						justifyContent: 'space-between',
+						padding: '20px',
 					}}
-				>
-					<Box
-						sx={{
-							width: '50%',
-							display: 'flex',
-							flexDirection: 'column',
-							alignItems: 'center',
-						}}
-					>
-						<Typography
-							sx={{
-								color: '#000000',
-								fontFamily: 'Inter, sans-serif',
-								fontWeight: 500,
-								fontSize: '14px',
-								textAlign: 'left',
-							}}
-						>
-							{feature.description}
-						</Typography>
-						<Typography>
-							{`${feature.score}/5`}
-						</Typography>
-					</Box>
-					<Box sx={{ width: '50%' }}>
-						<MavieGauge
-							type="percentage"
-							value={feature.score}
-							importance={feature.importance}
-							percentages={percentages}
-						/>
-					</Box>
-				</Box>
-			</CardContent>
-		</Card>
+					titleTypographyProps={{
+						sx: {
+							color: '#000000',
+							fontFamily: 'Inter, sans-serif',
+							fontWeight: 600,
+							fontSize: '18px',
+							textAlign: 'left',
+						},
+					}}
+					title={feature.name}
+					subheader={domains[domainId].name}
+					action={(
+						<IconButton onClick={handleCloseClick}>
+							<CloseIcon />
+						</IconButton>
+					)}
+				/>
+				<CardContent>
+					<FeatureCardContent featureId={featureId} />
+				</CardContent>
+			</Card>
+		</Dialog>
 	);
 }
 
@@ -96,6 +71,7 @@ FeatureCard.propTypes = {
 	domainId: propType.number.isRequired,
 	featureId: propType.number.isRequired,
 	handleCloseClick: propType.func.isRequired,
+	open: propType.bool.isRequired,
 };
 
 export default FeatureCard;

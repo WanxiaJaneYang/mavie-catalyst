@@ -1,24 +1,24 @@
 import PropTypes from 'prop-types';
-import { Alert, Popover } from '@mui/material';
+import { Snackbar, Alert } from '@mui/material';
 import theme from '../../theme';
 
 function SuccessMessage({ message, open, handleClose }) {
 	return (
-		<Popover
+		<Snackbar
 			open={open}
+			autoHideDuration={1200} // Adjust the duration as needed
 			onClose={handleClose}
-			anchorOrigin={
-				{
-					vertical: 'top',
-					horizontal: 'center',
-				}
-			}
+			anchorOrigin={{
+				vertical: 'top',
+				horizontal: 'center',
+			}}
 		>
 			<Alert
+				onClose={handleClose}
 				severity="success"
 				variant="filled"
 				sx={{
-					backgroundColor: '#3FB95A',
+					backgroundColor: '#3FB95A', // Or theme.palette.success.main if you want to use theme color
 					color: theme.palette.success.contrastText,
 					fontSize: {
 						xs: 12,
@@ -34,7 +34,7 @@ function SuccessMessage({ message, open, handleClose }) {
 			>
 				{message}
 			</Alert>
-		</Popover>
+		</Snackbar>
 	);
 }
 
