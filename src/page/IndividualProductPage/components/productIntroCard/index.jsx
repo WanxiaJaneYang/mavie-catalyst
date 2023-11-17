@@ -1,25 +1,47 @@
 import { useSelector } from 'react-redux';
 import {
-	Box, Card, CardMedia, Typography,
+	Skeleton,
+	Typography,
 } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
+import { useState, useEffect } from 'react';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MavieRating from '../../../../components/MavieRating';
 import colors from '../../../../theme/colors';
 import ProductIntroSkeleton from './ProductIntroSkeleton';
 import ProductIntroContent from './ProductIntroContent';
+import ErrorMessage from '../../../../components/ErrorMessage';
+import ProductIntroCardHeader from './ProductIntroCardHeader';
 
 function ProductIntroCard() {
 	const { loading, error } = useSelector((state) => state.product.productInfo);
 	const productDetail = useSelector((state) => state.product.productInfo
 		.productDetail);
 
+	useEffect(
+		() => {
+			if (error) {
+				handleErrorMessageOpen();
+			}
+		},
+		[error],
+	);
+
+	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
+
+	const handleErrorMessageOpen = () => {
+		setErrorMessageOpen(true);
+	};
+
+	const handleErrorMessageClose = () => {
+		setErrorMessageOpen(false);
+	};
+
 	return (
 		<Accordion
 			sx={
-				{ marginBottom: '16px' }
+				{ padding: '16px', marginBottom: '16px', backgroundColor: colors.white }
 			}
 			defaultExpanded
 		>
@@ -29,23 +51,13 @@ function ProductIntroCard() {
 				id="panel1a-header"
 				sx={{
 					backgroundColor: colors.white,
-					padding: '16px',
+					padding: '0px',
 					'& .MuiAccordionSummary-content': {
 						margin: '0px',
 					},
 				}}
 			>
-				<Typography
-					sx={{
-						fontSize: '18px',
-						fontWeight: 600,
-						fontFamily: 'Inter, sans-serif',
-						textAlign: 'left',
-						marginLeft: '16px',
-					}}
-				>
-					{productDetail?.modelName}
-				</Typography>
+				<ProductIntroCardHeader />
 			</AccordionSummary>
 			<AccordionDetails
 				sx={
@@ -56,7 +68,13 @@ function ProductIntroCard() {
 				}
 			>
 				{loading && <ProductIntroSkeleton />}
-				{!loading && error && <Typography>{error}</Typography>}
+				{!loading && error && (
+					<ErrorMessage
+						message={error}
+						open={errorMessageOpen}
+						handleClose={handleErrorMessageClose}
+					/>
+				)}
 				{!loading && !error && !productDetail && <Typography>No product info</Typography>}
 				{!loading && productDetail && <ProductIntroContent />}
 			</AccordionDetails>
