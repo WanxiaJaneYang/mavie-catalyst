@@ -1,17 +1,22 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Box, Typography, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { resetState } from '../../../../../constants';
 import theme from '../../../../../theme';
 
 function FilterReset() {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const userId = useSelector((state) => state.auth.userId);
+	const currentSelectedProduct = useSelector((state) => state.filters.product.currentProduct);
+	const applyEnabled = currentSelectedProduct !== null;
 
 	const handleReset = () => {
 		dispatch(resetState());
 	};
 
 	const handleApply = () => {
-		console.log('Apply,call api to fetch data here');
+		navigate(`/client/${userId}/product/${currentSelectedProduct.productId}/metrics`);
 	};
 
 	return (
@@ -65,6 +70,7 @@ function FilterReset() {
 						}}
 						size="small"
 						variant="outlined"
+						disabled={!applyEnabled}
 						// color="inherit"
 					>
 						Apply

@@ -15,8 +15,10 @@ function UsabilityRatingCard({ productId }) {
 			sx={
 				{
 					marginBottom: '10px',
+					padding: '10px',
 				}
 			}
+			defaultExpanded
 		>
 			<AccordionSummary
 				expandIcon={<ExpandMoreIcon />}

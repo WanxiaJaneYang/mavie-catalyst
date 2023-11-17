@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import { useSelector } from 'react-redux';
 import PersonaSelector from './PersonaSelector';
 import DomainSelector from './DomainSelector';
 import ProductSelector from './ProductSelector';
@@ -7,6 +8,7 @@ import FilterReset from './FilterReset';
 import ShareButton from '../ShareButton';
 
 function ProductFilter() {
+	const currentSelectedProduct = useSelector((state) => state.filters.product.currentProduct);
 	return (
 		<Box
 			sx={
@@ -31,24 +33,30 @@ function ProductFilter() {
 				}
 			}
 		>
+			<ProductSelector />
 			<FilterReset
 				sx={{
 					position: 'sticky', top: 0, zIndex: 10, width: '90%',
 				}}
 			/>
-			<Box
-				sx={{
-					overflowY: 'auto',
-					flex: 1,
-					width: '100%',
-				}}
-			>
-				<ProductSelector />
-				<PersonaSelector />
-				<DomainSelector />
-				<ViewToggle />
-				<ShareButton />
-			</Box>
+			{
+				currentSelectedProduct && (
+					<Box
+						sx={{
+							overflowY: 'auto',
+							flex: 1,
+							width: '95%',
+							paddingLeft: '10px',
+						}}
+					>
+
+						<PersonaSelector />
+						<DomainSelector />
+						<ViewToggle />
+						<ShareButton />
+					</Box>
+				)
+			}
 		</Box>
 	);
 }

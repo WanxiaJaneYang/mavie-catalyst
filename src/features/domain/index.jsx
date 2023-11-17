@@ -6,6 +6,7 @@ const domainSlice = createSlice({
 	initialState: {
 		loading: false,
 		errors: null,
+		// entities: null,
 		entities: {
 			1: {
 				name: 'Ergonomics',
@@ -29,6 +30,7 @@ const domainSlice = createSlice({
 				features: [10, 11, 12, 13, 14],
 			},
 		},
+		// ids: null,
 		ids: [1, 2, 3],
 	},
 	reducers: {

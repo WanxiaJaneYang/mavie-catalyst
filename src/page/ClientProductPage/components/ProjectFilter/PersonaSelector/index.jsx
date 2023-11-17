@@ -1,95 +1,21 @@
 import { useSelector, useDispatch } from 'react-redux';
-import Checkbox from '@mui/material/Checkbox';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { setSelectedPersona } from '../../../../../features/filters/personaFilterSlice';
+import PersonaSelectorSkeleton from './PersonaSelectorSkeleton';
+import ErrorMessage from '../../../../../components/ErrorMessage';
+import PersonaSelectorContent from './PersonaSelectorContent';
 import theme from '../../../../../theme';
-import GenderSelector from '../GenderSelector';
-import AgeSelector from '../AgeSelector';
-import DynamicSvg from '../../../../../components/DynamicSvgIcon';
 
 function PersonaSelector() {
-	const dispatch = useDispatch();
-	const selectedPersona = useSelector((state) => state.filters.persona);
-	const allPersonaIds = useSelector((state) => state.persona.ids);
-	const personaInfo = useSelector((state) => state.persona.entities);
-
-	const getPersonaLabel = (personaId) => {
-		if (personaInfo[personaId]) {
-			return personaInfo[personaId].name;
-		}
-		return 'default persona';
-	};
-
-	const handleSelectCheckbox = (personaId) => {
-		dispatch(
-			setSelectedPersona(
-				{
-					...selectedPersona,
-					[personaId]: !selectedPersona[personaId],
-				},
-			),
-		);
-	};
-
-	const getCheckBoxListComponent = () => (
-		<div>
-			{allPersonaIds.map((personaId) => (
-				<div
-					key={`${personaId} checkbox set`}
-					style={{
-						display: 'flex', alignItems: 'center', gap: '1px',
-					}}
-				>
-					<Checkbox
-						checked={selectedPersona[personaId]}
-						onChange={() => handleSelectCheckbox(personaId)}
-						sx={
-							{
-								color: theme.palette.grey,
-								'&.Mui-checked': {
-									color: theme.palette.primary.light,
-								},
-								verticalAlign: 'middle',
-								marginRight: '0px',
-							}
-						}
-					/>
-					<DynamicSvg
-						style={{
-							display: 'flex',
-							width: '24px',
-							height: '24px',
-							borderRadius: '50%',
-							verticalAlign: 'middle',
-							marginLeft: '0px',
-							marginRight: '8px',
-						}}
-						onClick={() => handleSelectCheckbox(personaId)}
-						svgData={personaInfo[personaId].icon}
-					/>
-					<span
-						style={{
-							fontFamily: 'Inter',
-							fontWeight: '600',
-							fontSize: '12px',
-							verticalAlign: 'middle',
-						}}
-					>
-						{getPersonaLabel(personaId)}
-
-					</span>
-				</div>
-			))}
-		</div>
-	);
+	const { loading, error } = useSelector((state) => state.persona);
 
 	return (
 		<Accordion
 			elevation={0}
+			defaultExpanded
 		>
 			<AccordionSummary
 				expandIcon={<ExpandMoreIcon />}
@@ -123,9 +49,9 @@ function PersonaSelector() {
 					padding: '0px',
 				}}
 			>
-				{getCheckBoxListComponent()}
-				<AgeSelector />
-				<GenderSelector />
+				{loading && <PersonaSelectorSkeleton />}
+				{error && <ErrorMessage />}
+				{!loading && !error && <PersonaSelectorContent />}
 			</AccordionDetails>
 		</Accordion>
 

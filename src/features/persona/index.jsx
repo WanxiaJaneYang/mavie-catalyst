@@ -4,8 +4,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const personaSlice = createSlice({
 	name: 'persona',
 	initialState: {
-		load: false,
-		errors: null,
+		loading: false,
+		error: null,
+		// entities: null,
 		entities: {
 			1: {
 				name: 'Able & Active',
@@ -46,6 +47,7 @@ const personaSlice = createSlice({
 			},
 
 		},
+		// ids: null,
 		ids: [1, 2, 3, 4, 5, 6],
 	},
 
@@ -65,7 +67,7 @@ const personaSlice = createSlice({
 		},
 		fetchPersonaFailure: (state, action) => {
 			state.loading = false;
-			state.errors = action.payload;
+			state.error = action.payload;
 		},
 	},
 });
