@@ -1,12 +1,20 @@
-import { Grid, Box, useMediaQuery } from '@mui/material';
+import {
+	Grid, Box, useMediaQuery, Skeleton,
+} from '@mui/material';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import ImportanceScore from '../ImportanceScore';
 import ScoreRating from '../ScoreRating';
 import MavieGauge from '../../Gauges';
+import ErrorMessage from '../../ErrorMessage';
 
 function FeatureCardContent({ featureId }) {
 	const feature = useSelector((state) => state.product.productData.features.entities[featureId]);
+	const featureDetailLoading = useSelector((state) => state.product.productData
+		.featureDetail.loading);
+	const featureDetailError = useSelector((state) => state.product.productData
+		.featureDetail.error);
 	const percentages = useSelector((state) => state.product
 		.productData.featureDetail.questionImportance);
 	const extraLargeScreen = useMediaQuery('(min-width:1920px)');
@@ -28,6 +36,69 @@ function FeatureCardContent({ featureId }) {
 		}
 
 		return 1;
+	};
+
+	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
+	const handleErrorMessageOpen = () => {
+		setErrorMessageOpen(true);
+	};
+
+	const handleErrorMessageClose = () => {
+		setErrorMessageOpen(false);
+	};
+
+	useEffect(
+		() => {
+			if (featureDetailError) {
+				handleErrorMessageOpen();
+			}
+		},
+		[featureDetailError],
+	);
+
+	const getImportanceRendered = () => {
+		if (featureDetailLoading) {
+			return (
+				<Skeleton
+					variant="rectangular"
+					width="90%"
+					height="120%"
+					sx={{
+						borderRadius: '10px',
+					}}
+				/>
+			);
+		}
+		if (featureDetailError) {
+			return (
+				<ErrorMessage
+					open={errorMessageOpen}
+					handleClose={handleErrorMessageClose}
+					message={featureDetailError}
+				/>
+			);
+		}
+		if (!featureDetailLoading && !featureDetailError) {
+			return (
+				<Box
+					sx={{
+						display: 'flex',
+						justifyContent: 'center', // Center the gauge horizontally
+						alignItems: 'center', // Center the gauge vertically
+						paddingRight: '10px',
+					}}
+				>
+					<MavieGauge
+						type="percentage"
+						value={feature.score}
+						importance={feature.importance}
+						percentages={percentages}
+						size={gaugeSize()}
+					/>
+				</Box>
+			);
+		}
+		return null;
 	};
 
 	return (
@@ -57,22 +128,7 @@ function FeatureCardContent({ featureId }) {
 				</Box>
 			</Grid>
 			<Grid item xs={6} sm={8}>
-				<Box
-					sx={{
-						display: 'flex',
-						justifyContent: 'center', // Center the gauge horizontally
-						alignItems: 'center', // Center the gauge vertically
-						paddingRight: '10px',
-					}}
-				>
-					<MavieGauge
-						type="percentage"
-						value={feature.score}
-						importance={feature.importance}
-						percentages={percentages}
-						size={gaugeSize()}
-					/>
-				</Box>
+				{getImportanceRendered()}
 			</Grid>
 		</Grid>
 	);

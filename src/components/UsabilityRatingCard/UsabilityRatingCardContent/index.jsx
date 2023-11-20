@@ -68,7 +68,7 @@ function UsabilityRatingCardContent({ productId }) {
 				</Grid>
 
 				<Grid item xs={8} display="flex" justifyContent="center" alignItems="center">
-					<MavieGauge value={score} size={gaugeSize()} />
+					<MavieGauge type="default" value={score} size={gaugeSize()} />
 				</Grid>
 			</Grid>
 			<Divider sx={{ marginTop: '10px', marginBottom: '10px', border: '2px solid #E0E0E0' }} />

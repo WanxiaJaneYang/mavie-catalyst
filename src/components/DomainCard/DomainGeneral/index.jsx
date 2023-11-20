@@ -1,86 +1,54 @@
-import {
-	Box, Typography, Grid, useMediaQuery,
-} from '@mui/material';
 import propTypes from 'prop-types';
-import DynamicSvgIcon from '../../DynamicSvgIcon';
-import MavieGauge from '../../Gauges';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import DomainGeneralSkeleton from './DomainGeneralSkeleton';
+import DomainGeneralContent from './DomainGeneralContent';
+import ErrorMessage from '../../ErrorMessage';
 
 function DomainGeneral({
-	icon, score, importanceRatingOn, importance,
+	domainId, importanceRatingOn,
 }) {
-	const isSmallScreen = useMediaQuery('(min-width:600px)');
-	const isMediumScreen = useMediaQuery('(min-width:900px)');
-	const isLargeScreen = useMediaQuery('(min-width:1200px)');
-	const isExtraLargeScreen = useMediaQuery('(min-width:1536px)');
-	const gaugeSize = () => {
-		if (isExtraLargeScreen) return 1.5;
-		if (isLargeScreen) return 1.2;
-		if (isMediumScreen) return 1;
-		if (isSmallScreen) return 2;
-		return 1.2;
+	const { loading, error } = useSelector((state) => state.product.productData.domain);
+	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
+
+	const handleErrorMessageOpen = () => {
+		setErrorMessageOpen(true);
 	};
+
+	const handleErrorMessageClose = () => {
+		setErrorMessageOpen(false);
+	};
+
+	useEffect(
+		() => {
+			if (error) {
+				handleErrorMessageOpen();
+			}
+		},
+		[error],
+	);
+
+	if (loading) {
+		return <DomainGeneralSkeleton />;
+	}
+	if (error) {
+		return (
+			<ErrorMessage
+				open={errorMessageOpen}
+				handleClose={handleErrorMessageClose}
+				message={error}
+			/>
+		);
+	}
 	return (
-		<Grid container spacing={2} alignItems="center" justifyContent="space-between">
-			<Grid
-				item
-				xs={5}
-				sm={4}
-			>
-				<Box
-					sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						justifyContent: 'center',
-					}}
-				>
-					<DynamicSvgIcon
-						svgData={icon}
-						sx={{
-							width: ['30px', '40px', '50px'],
-							height: ['30px', '40px', '50px'],
-						}}
-					/>
-					<Typography
-						sx={{
-							color: '#000000',
-							fontFamily: 'Inter, sans-serif',
-							fontWeight: 600,
-							fontSize: '18px',
-							textAlign: 'center',
-						}}
-					>
-						{score}
-					</Typography>
-				</Box>
-			</Grid>
-			<Grid item xs={7} sm={8}>
-				<Box
-					sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-						justifyContent: 'center',
-						padding: '16px',
-					}}
-				>
-					<MavieGauge
-						type={importanceRatingOn ? 'importanceRating' : 'default'}
-						value={score}
-						size={gaugeSize()}
-						importance={importance}
-					/>
-				</Box>
-			</Grid>
-		</Grid>
+		<DomainGeneralContent domainId={domainId} importanceRatingOn={importanceRatingOn} />
 	);
 }
 
 DomainGeneral.propTypes = {
-	icon: propTypes.string.isRequired,
-	score: propTypes.number.isRequired,
+	domainId: propTypes.number.isRequired,
 	importanceRatingOn: propTypes.bool.isRequired,
-	importance: propTypes.number.isRequired,
+
 };
 
 export default DomainGeneral;

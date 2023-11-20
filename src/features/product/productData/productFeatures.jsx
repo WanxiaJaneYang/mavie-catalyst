@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const productFeaturesSlice = createSlice({
 	name: 'productFeatures',
 	initialState: {
-		loading: true,
+		loading: false,
 		error: null,
 		entities: {
 			0: {

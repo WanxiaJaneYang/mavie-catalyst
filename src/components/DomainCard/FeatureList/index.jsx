@@ -39,6 +39,7 @@ function FeatureList({ domainId, importanceRatingOn }) {
 		if (!error && entities && entities[featureId]) {
 			return (
 				<FeatureRow
+					key={`${featureId}-feature-row`}
 					domainId={domainId}
 					featureId={featureId}
 					importanceRatingOn={importanceRatingOn}

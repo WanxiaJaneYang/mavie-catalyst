@@ -4,25 +4,19 @@ import {
 	Typography, Box, Divider,
 } from '@mui/material';
 import { useState, useEffect } from 'react';
-import { Domain } from '@mui/icons-material';
 import DomainGeneral from '../DomainGeneral';
 import FeatureList from '../FeatureList';
 import Toggle from '../../Toggle';
 import DomainExpertOpinion from '../DomainExpertOpinion';
 
 function DomainCardContent({ domainId }) {
-	const domainInfo = useSelector((state) => state.domain.entities[domainId]);
 	const filter = useSelector((state) => state.filters.toggle);
 	const [importanceRatingOn, setImportanceRatingOn] = useState(false);
-	const domainRating = useSelector((state) => state.product.productData
-		.domain.data[domainId]);
 
 	return (
 		<>
 			<DomainGeneral
-				icon={domainInfo.roundIcon}
-				score={domainRating}
-				importance={domainInfo.importance}
+				domainId={domainId}
 				importanceRatingOn={importanceRatingOn}
 			/>
 			<Divider

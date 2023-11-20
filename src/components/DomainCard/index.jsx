@@ -50,10 +50,8 @@ function DomainCard({ domainId }) {
 				}}
 				title={domainInfo?.name}
 				action={(
-					<IconButton>
-						<CloseIcon
-							onClick={handleCloseClick}
-						/>
+					<IconButton onClick={handleCloseClick}>
+						<CloseIcon />
 					</IconButton>
 				)}
 			>
