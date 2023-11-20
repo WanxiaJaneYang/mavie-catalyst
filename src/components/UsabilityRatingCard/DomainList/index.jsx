@@ -1,73 +1,63 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import {
-	Box, Divider, Typography, Grid,
+	Box, Typography,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
-import ScoreBar from '../../ScoreBar';
-import DynamicSvg from '../../DynamicSvgIcon';
+import DomainListRow from './DomainListRow';
+import DomainListSkeleton from './DomainListSkeleton';
+import ErrorMessage from '../../ErrorMessage';
 
 function DomainList() {
-	const domains = useSelector((state) => state.domain.entities);
 	const domainIds = useSelector((state) => state.domain.ids);
-	const domainRating = useSelector((state) => state.product.productData.domain.data);
+	const { loading, error } = useSelector((state) => state.product.productData.domain);
 
-	const getDomainScoreRow = (domainId) => {
-		const domain = domains[domainId];
-		if (!domain) return null;
+	const getDomainScoreRows = () => domainIds.map((domainId) => (
+		<DomainListRow domainId={domainId} key={domainId} />
+	));
 
-		return (
-			<Grid container spacing={2} alignItems="center" sx={{ marginBottom: '10px' }}>
-				<Grid
-					item
-					sm={4}
-					lg={3}
-					xl={2}
-					sx={{
-						display: 'flex',
-						flexDirection: 'row',
-						alignItems: 'center',
-						justifyContent: 'start',
-						gap: '10px',
-					}}
-				>
-					<Typography
-						sx={{
-							fontFamily: 'Inter, sans-serif',
-							fontWeight: 500,
-							fontSize: '12px',
-							textAlign: 'left',
-						}}
-					>
-						{domain.name}
-					</Typography>
-					<DynamicSvg
-						svgData={domain.icon}
-					/>
-				</Grid>
-				<Grid item xs={6} sm={6} lg={8} xl={9}>
-					<ScoreBar
-						score={domainRating[domainId]}
-					/>
-				</Grid>
-				<Grid item xs={2} sm={2} lg={1}>
-					<Typography
-						sx={{
-							color: '#000000',
-							fontFamily: 'Inter, sans-serif',
-							fontWeight: 600,
-							fontSize: '14px',
-							textAlign: 'left',
-						}}
-					>
-						{domainRating[domainId]}
-					</Typography>
-				</Grid>
-			</Grid>
-		);
+	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
+
+	const handleErrorMessageOpen = () => {
+		setErrorMessageOpen(true);
 	};
 
-	const getDomainScoreRows = () => domainIds.map((domainId) => getDomainScoreRow(domainId));
+	const handleErrorMessageClose = () => {
+		setErrorMessageOpen(false);
+	};
+
+	useEffect(
+		() => {
+			if (error) {
+				handleErrorMessageOpen();
+			}
+		},
+		[error],
+	);
+
+	const getDomainListRendered = () => {
+		if (loading) {
+			return (
+				<DomainListSkeleton />
+			);
+		}
+		if (error) {
+			return (
+				<ErrorMessage
+					open={errorMessageOpen}
+					handleClose={handleErrorMessageClose}
+					message={error}
+				/>
+			);
+		}
+		if (domainIds) {
+			return (
+				<Box>
+					{getDomainScoreRows()}
+				</Box>
+			);
+		}
+		return null;
+	};
 
 	return (
 		<Box width="50%">
@@ -92,7 +82,7 @@ function DomainList() {
 					paddingLeft: '16px',
 				}}
 			>
-				{getDomainScoreRows()}
+				{getDomainListRendered()}
 			</Box>
 
 		</Box>

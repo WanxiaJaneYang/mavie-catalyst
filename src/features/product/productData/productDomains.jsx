@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const productDomainsSlice = createSlice({
 	name: 'productDomains',
 	initialState: {
-		loading: false,
+		loading: true,
 		error: null,
 		data: {
 			1: 4.5,

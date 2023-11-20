@@ -5,7 +5,7 @@ function ErrorMessage({ message, open, handleClose }) {
 	return (
 		<Snackbar
 			open={open}
-			autoHideDuration={1200} // Adjust the duration as needed
+			autoHideDuration={2400} // Adjust the duration as needed
 			onClose={handleClose}
 			anchorOrigin={{
 				vertical: 'top',

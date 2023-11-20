@@ -53,7 +53,7 @@ function ProductIntroCard() {
 					backgroundColor: colors.white,
 					padding: '0px',
 					'& .MuiAccordionSummary-content': {
-						margin: '0px',
+						margin: '10px',
 					},
 				}}
 			>

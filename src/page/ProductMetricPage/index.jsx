@@ -1,11 +1,8 @@
-import { Box, Grid, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
-import DomainCard from '../../components/DomainCard';
+import { Box, Typography } from '@mui/material';
 import UsabilityRatingCard from '../../components/UsabilityRatingCard/UsabilityRatingCard';
+import SelectedDomainCards from './SelectedDomainCards';
 
 function ProductMetricPage() {
-	const domainIds = useSelector((state) => state.domain.ids);
-	const selectedDomain = useSelector((state) => state.filters.domain);
 	return (
 		<Box
 			sx={{
@@ -18,19 +15,21 @@ function ProductMetricPage() {
 			}}
 		>
 			<UsabilityRatingCard />
-			<Grid container spacing={2}>
-				{domainIds.map((id) => (
-					selectedDomain[id]
-					&& (
-						<Grid item xs={12} sm={12} md={4}>
-							<DomainCard
-								domainId={id}
-								key={`${id}-domain`}
-							/>
-						</Grid>
-					)
-				))}
-			</Grid>
+			<Typography
+				sx={{
+					color: '#000000',
+					fontFamily: 'Inter, sans-serif',
+					fontWeight: 600,
+					fontSize: '18px',
+					textAlign: 'left',
+					marginTop: '20px',
+					marginBottom: '20px',
+
+				}}
+			>
+				Domains
+			</Typography>
+			<SelectedDomainCards />
 		</Box>
 
 	);

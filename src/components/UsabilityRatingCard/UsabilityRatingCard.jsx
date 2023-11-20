@@ -1,14 +1,57 @@
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-	Accordion, Card, Box, Typography, AccordionSummary, AccordionDetails, Skeleton, Divider,
+	Accordion, Typography, AccordionSummary, AccordionDetails,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useEffect, useState } from 'react';
 import UsabilityRatingCardSkeleton from './UsabilityRatingCardSkeleton';
 import UsabilityRatingCardContent from './UsabilityRatingCardContent';
+import ErrorMessage from '../ErrorMessage';
 
 function UsabilityRatingCard({ productId }) {
+	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
 	const { loading, error, data } = useSelector((state) => state.product.productData.overall);
+
+	const handleErrorMessageOpen = () => {
+		setErrorMessageOpen(true);
+	};
+
+	const handleErrorMessageClose = () => {
+		setErrorMessageOpen(false);
+	};
+
+	useEffect(
+		() => {
+			if (error) {
+				handleErrorMessageOpen();
+			}
+		},
+		[error],
+	);
+
+	const getCardContentRendered = () => {
+		if (loading) {
+			return (
+				<UsabilityRatingCardSkeleton />
+			);
+		}
+		if (error) {
+			return (
+				<ErrorMessage
+					open={errorMessageOpen}
+					handleClose={handleErrorMessageClose}
+					errorMessage={error}
+				/>
+			);
+		}
+		if (data) {
+			return (
+				<UsabilityRatingCardContent data={data} />
+			);
+		}
+		return null;
+	};
 
 	return (
 		<Accordion
@@ -46,19 +89,7 @@ function UsabilityRatingCard({ productId }) {
 				}
 			}
 			>
-				{loading && <UsabilityRatingCardSkeleton />}
-				{/* <Typography
-					sx={{
-						color: '#000000',
-						fontFamily: 'Inter, sans-serif',
-						fontWeight: 500,
-						fontSize: '14px',
-						textAlign: 'start',
-					}}
-				>
-					{productData.usabilityRating}
-				</Typography> */}
-				{!loading && !error && data && <UsabilityRatingCardContent data={data} />}
+				{getCardContentRendered()}
 			</AccordionDetails>
 		</Accordion>
 	);

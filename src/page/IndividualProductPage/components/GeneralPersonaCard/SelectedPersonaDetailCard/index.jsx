@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
+import Skeleton from '@mui/material/Skeleton';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import { IconButton } from '@mui/material';
@@ -7,14 +9,35 @@ import SelectedPersonaToggle from '../../../../../components/SelectedPersonaTogg
 import colors from '../../../../../theme/colors';
 import { setShowDetail } from '../../../../../features/product/generalProduct';
 import CloseIcon from '../../../../../components/icons/CloseIcon';
+import ErrorMessage from '../../../../../components/ErrorMessage';
 
 function SelectedPersonaDetailCard() {
+	const { loading, error } = useSelector((state) => state.persona);
 	const personaIds = useSelector((state) => state.persona.ids);
 
 	const dispatch = useDispatch();
 
 	const showDetails = useSelector((state) => state.product.productInfo.showDetail);
 	const personaInfo = useSelector((state) => state.persona.entities);
+
+	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
+
+	useEffect(
+		() => {
+			if (error) {
+				handleErrorMessageOpen();
+			}
+		},
+		[error],
+	);
+
+	const handleErrorMessageOpen = () => {
+		setErrorMessageOpen(true);
+	};
+
+	const handleErrorMessageClose = () => {
+		setErrorMessageOpen(false);
+	};
 
 	const getPersonaIcons = () => (
 		personaIds.map((personaId) => (
@@ -73,6 +96,35 @@ function SelectedPersonaDetailCard() {
 		))
 	);
 
+	const getContentRendered = () => {
+		if (loading) {
+			return (
+				<Skeleton
+					variant="rectangular"
+					width="95%"
+					height="200px"
+					sx={{
+						borderRadius: '8px',
+					}}
+				/>
+			);
+		}
+		if (error) {
+			return (
+				<ErrorMessage
+					open={errorMessageOpen}
+					handleClose={handleErrorMessageClose}
+					message={error}
+				/>
+			);
+		}
+		return (
+			<>
+				{getPersonaIcons()}
+			</>
+		);
+	};
+
 	return (
 		<Card
 			sx={{
@@ -129,7 +181,7 @@ function SelectedPersonaDetailCard() {
 					width: '100%',
 				}}
 			>
-				{getPersonaIcons()}
+				{getContentRendered()}
 			</Box>
 		</Card>
 	);

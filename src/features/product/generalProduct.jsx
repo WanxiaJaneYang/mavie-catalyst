@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const generalProductSlice = createSlice({
 	name: 'productDetail',
 	initialState: {
-		loading: true,
+		loading: false,
 		error: null,
 		productDetail: {
 			productId: 1,

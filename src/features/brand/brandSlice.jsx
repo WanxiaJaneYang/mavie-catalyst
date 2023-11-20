@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const brandSlice = createSlice({
 	name: 'brand',
 	initialState: {
-		loading: true,
+		loading: false,
 		error: null,
 		data: {
 			name: 'Spacetalk',
