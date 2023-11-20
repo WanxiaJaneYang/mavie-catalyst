@@ -22,8 +22,6 @@ function ProductMetricPage() {
 					fontWeight: 600,
 					fontSize: '18px',
 					textAlign: 'left',
-					marginTop: '20px',
-					marginBottom: '20px',
 
 				}}
 			>

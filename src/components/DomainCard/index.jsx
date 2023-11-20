@@ -1,21 +1,15 @@
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-	Card, CardContent, CardHeader, Typography, Box, Divider, IconButton,
+	Card, CardContent, CardHeader, Typography, IconButton,
 } from '@mui/material';
 import { useState, useEffect } from 'react';
 import CloseIcon from '../icons/CloseIcon';
-import DomainGeneral from './DomainGeneral';
-import FeatureList from './FeatureList';
-import Toggle from '../Toggle';
 import { setSelectedDomain } from '../../features/filters/domainFilterSlice';
+import DomainCardContent from './DomainCardContent';
 
 function DomainCard({ domainId }) {
 	const domainInfo = useSelector((state) => state.domain.entities[domainId]);
-	const filter = useSelector((state) => state.filters.toggle);
-	const [importanceRatingOn, setImportanceRatingOn] = useState(false);
-	const domainRating = useSelector((state) => state.product.productData
-		.domain.data[domainId]);
 
 	const dispatch = useDispatch();
 
@@ -26,13 +20,6 @@ function DomainCard({ domainId }) {
 			},
 		));
 	};
-
-	// useEffect(
-	// 	() => {
-	// 		console.log('importanceRatingOn', importanceRatingOn);
-	// 	},
-	// 	[importanceRatingOn],
-	// );
 
 	return (
 		<Card
@@ -61,7 +48,7 @@ function DomainCard({ domainId }) {
 						textAlign: 'left',
 					},
 				}}
-				title={domainInfo.name}
+				title={domainInfo?.name}
 				action={(
 					<IconButton>
 						<CloseIcon
@@ -75,54 +62,7 @@ function DomainCard({ domainId }) {
 				</Typography>
 			</CardHeader>
 			<CardContent>
-				<DomainGeneral
-					icon={domainInfo.roundIcon}
-					score={domainRating}
-					importance={domainInfo.importance}
-					importanceRatingOn={importanceRatingOn}
-				/>
-				<Divider
-					sx={
-						{
-							marginTop: '16px',
-							marginBottom: '16px',
-							border: '2px solid #E0E0E0',
-						}
-					}
-				/>
-				{
-					filter.featuresOn && (
-						<FeatureList
-							domainId={domainId}
-							importanceRatingOn={importanceRatingOn}
-						/>
-					)
-				}
-				<Box
-					sx={
-						{
-							display: 'flex',
-							flexDirection: 'row',
-							alignItems: 'center',
-							justifyContent: 'end',
-							padding: '0px',
-						}
-					}
-				>
-					<Typography>
-						Importance Rating
-					</Typography>
-					<Toggle
-						value={importanceRatingOn}
-						onChange={() => setImportanceRatingOn(!importanceRatingOn)}
-					/>
-				</Box>
-
-				{filter.expertOpinionsOn && (
-					<Typography>
-						{domainInfo.expertOpinions}
-					</Typography>
-				)}
+				<DomainCardContent domainId={domainId} />
 			</CardContent>
 		</Card>
 	);

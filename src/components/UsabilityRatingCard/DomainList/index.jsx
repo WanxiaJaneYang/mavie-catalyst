@@ -51,16 +51,16 @@ function DomainList() {
 		}
 		if (domainIds) {
 			return (
-				<Box>
+				<>
 					{getDomainScoreRows()}
-				</Box>
+				</>
 			);
 		}
 		return null;
 	};
 
 	return (
-		<Box width="50%">
+		<>
 			<Typography
 				sx={{
 					color: '#000000',
@@ -85,7 +85,7 @@ function DomainList() {
 				{getDomainListRendered()}
 			</Box>
 
-		</Box>
+		</>
 	);
 }
 

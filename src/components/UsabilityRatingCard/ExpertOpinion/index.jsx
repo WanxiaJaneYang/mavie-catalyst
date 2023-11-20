@@ -3,7 +3,10 @@ import { Box, Typography } from '@mui/material';
 function ExpertOpinion() {
 	return (
 		<Box
-			width="50%"
+			sx={{
+				display: 'flex',
+				flexDirection: 'column',
+			}}
 		>
 			<Typography
 				sx={{

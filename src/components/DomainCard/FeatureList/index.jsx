@@ -1,21 +1,55 @@
 import PropTypes from 'prop-types';
 import {
-	Box, Typography,
+	Box, Skeleton, Typography,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 import FeatureRow from '../FeatureRow';
+import ErrorMessage from '../../ErrorMessage';
 
 function FeatureList({ domainId, importanceRatingOn }) {
 	const featureIds = useSelector((state) => state.domain.entities[domainId].features);
+	const { loading, error, entities } = useSelector((state) => state.product.productData.features);
+
+	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
+
+	const handleErrorMessageOpen = () => {
+		setErrorMessageOpen(true);
+	};
+
+	const handleErrorMessageClose = () => {
+		setErrorMessageOpen(false);
+	};
+
+	useEffect(
+		() => {
+			if (error) {
+				handleErrorMessageOpen();
+			}
+		},
+		[error],
+	);
+
+	const getFeatureRowRendered = (featureId) => {
+		if (loading) {
+			return (
+				<Skeleton variant="rectangular" width="100%" height={20} sx={{ margin: '5px' }} />
+			);
+		}
+		if (!error && entities && entities[featureId]) {
+			return (
+				<FeatureRow
+					domainId={domainId}
+					featureId={featureId}
+					importanceRatingOn={importanceRatingOn}
+				/>
+			);
+		}
+		return null;
+	};
 
 	const getFeatureScoreRows = () => featureIds.map((featureId) => (
-		<FeatureRow
-			key={`feature-row-${featureId}`}
-			domainId={domainId}
-			featureId={featureId}
-			importanceRatingOn={importanceRatingOn}
-
-		/>
+		getFeatureRowRendered(featureId)
 	));
 
 	return (
@@ -41,6 +75,13 @@ function FeatureList({ domainId, importanceRatingOn }) {
 					paddingLeft: '16px',
 				}}
 			>
+				{error && (
+					<ErrorMessage
+						open={errorMessageOpen}
+						handleClose={handleErrorMessageClose}
+						message={error}
+					/>
+				)}
 				{getFeatureScoreRows()}
 			</Box>
 

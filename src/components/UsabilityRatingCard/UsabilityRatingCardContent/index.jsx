@@ -73,13 +73,24 @@ function UsabilityRatingCardContent({ productId }) {
 			</Grid>
 			<Divider sx={{ marginTop: '10px', marginBottom: '10px', border: '2px solid #E0E0E0' }} />
 
-			<Box sx={{
-				width: '100%', display: 'flex', flexDirection: 'row', gap: '10px',
-			}}
+			<Grid
+				container
+				flexDirection="row"
 			>
-				<DomainList />
-				{expertOpinionOn && <ExpertOpinion />}
-			</Box>
+				<Grid
+					item
+					xs={expertOpinionOn ? 6 : 12}
+				>
+					<DomainList />
+				</Grid>
+				<Grid
+					item
+					display={expertOpinionOn ? 'flex' : 'none'}
+					xs={expertOpinionOn ? 0 : 12}
+				>
+					<ExpertOpinion />
+				</Grid>
+			</Grid>
 		</Box>
 	);
 }
