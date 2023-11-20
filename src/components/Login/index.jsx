@@ -7,7 +7,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useRef, useState, useEffect } from 'react';
 import { LoadingButton } from '@mui/lab';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import theme from '../../theme';
 import { ReactComponent as EmailIcon } from '../../images/svg/EnvelopeSimple.svg';
 import { ReactComponent as PasswordIcon } from '../../images/svg/LockKey.svg';
@@ -31,6 +31,8 @@ function Copyright(props) {
 
 const Login = () => {
 	const dispatch = useDispatch();
+	const location = useLocation();
+	const from = location.state?.from || { pathname: '/' };
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
@@ -41,6 +43,7 @@ const Login = () => {
 			rememberMe: rememberMeRef.current.checked,
 		};
 		dispatch(login(loginPostData));
+		navigate(from, { replace: true });
 	};
 
 	const rememberMeRef = useRef(null);

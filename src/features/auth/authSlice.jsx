@@ -6,7 +6,7 @@ import { API_BASE_URL } from '../../constants';
 const authSlice = createSlice({
 	name: 'auth',
 	initialState: {
-		isLoggedIn: true,
+		isLoggedIn: false,
 		userId: null,
 		accessToken: null,
 		loading: false,
@@ -53,12 +53,13 @@ export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
 	};
 
 	try {
-		const response = await axios.post(URL, data, { headers });
-		// store the new refreshed access token
-		// dispatch(setAccessToken(response.data.accessToken));
-		// display the success message
-		// write the refresh token at the cookie
-		return response.data;
+		// const response = await axios.post(URL, data, { headers });
+		// // store the new refreshed access token
+		// // dispatch(setAccessToken(response.data.accessToken));
+		// // display the success message
+		// // write the refresh token at the cookie
+		// return response.data;
+		return '123';
 	} catch (error) {
 		if (!error.response) {
 			return thunkAPI.rejectWithValue(error.message);
