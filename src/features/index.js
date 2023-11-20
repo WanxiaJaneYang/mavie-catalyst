@@ -5,9 +5,11 @@ import authReducer from './auth/authSlice';
 import domainSlice from './domain';
 import personaSlice from './persona';
 import brandSlice from './brand/brandSlice';
+import cookie from './cookie';
 // import personaCardSlice from './product/productPage/personaCardSlice';
 
 const rootReducer = combineReducers({
+	cookie,
 	filters: productFilterReducer,
 	auth: authReducer,
 	product: productReducer,

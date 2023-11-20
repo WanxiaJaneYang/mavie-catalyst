@@ -36,8 +36,8 @@ const authSlice = createSlice({
 			.addCase(login.fulfilled, (state, action) => {
 				state.loading = false;
 				state.isLoggedIn = true;
-				state.userId = action.payload;
-				state.accessToken = action.payload;
+				state.userId = action.payload.userId;
+				state.accessToken = action.payload.accessToken;
 			})
 			.addCase(login.rejected, (state, action) => {
 				state.loading = false;
@@ -59,7 +59,10 @@ export const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
 		// // display the success message
 		// // write the refresh token at the cookie
 		// return response.data;
-		return '123';
+		return {
+			userId: 1,
+			accessToken: '123456789',
+		};
 	} catch (error) {
 		if (!error.response) {
 			return thunkAPI.rejectWithValue(error.message);

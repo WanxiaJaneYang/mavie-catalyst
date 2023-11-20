@@ -1,9 +1,8 @@
 /* eslint-disable react/function-component-definition */
 import {
-	Box, Checkbox, FormControlLabel, Link, TextField, Typography,
+	Box, Checkbox, FormControlLabel, Link, Snackbar, TextField,
 } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { useRef, useState, useEffect } from 'react';
 import { LoadingButton } from '@mui/lab';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,49 +10,38 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import theme from '../../theme';
 import { ReactComponent as EmailIcon } from '../../images/svg/EnvelopeSimple.svg';
 import { ReactComponent as PasswordIcon } from '../../images/svg/LockKey.svg';
-import logo from '../../images/svg/Logo.svg';
 import { login, resetProcess } from '../../features/auth/authSlice';
 import ErrorMessage from '../ErrorMessage';
-
-function Copyright(props) {
-	return (
-		<Typography variant="body2" color="text.secondary" align="center" {...props}>
-			{'Copyright © '}
-			<Link color="inherit" href="">
-				Mavie
-			</Link>
-			{' '}
-			{new Date().getFullYear()}
-			.
-		</Typography>
-	);
-}
+import Copyright from '../Copyright';
+import WelcomeComponent from './WelcomeComponent';
+import CookieAcceptSnackbar from './CookieAcceptSnackbar';
 
 const Login = () => {
+	const {
+		success, loading, error, userId,
+	} = useSelector((state) => state.auth);
+	const [emailError, setEmailError] = useState('');
+	const [passwordError, setPasswordError] = useState('');
+
 	const dispatch = useDispatch();
 	const location = useLocation();
-	const from = location.state?.from || { pathname: '/' };
+	const from = location.state?.from || { pathname: `/client/${userId}` };
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
+
 		const loginPostData = {
 			email: data.get('email'),
 			password: data.get('password').trim(),
 			rememberMe: rememberMeRef.current.checked,
 		};
+
 		dispatch(login(loginPostData));
 		navigate(from, { replace: true });
 	};
 
 	const rememberMeRef = useRef(null);
-
-	const matches = useMediaQuery(theme.breakpoints.up('sm'));
-
-	const {
-		success, loading, error, userId,
-	} = useSelector((state) => state.auth);
-
 	const [openError, setOpenError] = useState(false);
 
 	const navigate = useNavigate();
@@ -110,43 +98,7 @@ const Login = () => {
 				alignItems: 'left',
 			}}
 		>
-			<Box
-				sx={
-					{
-						display: 'flex',
-						flexDirection: 'row',
-						alignItems: 'center',
-					}
-				}
-			>
-				<Typography
-					component="h1"
-					fontSize={{
-						xs: 25,
-						sm: 29,
-					}}
-					paddingBottom={2}
-					alignSelf="flex-start"
-					fontFamily="Inter"
-					fontWeight={500}
-					align="left"
-				>
-					Welcome to Mavy
-				</Typography>
-				<img
-					src={logo}
-					alt="Company Logo"
-					style={{
-						width: 40,
-						height: 40,
-						display: matches ? 'none' : 'block',
-						marginLeft: 10,
-						marginTop: -10,
-					}}
-				/>
-
-			</Box>
-
+			<WelcomeComponent />
 			<Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
 				<TextField
 					margin="normal"
@@ -158,6 +110,8 @@ const Login = () => {
 					autoComplete="example@email.com"
 					autoFocus
 					defaultValue="example@email.com"
+					error={!!emailError}
+					helperText={emailError}
 					InputProps={{
 						startAdornment: (
 							<InputAdornment position="start">
@@ -175,6 +129,8 @@ const Login = () => {
 					type="password"
 					id="password"
 					autoComplete="current-password"
+					error={!!passwordError}
+					helperText={passwordError}
 					InputProps={{
 						startAdornment: (
 							<InputAdornment position="start">
@@ -245,6 +201,7 @@ const Login = () => {
 				)}
 
 				<Copyright sx={{ mt: 5 }} />
+				{/* <CookieAcceptSnackbar /> */}
 			</Box>
 		</Box>
 	);
