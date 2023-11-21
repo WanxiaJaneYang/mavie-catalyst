@@ -18,21 +18,26 @@ function CookieAcceptSnackbar() {
 	};
 
 	return (
-		<Alert
-			severity="info"
-			action={(
-				<>
-					<Button color="inherit" size="small" onClick={handleAccept}>
-						Accept
-					</Button>
-					<Button color="inherit" size="small" onClick={handleDecline}>
-						Decline
-					</Button>
-				</>
-			)}
+		<Snackbar
+			anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+			open={open}
 		>
-			This website uses cookies to enhance the user experience.
-		</Alert>
+			<Alert
+				severity="info"
+				action={(
+					<>
+						<Button color="inherit" size="small" onClick={handleAccept}>
+							Accept
+						</Button>
+						<Button color="inherit" size="small" onClick={handleDecline}>
+							Decline
+						</Button>
+					</>
+				)}
+			>
+				This website uses cookies to enhance the user experience.
+			</Alert>
+		</Snackbar>
 
 	);
 }

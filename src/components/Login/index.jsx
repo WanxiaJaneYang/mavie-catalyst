@@ -18,8 +18,9 @@ import CookieAcceptSnackbar from './CookieAcceptSnackbar';
 
 const Login = () => {
 	const {
-		success, loading, error, userId,
+		loading, error, userId,
 	} = useSelector((state) => state.auth);
+	const { allowCookie } = useSelector((state) => state.cookie);
 	const [emailError, setEmailError] = useState('');
 	const [passwordError, setPasswordError] = useState('');
 
@@ -30,6 +31,22 @@ const Login = () => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
+
+		if (!data.get('email')) {
+			setEmailError('Email is required');
+			return;
+		}
+
+		if (!data.get('password')) {
+			setPasswordError('Password is required');
+			return;
+		}
+
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!emailRegex.test(data.get('email'))) {
+			setEmailError('Email is invalid');
+			return;
+		}
 
 		const loginPostData = {
 			email: data.get('email'),
@@ -60,17 +77,6 @@ const Login = () => {
 		[error],
 	);
 
-	useEffect(
-		() => {
-			if (success) {
-				// redirect to client/{id}
-				navigate(`/client/${userId}`);
-				dispatch(resetProcess());
-			}
-		},
-		[success, userId, dispatch, navigate],
-	);
-
 	return (
 		<Box
 			sx={{
@@ -99,6 +105,7 @@ const Login = () => {
 			}}
 		>
 			<WelcomeComponent />
+			<CookieAcceptSnackbar />
 			<Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
 				<TextField
 					margin="normal"
@@ -162,6 +169,7 @@ const Login = () => {
 								value="remember"
 								color="primary"
 								inputRef={rememberMeRef}
+								disabled={!allowCookie}
 							/>
 						)}
 						label="Remember me"
@@ -201,7 +209,6 @@ const Login = () => {
 				)}
 
 				<Copyright sx={{ mt: 5 }} />
-				<CookieAcceptSnackbar />
 			</Box>
 		</Box>
 	);

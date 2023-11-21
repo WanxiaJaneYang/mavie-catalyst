@@ -16,6 +16,7 @@
     "d3": "^7.8.5",
     "d3-scale": "^4.0.2",
     "d3-shape": "^3.2.0",
+    "dotenv": "^16.3.1",
     "mui": "^0.0.1",
     "prop-type": "^0.0.1",
     "prop-types": "^15.8.1",
@@ -28,8 +29,8 @@
     "zcatalyst-cli-plugin-react": "^0.0.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "set \"GENERATE_SOURCEMAP=false\" && react-scripts start",
+    "build": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -81,6 +82,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.28.1",
     "eslint-plugin-jsx-a11y": "^6.7.1",
