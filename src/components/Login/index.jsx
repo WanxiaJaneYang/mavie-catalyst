@@ -201,7 +201,7 @@ const Login = () => {
 				)}
 
 				<Copyright sx={{ mt: 5 }} />
-				{/* <CookieAcceptSnackbar /> */}
+				<CookieAcceptSnackbar />
 			</Box>
 		</Box>
 	);
