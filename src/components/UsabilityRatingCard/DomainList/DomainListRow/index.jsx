@@ -30,7 +30,7 @@ function DomainListRow({ domainId }) {
 					sx={{
 						fontFamily: 'Inter, sans-serif',
 						fontWeight: 500,
-						fontSize: '12px',
+						fontSize: ['10px', '12px', '14px'], // [mobile, tablet, desktop
 						textAlign: 'left',
 					}}
 				>
@@ -45,7 +45,7 @@ function DomainListRow({ domainId }) {
 					score={domainRating[domainId]}
 				/>
 			</Grid>
-			<Grid item xs={2} sm={2} lg={1}>
+			<Grid item xs={1} sm={2} lg={1}>
 				<Typography
 					sx={{
 						color: '#000000',

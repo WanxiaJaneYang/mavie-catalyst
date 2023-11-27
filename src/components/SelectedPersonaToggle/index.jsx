@@ -23,9 +23,9 @@ function SelectedPersonaToggle({ personaId, ...props }) {
 			onClick={
 				() => onClick(personaId)
 			}
-			{...props}
 			svgData={selectedPersonas[personaId] ? personasEntities[personaId].roundButtonSelected
 				: personasEntities[personaId].roundButtonUnselected}
+			{...props}
 		/>
 
 	);

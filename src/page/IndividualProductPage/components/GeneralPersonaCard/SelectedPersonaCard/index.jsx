@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import { IconButton } from '@mui/material';
+import { IconButton, Grid } from '@mui/material';
 import SelectedPersonaToggle from '../../../../../components/SelectedPersonaToggle';
 import colors from '../../../../../theme/colors';
 import { setShowDetail } from '../../../../../features/product/generalProduct';
@@ -39,14 +39,22 @@ function SelectedPersonaCard() {
 
 	const getPersonaIcons = () => (
 		personas.map((id) => (
-
-			<SelectedPersonaToggle
-				personaId={id}
-				key={`${id}-selected`}
-				sx={{
-					fontSize: ['48px', '52px', '60px', '64px'],
-				}}
-			/>
+			<Grid
+				item
+				md={3}
+				lg={2}
+				xl={1}
+				key={`${id}-selected-grid`}
+			>
+				<SelectedPersonaToggle
+					personaId={id}
+					key={`${id}-selected`}
+					sx={{
+						width: ['48px', '52px', '60px', '64px'],
+						height: ['48px', '52px', '60px', '64px'],
+					}}
+				/>
+			</Grid>
 
 		))
 	);
@@ -127,11 +135,13 @@ function SelectedPersonaCard() {
 					/>
 				</IconButton>
 			</Box>
-			<Box
+			<Grid
+				container
 				sx={{
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'start',
+					// display: 'flex',
+					// alignItems: 'center',
+					// flexDirection: 'row',
+					// justifyContent: 'start',
 					paddingBottom: '8px',
 					paddingLeft: '8px',
 					width: '100%',
@@ -139,7 +149,7 @@ function SelectedPersonaCard() {
 				}}
 			>
 				{getPersonaIdRendered()}
-			</Box>
+			</Grid>
 		</Card>
 	);
 }

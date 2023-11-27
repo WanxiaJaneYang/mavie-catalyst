@@ -45,7 +45,7 @@ function UsabilityRatingCardContent({ productId }) {
 							color: '#000000',
 							fontFamily: 'Inter, sans-serif',
 							fontWeight: 400,
-							fontSize: '18px',
+							fontSize: ['12px', '16px', '18px'], // [mobile, tablet, desktop
 							alignItems: 'flex-start',
 							marginLeft: '-30px',
 							marginBottom: ['10px', '18px', '28px'], // [mobile, tablet, desktop
@@ -79,7 +79,8 @@ function UsabilityRatingCardContent({ productId }) {
 			>
 				<Grid
 					item
-					xs={expertOpinionOn ? 6 : 12}
+					xs={12}
+					md={expertOpinionOn ? 6 : 12}
 				>
 					<DomainList />
 				</Grid>

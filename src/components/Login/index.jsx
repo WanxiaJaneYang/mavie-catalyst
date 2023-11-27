@@ -20,7 +20,7 @@ const Login = () => {
 	const {
 		loading, error, userId,
 	} = useSelector((state) => state.auth);
-	const { allowCookie } = useSelector((state) => state.cookie);
+	// const { allowCookie } = useSelector((state) => state.cookie);
 	const [emailError, setEmailError] = useState('');
 	const [passwordError, setPasswordError] = useState('');
 
@@ -47,6 +47,8 @@ const Login = () => {
 			setEmailError('Email is invalid');
 			return;
 		}
+		setEmailError(null);
+		setPasswordError(null);
 
 		const loginPostData = {
 			email: data.get('email'),
@@ -55,6 +57,10 @@ const Login = () => {
 		};
 
 		dispatch(login(loginPostData));
+		if (from.pathname === '/login') {
+			navigate(`/client/${userId}`);
+			return;
+		}
 		navigate(from, { replace: true });
 	};
 
@@ -105,7 +111,7 @@ const Login = () => {
 			}}
 		>
 			<WelcomeComponent />
-			<CookieAcceptSnackbar />
+			{/* <CookieAcceptSnackbar /> */}
 			<Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
 				<TextField
 					margin="normal"
@@ -169,7 +175,7 @@ const Login = () => {
 								value="remember"
 								color="primary"
 								inputRef={rememberMeRef}
-								disabled={!allowCookie}
+								// disabled={!allowCookie}
 							/>
 						)}
 						label="Remember me"

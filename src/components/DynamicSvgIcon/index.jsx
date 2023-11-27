@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReportProblemOutlinedIcon from '@mui/icons-material/ReportProblemOutlined';
+import { Box } from '@mui/material';
 
 const isValidSvg = (data) => {
 	const parser = new DOMParser();
@@ -17,7 +18,16 @@ function DynamicSvg({ svgData, ...props }) {
 		return <ReportProblemOutlinedIcon {...props} />;
 	}
 	// Directly set the SVG XML as the inner HTML of this component
-	return <div dangerouslySetInnerHTML={{ __html: svgData }} {...props} />;
+
+	return (
+		<Box {...props}>
+			<div
+				className="svg-container"
+				dangerouslySetInnerHTML={{ __html: svgData }}
+			/>
+			{/* {' '} */}
+		</Box>
+	);
 }
 
 DynamicSvg.propTypes = {
