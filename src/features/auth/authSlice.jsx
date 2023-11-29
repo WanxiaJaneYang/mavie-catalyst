@@ -8,7 +8,6 @@ const authSlice = createSlice({
 	initialState: {
 		isLoggedIn: false,
 		userId: null,
-		accessToken: null,
 		loading: false,
 		error: null,
 		success: null,
