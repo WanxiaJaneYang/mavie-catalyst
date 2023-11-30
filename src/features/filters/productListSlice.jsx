@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import login from '../../thunk/authThunk';
 
 const productListSlice = createSlice({
 	name: 'productList',
@@ -7,12 +8,12 @@ const productListSlice = createSlice({
 		currentProduct: null,
 		products: [
 			{
-				productId: 0,
-				productName: 'Senior Smart Watch',
+				id: 0,
+				name: 'Senior Smart Watch',
 			},
 			{
-				productId: 1,
-				productName: 'Senior Smart Watch 2',
+				id: 1,
+				name: 'Senior Smart Watch 2',
 			},
 		],
 		loading: false,
@@ -33,6 +34,25 @@ const productListSlice = createSlice({
 			state.loading = false;
 			state.error = action.payload;
 		},
+	},
+
+	extraReducers: (builder) => {
+		builder
+			.addCase(login.pending, (state) => {
+				state.loading = true;
+				state.error = null;
+			})
+			.addCase(login.fulfilled, (state, action) => {
+				const { productList } = action.payload;
+				state.loading = false;
+				[state.currentProduct] = productList;
+				state.products = productList;
+				state.error = null;
+			})
+			.addCase(login.rejected, (state, action) => {
+				state.loading = false;
+				state.error = action.payload;
+			});
 	},
 });
 

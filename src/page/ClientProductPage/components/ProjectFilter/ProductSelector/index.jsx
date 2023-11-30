@@ -60,8 +60,8 @@ function ProductSelector() {
 			>
 				{productList.map((product) => (
 					<MenuItem
-						key={product.productId}
-						value={product.productId}
+						key={product.id}
+						value={product.id}
 						// sx={
 						// 	{
 						// 		fontFamily: 'Inter, sans-serif',
@@ -70,7 +70,7 @@ function ProductSelector() {
 						// 	}
 						// }
 					>
-						{product.productName}
+						{product.name}
 
 					</MenuItem>
 				))}

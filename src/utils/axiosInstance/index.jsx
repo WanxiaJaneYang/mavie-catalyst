@@ -8,7 +8,9 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.response.use(
 	(response) => response.data,
 	(error) => {
-		if (error.response) {
+		if (error.response && error.response.status === 404) {
+			throw new Error('404 error, please check your internet connection');
+		} else if (error.response) {
 			console.log(error);
 			throw new Error(error.response.data.message || 'an error occured, please try again');
 		} else if (error.request) {
