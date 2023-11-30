@@ -1,15 +1,13 @@
 import axios from 'axios';
 import { API_BASE_URL } from '../../constants';
 
-const checkOath = async () => {
-	const URL = `${API_BASE_URL}/auth`;
-	const headers = {
-		'Content-Type': 'application/json',
-	};
-	try {
-		const response = await axios.get(URL, { headers });
-		return response.data;
-	} catch (error) {
+const axiosInstance = axios.create({
+	baseURL: API_BASE_URL,
+});
+
+axiosInstance.interceptors.response.use(
+	(response) => response.data,
+	(error) => {
 		if (error.response) {
 			console.log(error);
 			throw new Error(error.response.data.message || 'an error occured, please try again');
@@ -20,7 +18,7 @@ const checkOath = async () => {
 			console.log(error);
 			throw new Error('an unknown error occured, please contact the support team');
 		}
-	}
-};
+	},
+);
 
-export default checkOath;
+export default axiosInstance;
