@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import getProductFilter from '../../thunk/productFilterThunk';
 
 const personaSlice = createSlice({
 	name: 'persona',
@@ -52,30 +53,33 @@ const personaSlice = createSlice({
 	},
 
 	reducers: {
-		fetchPersonaRequest: (state) => {
-			state.loading = true;
-		},
-		fetchPersonaSuccess: (state, action) => {
-			const { domainId, features } = action.payload;
-			state.loading = false;
-			features.forEach((feature) => {
-				state.entities[feature.id] = { ...feature, domainId };
-				if (!state.ids.includes(feature.id)) {
-					state.ids.push(feature.id);
-				}
+	},
+
+	extraReducers: (builder) => {
+		builder
+			.addCase(getProductFilter.pending, (state) => {
+				state.loading = true;
+				state.error = null;
+			})
+			.addCase(getProductFilter.fulfilled, (state, action) => {
+				state.loading = false;
+				state.entities = action.payload.personas.reduce((entities, persona) => {
+					entities[persona.id] = persona;
+					return entities;
+				}, {});
+				state.ids = action.payload.personas.map((persona) => persona.id);
+			})
+			.addCase(getProductFilter.rejected, (state, action) => {
+				state.loading = false;
+				state.error = action.payload;
 			});
-		},
-		fetchPersonaFailure: (state, action) => {
-			state.loading = false;
-			state.error = action.payload;
-		},
 	},
 });
 
-export const {
-	fetchPersonaRequest,
-	fetchPersonaSuccess,
-	fetchPersonaFailure,
-} = personaSlice.actions;
+// export const {
+// 	fetchPersonaRequest,
+// 	fetchPersonaSuccess,
+// 	fetchPersonaFailure,
+// } = personaSlice.actions;
 
 export default personaSlice.reducer;

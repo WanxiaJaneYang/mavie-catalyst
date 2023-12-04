@@ -14,9 +14,9 @@ function ProductSelector() {
 	const clientId = useSelector((state) => state.auth.userId);
 
 	const handleChange = (event) => {
-		const selectedProduct = productList.find((product) => product.productId === event.target.value);
+		const selectedProduct = productList.find((product) => product.id === event.target.value);
 		dispatch(setCurrentProduct(selectedProduct));
-		navigate(`/client/${clientId}/product/${selectedProduct.productId}`);
+		navigate(`/client/${clientId}/product/${selectedProduct.id}`);
 	};
 	return (
 		<div

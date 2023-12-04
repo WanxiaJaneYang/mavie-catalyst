@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import {
-	Skeleton,
 	Typography,
 } from '@mui/material';
 import Accordion from '@mui/material/Accordion';

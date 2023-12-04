@@ -23,17 +23,6 @@ const productListSlice = createSlice({
 		setCurrentProduct(state, action) {
 			state.currentProduct = action.payload;
 		},
-		productListRequest(state, action) {
-			state.loading = true;
-		},
-		productListSuccess(state, action) {
-			state.loading = false;
-			state.products = action.payload;
-		},
-		productListFail(state, action) {
-			state.loading = false;
-			state.error = action.payload;
-		},
 	},
 
 	extraReducers: (builder) => {

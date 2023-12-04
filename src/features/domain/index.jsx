@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import getProductFilter from '../../thunk/productFilterThunk';
 
 const domainSlice = createSlice({
 	name: 'domain',
@@ -52,6 +53,28 @@ const domainSlice = createSlice({
 			state.errors = action.payload;
 		},
 	},
+
+	extraReducers: (builder) => {
+		builder
+			.addCase(getProductFilter.pending, (state) => {
+				state.loading = true;
+				state.errors = null;
+			})
+
+			.addCase(getProductFilter.fulfilled, (state, action) => {
+				state.loading = false;
+				state.errors = null;
+				state.entities = action.payload.domains.reduce(
+					(entities, domain) => {
+						entities[domain.id] = domain;
+						return entities;
+					},
+					{},
+				);
+				state.ids = action.payload.domains.map((domain) => domain.id);
+			});
+	},
+
 });
 
 export const { fetchDomainRequest, fetchDomainSuccess, fetchDomainFailure } = domainSlice.actions;

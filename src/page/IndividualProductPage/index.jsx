@@ -1,9 +1,7 @@
-import { Box, Grid, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { Box, Typography } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import GeneralPersonaCard from './components/GeneralPersonaCard';
 import ProductIntroCard from './components/productIntroCard';
-import DomainCard from '../../components/DomainCard';
 import BrandCard from '../../components/BrandCard';
 
 function IndividualProductPage() {

@@ -12,7 +12,7 @@ axiosInstance.interceptors.response.use(
 			throw new Error('404 error, please check your internet connection');
 		} else if (error.response) {
 			console.log(error);
-			throw new Error(error.response.data.message || 'an error occured, please try again');
+			throw new Error(error.response.data.error || 'an error occured, please try again');
 		} else if (error.request) {
 			console.log(error);
 			throw new Error('Internet connection is required');
