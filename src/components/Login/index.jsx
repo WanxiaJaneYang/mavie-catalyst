@@ -29,7 +29,8 @@ const Login = () => {
 	const location = useLocation();
 	const from = location.state?.from || { pathname: `/client/${userId}` };
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
+		console.log('Base url: ', process.env.REACT_APP_API_BASE_URL);
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
 
@@ -57,7 +58,7 @@ const Login = () => {
 			rememberMe: rememberMeRef.current.checked,
 		};
 
-		dispatch(login(loginPostData));
+		await dispatch(login(loginPostData));
 		if (from.pathname === '/login') {
 			navigate(`/client/${userId}`);
 			return;
@@ -208,6 +209,7 @@ const Login = () => {
 					color="primary"
 					type="submit"
 					loading={loading}
+					// onClick={handleSubmit}
 				>
 					Login
 				</LoadingButton>

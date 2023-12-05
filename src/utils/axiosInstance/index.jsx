@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { API_BASE_URL } from '../../constants';
 
 const axiosInstance = axios.create({
-	baseURL: API_BASE_URL,
+	baseURL: 'https://maviecustomerbackend-698471191.development.catalystserverless.com',
 });
 
 axiosInstance.interceptors.response.use(

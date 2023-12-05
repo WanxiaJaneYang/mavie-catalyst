@@ -4,4 +4,4 @@ export const resetState = () => ({
 	type: RESET_STATE,
 });
 
-export const API_BASE_URL = 'http://aaa/api/v1';
+export const API_BASE_URL = 'https://maviecustomerbackend-698471191.development.catalystserverless.com';
