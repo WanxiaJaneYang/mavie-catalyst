@@ -143,7 +143,9 @@ function SelectedPersonaCard() {
 					// flexDirection: 'row',
 					// justifyContent: 'start',
 					paddingBottom: '8px',
-					paddingLeft: '8px',
+					paddingLeft: '16px',
+					paddingRight: '16px',
+					paddingTop: '8px',
 					width: '100%',
 					gap: ['8px', '16px', '16px'],
 				}}

@@ -8,7 +8,7 @@ import DomainList from '../DomainList';
 import ExpertOpinion from '../ExpertOpinion';
 
 function UsabilityRatingCardContent({ productId }) {
-	const { score } = useSelector((state) => state.product.productData.overall.data);
+	const score = useSelector((state) => state.product.productData.overall.data);
 	const expertOpinionOn = useSelector((state) => state.filters.toggle.expertOpinionsOn);
 	const smallScreen = useMediaQuery('(min-width:600px)');
 	const mediumScreen = useMediaQuery('(min-width:900px)');

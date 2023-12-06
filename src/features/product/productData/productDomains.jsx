@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import getProductRating from '../../../thunk/productMetricThunk';
 
 const productDomainsSlice = createSlice({
 	name: 'productDomains',
@@ -18,17 +19,26 @@ const productDomainsSlice = createSlice({
 		},
 	},
 	reducers: {
-		getDomains: (state) => {
-			state.loading = true;
-		},
-		getDomainsSuccess: (state, { payload }) => {
-			state.loading = false;
-			state.productDomains = payload;
-		},
-		getDomainsFailure: (state, { payload }) => {
-			state.loading = false;
-			state.error = payload;
-		},
+	},
+
+	extraReducers: (builder) => {
+		builder
+			.addCase(getProductRating.pending, (state) => {
+				state.loading = true;
+				state.error = null;
+			})
+			.addCase(getProductRating.fulfilled, (state, action) => {
+				state.loading = false;
+				const newData = action.payload.domainRatings.reduce((acc, domain) => {
+					acc[domain.id] = domain.rating;
+					return acc;
+				}, {});
+				state.data = newData;
+			})
+			.addCase(getProductRating.rejected, (state, action) => {
+				state.loading = false;
+				state.error = action.payload;
+			});
 	},
 
 });

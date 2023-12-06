@@ -5,8 +5,8 @@ import login from '../../thunk/authThunk';
 const authSlice = createSlice({
 	name: 'auth',
 	initialState: {
-		isLoggedIn: false,
-		userId: null,
+		isLoggedIn: true,
+		userId: 1,
 		loading: false,
 		error: null,
 		success: null,

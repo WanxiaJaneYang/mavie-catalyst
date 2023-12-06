@@ -2,8 +2,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import getProductFilter from '../../thunk/productFilterThunk';
 
-const domainSlice = createSlice({
-	name: 'domain',
+const featureSlice = createSlice({
+	name: 'feature',
 	initialState: {
 		loading: false,
 		// entities: null,
@@ -44,17 +44,16 @@ const domainSlice = createSlice({
 			})
 			.addCase(getProductFilter.fulfilled, (state, action) => {
 				state.loading = false;
-				state.entities = action.payload.domains.reduce((entities, domain) => {
-					entities[domain.id] = domain;
+				state.entities = action.payload.features.reduce((entities, persona) => {
+					entities[persona.id] = persona;
 					return entities;
 				}, {});
-				state.ids = action.payload.domains.map((domain) => domain.id);
+				state.ids = action.payload.features.map((feature) => feature.id);
 			})
 			.addCase(getProductFilter.rejected, (state, action) => {
 				state.loading = false;
-				state.error = action.error.message;
 			});
 	},
 });
 
-export default domainSlice.reducer;
+export default featureSlice.reducer;
