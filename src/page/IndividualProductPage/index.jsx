@@ -1,10 +1,18 @@
 import { Box, Typography } from '@mui/material';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 import GeneralPersonaCard from './components/GeneralPersonaCard';
 import ProductIntroCard from './components/productIntroCard';
 import BrandCard from '../../components/BrandCard';
+import getProductInfo from '../../thunk/productInfoThunk';
 
 function IndividualProductPage() {
+	// if path is /client/:id/product/:id and id changes, then we need to fetch the new product
+	const { productId } = useParams();
+	useEffect(() => {
+		getProductInfo(productId);
+	}, [productId]);
+
 	return (
 		<Box
 			sx={{

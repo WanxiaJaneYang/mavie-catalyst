@@ -1,6 +1,6 @@
 {
     "name": "mavie",
-    "version": "0.0.3.9.1",
+    "version": "0.0.3.9.5",
     "homepage": "index.html",
-    "description": "hide source code"
+    "description": "changed base to same domain"
 }

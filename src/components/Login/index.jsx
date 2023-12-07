@@ -21,6 +21,7 @@ const Login = () => {
 	const {
 		loading, error, userId,
 	} = useSelector((state) => state.auth);
+	const selectedProduct = useSelector((state) => state.filters.product.currentProduct);
 	// const { allowCookie } = useSelector((state) => state.cookie);
 	const [emailError, setEmailError] = useState('');
 	const [passwordError, setPasswordError] = useState('');
@@ -60,7 +61,11 @@ const Login = () => {
 
 		await dispatch(login(loginPostData));
 		if (from.pathname === '/login') {
-			navigate(`/client/${userId}`);
+			if (!selectedProduct) {
+				navigate(`/client/${userId}`);
+				return;
+			}
+			navigate(`/client/${userId}/product${selectedProduct}`);
 			return;
 		}
 		navigate(from, { replace: true });
