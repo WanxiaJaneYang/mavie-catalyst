@@ -104,17 +104,6 @@ const productFeaturesSlice = createSlice({
 
 	},
 	reducers: {
-		getFeatures: (state) => {
-			state.loading = true;
-		},
-		getFeaturesSuccess: (state, { payload }) => {
-			state.loading = false;
-			state.productFeatures = payload;
-		},
-		getFeaturesFailure: (state, { payload }) => {
-			state.loading = false;
-			state.error = payload;
-		},
 	},
 
 	extraReducers: (builder) => {

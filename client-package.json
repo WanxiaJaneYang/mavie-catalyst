@@ -1,6 +1,6 @@
 {
     "name": "mavie",
-    "version": "0.0.3.9.5",
+    "version": "0.0.3.9.6",
     "homepage": "index.html",
-    "description": "changed base to same domain"
+    "description": "changed the login useeffect to else if"
 }

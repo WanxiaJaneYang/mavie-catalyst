@@ -1,16 +1,22 @@
 import { Box, Typography } from '@mui/material';
 import { Outlet, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import GeneralPersonaCard from './components/GeneralPersonaCard';
 import ProductIntroCard from './components/productIntroCard';
 import BrandCard from '../../components/BrandCard';
 import getProductInfo from '../../thunk/productInfoThunk';
+import getProductFilter from '../../thunk/productFilterThunk';
 
 function IndividualProductPage() {
 	// if path is /client/:id/product/:id and id changes, then we need to fetch the new product
 	const { productId } = useParams();
+	const dispatch = useDispatch();
+
 	useEffect(() => {
-		getProductInfo(productId);
+		console.log('dispatching getProductInfo and getProductFilter from individual product page use effect');
+		dispatch(getProductInfo(productId));
+		dispatch(getProductFilter(productId));
 	}, [productId]);
 
 	return (

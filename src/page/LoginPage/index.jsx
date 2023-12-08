@@ -3,15 +3,38 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { ThemeProvider } from '@mui/material/styles';
 import { Box } from '@mui/material';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import theme from '../../theme';
 import Login from '../../components/Login';
 import logo from '../../images/logo.png';
 
-// TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = theme;
 
 export default function SignInSide() {
+	const navigate = useNavigate();
+	const location = useLocation();
+	const { userId } = useSelector((state) => state.auth);
+	const { currentProduct } = useSelector((state) => state.filters.product);
+
+	useEffect(
+		() => {
+			console.log('location: ', location);
+			if (location.state?.from) {
+				console.log('location.state.from: ', location.state.from);
+				navigate(location.state.from);
+			} else if (userId && currentProduct) {
+				console.log('userId and selectedProductId from login page useEffect: ', userId, currentProduct.id);
+				navigate(`/client/${userId}/product/${currentProduct.id}`);
+			} else if (userId) {
+				console.log('userId: ', userId);
+				navigate(`/client/${userId}`);
+			}
+		},
+		[userId, location, currentProduct, navigate],
+	);
+
 	return (
 		<ThemeProvider theme={defaultTheme}>
 			<Grid container component="main" sx={{ height: '100vh' }}>

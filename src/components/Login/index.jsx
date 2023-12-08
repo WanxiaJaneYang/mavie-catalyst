@@ -6,7 +6,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import { useRef, useState, useEffect } from 'react';
 import { LoadingButton } from '@mui/lab';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import theme from '../../theme';
 import { ReactComponent as EmailIcon } from '../../images/svg/EnvelopeSimple.svg';
 import { ReactComponent as PasswordIcon } from '../../images/svg/LockKey.svg';
@@ -19,16 +19,13 @@ import CookieAcceptSnackbar from './CookieAcceptSnackbar';
 
 const Login = () => {
 	const {
-		loading, error, userId,
+		loading, error,
 	} = useSelector((state) => state.auth);
-	const selectedProduct = useSelector((state) => state.filters.product.currentProduct);
 	// const { allowCookie } = useSelector((state) => state.cookie);
 	const [emailError, setEmailError] = useState('');
 	const [passwordError, setPasswordError] = useState('');
 
 	const dispatch = useDispatch();
-	const location = useLocation();
-	const from = location.state?.from || { pathname: `/client/${userId}` };
 
 	const handleSubmit = async (event) => {
 		console.log('Base url: ', process.env.REACT_APP_API_BASE_URL);
@@ -59,22 +56,11 @@ const Login = () => {
 			rememberMe: rememberMeRef.current.checked,
 		};
 
-		await dispatch(login(loginPostData));
-		if (from.pathname === '/login') {
-			if (!selectedProduct) {
-				navigate(`/client/${userId}`);
-				return;
-			}
-			navigate(`/client/${userId}/product${selectedProduct}`);
-			return;
-		}
-		navigate(from, { replace: true });
+		dispatch(login(loginPostData));
 	};
 
 	const rememberMeRef = useRef(null);
 	const [openError, setOpenError] = useState(false);
-
-	const navigate = useNavigate();
 
 	const handleCloseError = () => {
 		setOpenError(false);

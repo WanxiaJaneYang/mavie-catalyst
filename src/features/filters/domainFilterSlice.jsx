@@ -1,18 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import getProductFilter from '../../thunk/productFilterThunk';
 
 const domainFilterSlice = createSlice({
 	name: 'domainFilter',
-	initialState: {
-		1: true,
-		2: true,
-		3: true,
-		4: true,
-		5: true,
-		6: true,
-		7: true,
-		8: true,
-	},
+	initialState: null,
 
 	reducers: {
 		setSelectedDomain: (state, { payload }) => {
@@ -21,6 +13,20 @@ const domainFilterSlice = createSlice({
 			});
 		},
 	},
+
+	extraReducers: (builder) => {
+		builder.addCase(getProductFilter.fulfilled, (state, action) => {
+			const domainList = action.payload.domains.reduce(
+				(acc, domain) => {
+					acc[domain.id] = true;
+					return acc;
+				},
+				{},
+			);
+			state = domainList;
+		});
+	},
+
 });
 
 export const { setSelectedDomain } = domainFilterSlice.actions;

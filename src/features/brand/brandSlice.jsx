@@ -7,23 +7,9 @@ const brandSlice = createSlice({
 	initialState: {
 		loading: false,
 		error: null,
-		data: {
-			name: 'Spacetalk',
-			icon: '',
-		},
+		data: null,
 	},
 	reducers: {
-		getBrands: (state) => {
-			state.loading = true;
-		},
-		getBrandsSuccess: (state, { payload }) => {
-			state.loading = false;
-			state.data = payload;
-		},
-		getBrandsFailure: (state, { payload }) => {
-			state.loading = false;
-			state.error = payload;
-		},
 	},
 
 	extraReducers: (builder) => {

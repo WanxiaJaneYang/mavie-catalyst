@@ -6,16 +6,17 @@ const productListSlice = createSlice({
 	name: 'productList',
 	initialState: {
 		currentProduct: null,
-		products: [
-			{
-				id: 0,
-				name: 'Senior Smart Watch',
-			},
-			{
-				id: 1,
-				name: 'Senior Smart Watch 2',
-			},
-		],
+		// products: [
+		// 	{
+		// 		id: 0,
+		// 		name: 'Senior Smart Watch',
+		// 	},
+		// 	{
+		// 		id: 1,
+		// 		name: 'Senior Smart Watch 2',
+		// 	},
+		// ],
+		products: null,
 		loading: false,
 		error: null,
 	},

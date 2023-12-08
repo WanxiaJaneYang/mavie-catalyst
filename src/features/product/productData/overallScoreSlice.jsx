@@ -11,17 +11,6 @@ const featureScoreDetailSlice = createSlice({
 	},
 
 	reducers: {
-		getFeatureScoreDetail: (state) => {
-			state.loading = true;
-		},
-		getFeatureScoreDetailSuccess: (state, { payload }) => {
-			state.loading = false;
-			state.featureScoreDetail = payload;
-		},
-		getFeatureScoreDetailFailure: (state, { payload }) => {
-			state.loading = false;
-			state.error = payload;
-		},
 	},
 
 	extraReducers: (builder) => {
