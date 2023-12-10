@@ -7,7 +7,7 @@ import FeatureCard from '../../FeatureCard';
 
 function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 	const [open, setOpen] = useState(false);
-	const features = useSelector((state) => state.product.productData.features.entities);
+	const features = useSelector((state) => state.feature.entities);
 	const feature = features[featureId];
 	if (!feature) return null;
 
@@ -40,7 +40,7 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 							textAlign: 'left',
 						}}
 					>
-						{feature.name}
+						{feature.name || 'Feature Name'}
 					</Typography>
 				</Grid>
 				<Grid item xs={6} sm={6} lg={8} xl={9}>

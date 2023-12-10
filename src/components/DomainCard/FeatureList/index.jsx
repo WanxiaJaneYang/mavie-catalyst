@@ -8,8 +8,8 @@ import FeatureRow from '../FeatureRow';
 import ErrorMessage from '../../ErrorMessage';
 
 function FeatureList({ domainId, importanceRatingOn }) {
-	const featureIds = useSelector((state) => state.domain.entities[domainId].features);
-	const { loading, error, entities } = useSelector((state) => state.product.productData.features);
+	const featureIds = useSelector((state) => state.domain.entities[domainId].featureIds);
+	const { loading, error, entities } = useSelector((state) => state.feature);
 
 	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
 

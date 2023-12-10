@@ -30,7 +30,7 @@ const featureSlice = createSlice({
 		// 		features: [10, 11, 12, 13, 14],
 		// 	},
 		// },
-		ids: null,
+		ids: [],
 		// ids: [1, 2, 3],
 	},
 	reducers: {

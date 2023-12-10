@@ -10,7 +10,7 @@ import MavieGauge from '../../Gauges';
 import ErrorMessage from '../../ErrorMessage';
 
 function FeatureCardContent({ featureId }) {
-	const feature = useSelector((state) => state.product.productData.features.entities[featureId]);
+	const feature = useSelector((state) => state.feature.entities[featureId]);
 	const featureDetailLoading = useSelector((state) => state.product.productData
 		.featureDetail.loading);
 	const featureDetailError = useSelector((state) => state.product.productData

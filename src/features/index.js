@@ -5,6 +5,7 @@ import authReducer from './auth/authSlice';
 import domainSlice from './domain';
 import personaSlice from './persona';
 import brandSlice from './brand/brandSlice';
+import featureSlice from './feature';
 import cookie from './cookie';
 // import personaCardSlice from './product/productPage/personaCardSlice';
 
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
 	domain: domainSlice,
 	persona: personaSlice,
 	brand: brandSlice,
+	feature: featureSlice,
 	// personaCard: personaCardSlice,
 });
 

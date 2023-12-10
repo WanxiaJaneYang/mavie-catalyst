@@ -10,7 +10,7 @@ import FeatureCardContent from './FeatureCardContent';
 function FeatureCard({
 	open, domainId, featureId, handleCloseClick,
 }) {
-	const feature = useSelector((state) => state.product.productData.features.entities[featureId]);
+	const feature = useSelector((state) => state.feature.entities[featureId]);
 	const domains = useSelector((state) => state.domain.entities);
 
 	return (
