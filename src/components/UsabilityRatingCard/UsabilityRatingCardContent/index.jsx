@@ -1,13 +1,12 @@
 import {
-	Box, Divider, Grid, Skeleton, Typography, useMediaQuery,
+	Box, Divider, Grid, Typography, useMediaQuery,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 import MavieGauge from '../../Gauges';
 import DomainList from '../DomainList';
 import ExpertOpinion from '../ExpertOpinion';
 
-function UsabilityRatingCardContent({ productId }) {
+function UsabilityRatingCardContent() {
 	const score = useSelector((state) => state.product.productData.overall.data);
 	const expertOpinionOn = useSelector((state) => state.filters.toggle.expertOpinionsOn);
 	const smallScreen = useMediaQuery('(min-width:600px)');
@@ -95,9 +94,5 @@ function UsabilityRatingCardContent({ productId }) {
 		</Box>
 	);
 }
-
-UsabilityRatingCardContent.propTypes = {
-	productId: PropTypes.number.isRequired,
-};
 
 export default UsabilityRatingCardContent;

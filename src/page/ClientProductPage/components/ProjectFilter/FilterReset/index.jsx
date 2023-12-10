@@ -17,7 +17,7 @@ function FilterReset() {
 	};
 
 	const handleApply = () => {
-		navigate(`/client/${userId}/product/${currentSelectedProduct.productId}/metrics`);
+		navigate(`/client/${userId}/product/${currentSelectedProduct.id}/metrics`);
 	};
 
 	return (

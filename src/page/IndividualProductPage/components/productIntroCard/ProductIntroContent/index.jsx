@@ -1,13 +1,35 @@
 import {
-	Box, Card, CardMedia, Typography,
+	Box, Card, CardMedia, Grid, Typography,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
 import MavieRating from '../../../../../components/MavieRating';
 import colors from '../../../../../theme/colors';
+import productPlaceHolder from '../../../../../images/productPlaceHolder.png';
 
 function ProductIntroContent() {
 	const productDetail = useSelector((state) => state.product.productInfo
 		.productDetail);
+
+	const productDescription = useSelector((state) => state.product.productInfo
+		.productDescription);
+
+	const productImage = useSelector((state) => state.product.productInfo
+		.productImage);
+
+	const getProductDescription = () => {
+		if (productDescription) {
+			return productDescription;
+		}
+		return 'No description Available';
+	};
+
+	const getProductImage = () => {
+		if (productImage) {
+			return productImage;
+		}
+		return productPlaceHolder;
+	};
+
 	return (
 		<Card
 			sx={{
@@ -21,17 +43,19 @@ function ProductIntroContent() {
 			}}
 			elevation={0}
 		>
-			<Box
+			<Grid
+				container
 				sx={{
 					display: 'flex',
 					flexDirection: 'row',
 					alignItems: 'start',
-					justifyContent: 'center',
+					justifyContent: 'space-between',
 					marginBottom: '16px',
 					gap: '16px',
 				}}
 			>
-				<Box
+				<Grid
+					item
 					sx={{
 						display: 'flex',
 						flexDirection: 'column',
@@ -80,26 +104,25 @@ function ProductIntroContent() {
 							marginBottom: '16px',
 						}}
 					>
-						{productDetail?.description}
+						{getProductDescription()}
 					</Typography>
-				</Box>
-				<Box
-					sx={
-						{
-							display: 'flex',
-							width: '40%',
-							height: 155,
-						}
-					}
+				</Grid>
+				<Grid
+					item
 				>
 					<CardMedia
 						component="img"
-						image={productDetail?.productImage}
+						image={getProductImage()}
 						title={productDetail?.productModalName}
+						sx={{
+							width: '155px',
+							height: '155px',
+							borderRadius: '8px',
+						}}
 					/>
 
-				</Box>
-			</Box>
+				</Grid>
+			</Grid>
 		</Card>
 	);
 }

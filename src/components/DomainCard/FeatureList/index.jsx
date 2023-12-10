@@ -49,7 +49,7 @@ function FeatureList({ domainId, importanceRatingOn }) {
 		return null;
 	};
 
-	const getFeatureScoreRows = () => featureIds.map((featureId) => (
+	const getFeatureScoreRows = () => featureIds && featureIds.map((featureId) => (
 		getFeatureRowRendered(featureId)
 	));
 

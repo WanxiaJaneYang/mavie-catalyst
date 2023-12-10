@@ -5,18 +5,20 @@ import login from '../../thunk/authThunk';
 const productListSlice = createSlice({
 	name: 'productList',
 	initialState: {
-		currentProduct: null,
-		// products: [
-		// 	{
-		// 		id: 0,
-		// 		name: 'Senior Smart Watch',
-		// 	},
-		// 	{
-		// 		id: 1,
-		// 		name: 'Senior Smart Watch 2',
-		// 	},
-		// ],
-		products: null,
+		currentProduct: {
+			id: 0,
+			name: 'Senior Smart Watch',
+		},
+		products: [
+			{
+				id: 0,
+				name: 'Senior Smart Watch',
+			},
+			{
+				id: 1,
+				name: 'Senior Smart Watch 2',
+			},
+		],
 		loading: false,
 		error: null,
 	},
@@ -35,7 +37,7 @@ const productListSlice = createSlice({
 			.addCase(login.fulfilled, (state, action) => {
 				const { productList } = action.payload;
 				state.loading = false;
-				[state.currentProduct] = productList;
+				state.currentProduct = productList[0] || state.currentProduct;
 				state.products = productList;
 				state.error = null;
 			})
@@ -47,6 +49,6 @@ const productListSlice = createSlice({
 });
 
 export const {
-	setCurrentProduct, productListRequest, productListSuccess, productListFail,
+	setCurrentProduct,
 } = productListSlice.actions;
 export default productListSlice.reducer;

@@ -17,7 +17,7 @@ function IndividualProductPage() {
 		console.log('dispatching getProductInfo and getProductFilter from individual product page use effect');
 		dispatch(getProductInfo(productId));
 		dispatch(getProductFilter(productId));
-	}, [productId]);
+	}, [productId, dispatch]);
 
 	return (
 		<Box

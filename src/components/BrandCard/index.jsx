@@ -6,10 +6,19 @@ import BrandCardSkeleton from './BrandCardSkeleton';
 function BrandCard() {
 	const brandInfo = useSelector((state) => state.brand.data);
 	const { loading, error } = useSelector((state) => state.brand);
+
+	const getBrandIcon = () => {
+		if (brandInfo && brandInfo.icon) {
+			return brandInfo.icon;
+		}
+
+		return '<svg width="80" height="80" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><style>.text { font: bold 22px sans-serif; fill: #7B4FAB; }</style><circle cx="100" cy="100" r="60" stroke="#7B4FAB" stroke-width="3" fill="none" /><text x="100" y="105" text-anchor="middle" class="text">No SVG</text></svg>';
+	};
+
 	const getBrandInfoRendered = () => (
 		<>
 			<DynamicSvg
-				svgData={brandInfo.icon}
+				svgData={getBrandIcon()}
 				style={{
 					width: '80px',
 					height: '80px',

@@ -1,8 +1,26 @@
 import { Box, Typography } from '@mui/material';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import UsabilityRatingCard from '../../components/UsabilityRatingCard/UsabilityRatingCard';
 import SelectedDomainCards from './SelectedDomainCards';
+import getProductRating from '../../thunk/productMetricThunk';
+import getProductInfo from '../../thunk/productInfoThunk';
+import getProductFilter from '../../thunk/productFilterThunk';
 
 function ProductMetricPage() {
+	const dispatch = useDispatch();
+	const { productId } = useParams();
+
+	useEffect(
+		() => {
+			dispatch(getProductFilter(productId));
+			dispatch(getProductInfo(productId));
+			dispatch(getProductRating(productId));
+		},
+		[productId, dispatch],
+	);
+
 	return (
 		<Box
 			sx={{

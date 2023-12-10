@@ -82,6 +82,7 @@ function PersonaSelectorContent() {
 			))}
 		</div>
 	);
+
 	return (
 		<>
 			{

@@ -22,23 +22,35 @@ function DomainListRow({ domainId }) {
 					display: 'flex',
 					flexDirection: 'row',
 					alignItems: 'center',
-					justifyContent: 'start',
+					justifyContent: 'space-between',
 					gap: '10px',
 				}}
 			>
-				<Typography
-					sx={{
-						fontFamily: 'Inter, sans-serif',
-						fontWeight: 500,
-						fontSize: ['10px', '12px', '14px'], // [mobile, tablet, desktop
-						textAlign: 'left',
-					}}
-				>
-					{domain.name}
-				</Typography>
-				<DynamicSvg
-					svgData={domain.icon}
-				/>
+				<Grid container>
+					<Grid
+						item
+						columns={6}
+					>
+						<Typography
+							sx={{
+								fontFamily: 'Inter, sans-serif',
+								fontWeight: 500,
+								fontSize: ['10px', '12px', '14px'], // [mobile, tablet, desktop
+								textAlign: 'left',
+							}}
+						>
+							{domain.name}
+						</Typography>
+					</Grid>
+					<Grid
+						item
+						columns={6}
+					>
+						<DynamicSvg
+							svgData={domain.icon}
+						/>
+					</Grid>
+				</Grid>
 			</Grid>
 			<Grid item xs={6} sm={6} lg={8} xl={9}>
 				<ScoreBar

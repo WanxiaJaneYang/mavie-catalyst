@@ -7,7 +7,10 @@ const brandSlice = createSlice({
 	initialState: {
 		loading: false,
 		error: null,
-		data: null,
+		data: {
+			name: '',
+			icon: '',
+		},
 	},
 	reducers: {
 	},
@@ -20,7 +23,12 @@ const brandSlice = createSlice({
 			})
 			.addCase(getProductInfo.fulfilled, (state, action) => {
 				state.loading = false;
-				state.data.name = action.payload.brand;
+				if (action.payload.brand === null) {
+					state.data.name = 'Unknown Brand';
+				} else {
+					state.data.name = action.payload.brand;
+				}
+
 				state.data.icon = action.payload.brandIcon;
 			})
 			.addCase(getProductInfo.rejected, (state, action) => {

@@ -65,6 +65,8 @@ function SelectedPersonaDetailCard() {
 					sx={{
 						display: 'flex',
 						flexDirection: 'column',
+						justifyContent: 'space-between',
+						paddingLeft: '8px',
 					}}
 				>
 					<Typography
@@ -77,7 +79,7 @@ function SelectedPersonaDetailCard() {
 							textAlign: 'left',
 						}}
 					>
-						{personaInfo[personaId].name}
+						{personaInfo[personaId].name || 'No name'}
 					</Typography>
 					<Typography
 						key={`${personaId}-description`}
@@ -88,7 +90,7 @@ function SelectedPersonaDetailCard() {
 							textAlign: 'left',
 						}}
 					>
-						{personaInfo[personaId].description}
+						{personaInfo[personaId].description || 'No description'}
 					</Typography>
 				</Box>
 			</Box>

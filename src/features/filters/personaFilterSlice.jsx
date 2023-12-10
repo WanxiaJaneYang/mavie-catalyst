@@ -23,14 +23,18 @@ const personaSlice = createSlice({
 
 	extraReducers: (builder) => {
 		builder.addCase(getProductFilter.fulfilled, (state, action) => {
-			const featureList = action.payload.features.reduce(
-				(acc, feature) => {
-					acc[feature.id] = true;
+			const personaList = action.payload.personas.reduce(
+				(acc, persona) => {
+					acc[persona.id] = true;
 					return acc;
 				},
 				{},
 			);
-			state = featureList;
+
+			// Correct way to update the state
+			Object.keys(personaList).forEach((key) => {
+				state[key] = personaList[key];
+			});
 		});
 	},
 });

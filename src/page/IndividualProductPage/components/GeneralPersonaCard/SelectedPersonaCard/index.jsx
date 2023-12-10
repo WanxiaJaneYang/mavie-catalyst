@@ -37,27 +37,32 @@ function SelectedPersonaCard() {
 
 	const showDetails = useSelector((state) => state.product.productInfo.showDetail);
 
-	const getPersonaIcons = () => (
-		personas.map((id) => (
-			<Grid
-				item
-				md={3}
-				lg={2}
-				xl={1}
-				key={`${id}-selected-grid`}
-			>
-				<SelectedPersonaToggle
-					personaId={id}
-					key={`${id}-selected`}
-					sx={{
-						width: ['48px', '52px', '60px', '64px'],
-						height: ['48px', '52px', '60px', '64px'],
-					}}
-				/>
-			</Grid>
+	const getPersonaIcons = () => {
+		if (personas && personas.length > 0) {
+			return (
+				personas.map((id) => (
+					<Grid
+						item
+						md={3}
+						lg={2}
+						xl={1}
+						key={`${id}-selected-grid`}
+					>
+						<SelectedPersonaToggle
+							personaId={id}
+							key={`${id}-selected`}
+							sx={{
+								width: ['48px', '52px', '60px', '64px'],
+								height: ['48px', '52px', '60px', '64px'],
+							}}
+						/>
+					</Grid>
 
-		))
-	);
+				))
+			);
+		}
+		return null;
+	};
 
 	const getPersonaIdRendered = () => {
 		if (loading) {

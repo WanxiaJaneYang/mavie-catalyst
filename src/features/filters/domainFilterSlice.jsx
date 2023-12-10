@@ -4,7 +4,7 @@ import getProductFilter from '../../thunk/productFilterThunk';
 
 const domainFilterSlice = createSlice({
 	name: 'domainFilter',
-	initialState: null,
+	initialState: {},
 
 	reducers: {
 		setSelectedDomain: (state, { payload }) => {
@@ -23,7 +23,11 @@ const domainFilterSlice = createSlice({
 				},
 				{},
 			);
-			state = domainList;
+
+			// Correct way to update the state
+			Object.keys(domainList).forEach((key) => {
+				state[key] = domainList[key];
+			});
 		});
 	},
 

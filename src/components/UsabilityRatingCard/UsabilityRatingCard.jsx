@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	Accordion, Typography, AccordionSummary, AccordionDetails,
@@ -9,7 +8,7 @@ import UsabilityRatingCardSkeleton from './UsabilityRatingCardSkeleton';
 import UsabilityRatingCardContent from './UsabilityRatingCardContent';
 import ErrorMessage from '../ErrorMessage';
 
-function UsabilityRatingCard({ productId }) {
+function UsabilityRatingCard() {
 	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
 	const { loading, error, data } = useSelector((state) => state.product.productData.overall);
 
@@ -20,7 +19,6 @@ function UsabilityRatingCard({ productId }) {
 	const handleErrorMessageClose = () => {
 		setErrorMessageOpen(false);
 	};
-
 	useEffect(
 		() => {
 			if (error) {
@@ -94,9 +92,5 @@ function UsabilityRatingCard({ productId }) {
 		</Accordion>
 	);
 }
-
-UsabilityRatingCard.propTypes = {
-	productId: PropTypes.number.isRequired,
-};
 
 export default UsabilityRatingCard;

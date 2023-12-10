@@ -1,9 +1,9 @@
 import {
 	Grid, Box, useMediaQuery, Drawer, Button,
 } from '@mui/material';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import MenuIcon from '@mui/icons-material/Menu';
 import ProductSidebar from './components/ProductSidebar';
 import theme from '../../theme';
@@ -20,16 +20,13 @@ function ClientProductPage() {
 		setIsSidebarOpen(false);
 	};
 	const dispatch = useDispatch();
-	const { userId } = useSelector((state) => state.auth);
-	const { currentProduct } = useSelector((state) => state.filters.product);
+	const { productId } = useParams();
 
 	useEffect(() => {
-		if (userId && !currentProduct) {
-			dispatch(getProductFilter(userId, currentProduct.id));
-			dispatch(getProductInfo(currentProduct.id));
-			console.log('getProductFilter and getProductInfo called');
-		}
-	}, [userId, currentProduct, dispatch]);
+		console.log('dispatching getProductInfo and getProductFilter from client product page use effect');
+		dispatch(getProductInfo(productId));
+		dispatch(getProductFilter(productId));
+	}, [productId, dispatch]);
 
 	const renderSidebar = () => {
 		if (isMobile) {

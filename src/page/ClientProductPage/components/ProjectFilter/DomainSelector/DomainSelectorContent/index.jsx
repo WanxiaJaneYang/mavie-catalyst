@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Checkbox } from '@mui/material';
+import { useEffect } from 'react';
 import { setSelectedDomain } from '../../../../../../features/filters/domainFilterSlice';
 import theme from '../../../../../../theme';
 import DynamicSvg from '../../../../../../components/DynamicSvgIcon';
@@ -26,6 +27,12 @@ function DomainSelectorContent() {
 			}),
 		);
 	};
+
+	useEffect(() => {
+		if (allDomainIds && allDomainIds.length > 0) {
+			console.log('allDomainIds', allDomainIds);
+		}
+	}, [allDomainIds]);
 
 	return (
 		<div>

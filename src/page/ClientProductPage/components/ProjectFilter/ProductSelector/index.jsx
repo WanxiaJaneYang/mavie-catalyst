@@ -3,6 +3,7 @@ import Select from '@mui/material/Select';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
+import { useEffect } from 'react';
 import { setCurrentProduct } from '../../../../../features/filters/productListSlice';
 import theme from '../../../../../theme';
 
@@ -18,6 +19,15 @@ function ProductSelector() {
 		dispatch(setCurrentProduct(selectedProduct));
 		navigate(`/client/${clientId}/product/${selectedProduct.id}`);
 	};
+
+	const selectedValue = currentProduct ? currentProduct.id : '';
+
+	useEffect(() => {
+		console.log('product selector use effect');
+		console.log('currentProduct', currentProduct);
+		console.log('productList', productList);
+	}, [currentProduct, productList]);
+
 	return (
 		<div
 			style={{
@@ -43,7 +53,7 @@ function ProductSelector() {
 				Product
 			</Typography>
 			<Select
-				value={currentProduct?.productId}
+				value={selectedValue}
 				onChange={handleChange}
 				inputProps={{ 'aria-label': 'Without label' }}
 				sx={
@@ -58,7 +68,7 @@ function ProductSelector() {
 					}
 				}
 			>
-				{productList.map((product) => (
+				{productList && productList.map((product) => (
 					<MenuItem
 						key={product.id}
 						value={product.id}
