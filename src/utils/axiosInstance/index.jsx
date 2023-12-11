@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-	// baseURL: 'https://maviecustomerfrontend-698471191.development.catalystserverless.com',
-	baseURL: 'http://localhost:8080',
+	baseURL: process.env.REACT_APP_API_BASE_URL,
+	// baseURL: 'http://localhost:8080',
 	// baseURL: 'http://mavie-backend.azurewebsites.net',
 });
 

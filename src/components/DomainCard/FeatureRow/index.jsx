@@ -9,6 +9,8 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 	const [open, setOpen] = useState(false);
 	const features = useSelector((state) => state.feature.entities);
 	const feature = features[featureId];
+	const featureRatings = useSelector((state) => state.product.productData.features.data);
+	const featureRating = featureRatings[featureId];
 	if (!feature) return null;
 
 	const handleClick = () => {
@@ -23,11 +25,13 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 		<>
 			<Grid
 				container
-				spacing={2}
+				spacing={1}
 				alignItems="center"
 				sx={{
 					marginBottom: '10px',
 					cursor: 'pointer',
+					gap: '10px',
+					justifyContent: 'space-between',
 				}}
 				onClick={handleClick}
 			>
@@ -36,14 +40,15 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 						sx={{
 							fontFamily: 'Inter, sans-serif',
 							fontWeight: 500,
-							fontSize: '12px',
+							marginLeft: '-10px',
+							fontSize: ['10px', '10px', '12px'], // [mobile, tablet, desktop
 							textAlign: 'left',
 						}}
 					>
 						{feature.name || 'Feature Name'}
 					</Typography>
 				</Grid>
-				<Grid item xs={6} sm={6} lg={8} xl={9}>
+				<Grid item xs={5} sm={5} lg={7} xl={8}>
 					<ScoreBar
 						score={3.5} // Assuming this is a placeholder value
 						importance={feature.importance}
@@ -56,11 +61,11 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 							color: '#000000',
 							fontFamily: 'Inter, sans-serif',
 							fontWeight: 600,
-							fontSize: '14px',
+							fontSize: ['10px', '10px', '12px'], // [mobile, tablet, desktop
 							textAlign: 'left',
 						}}
 					>
-						{feature.score}
+						{featureRating}
 					</Typography>
 				</Grid>
 			</Grid>

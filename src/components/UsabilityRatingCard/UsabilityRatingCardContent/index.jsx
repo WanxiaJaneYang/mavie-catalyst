@@ -79,7 +79,7 @@ function UsabilityRatingCardContent() {
 				<Grid
 					item
 					xs={12}
-					md={expertOpinionOn ? 6 : 12}
+					md={expertOpinionOn ? 7 : 12}
 				>
 					<DomainList />
 				</Grid>
@@ -87,6 +87,7 @@ function UsabilityRatingCardContent() {
 					item
 					display={expertOpinionOn ? 'flex' : 'none'}
 					xs={expertOpinionOn ? 0 : 12}
+					md={expertOpinionOn ? 5 : 0}
 				>
 					<ExpertOpinion />
 				</Grid>

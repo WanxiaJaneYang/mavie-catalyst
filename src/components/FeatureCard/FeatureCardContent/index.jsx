@@ -11,6 +11,8 @@ import ErrorMessage from '../../ErrorMessage';
 
 function FeatureCardContent({ featureId }) {
 	const feature = useSelector((state) => state.feature.entities[featureId]);
+	const featureRating = useSelector((state) => state.product.productData
+		.features.data[featureId]);
 	const featureDetailLoading = useSelector((state) => state.product.productData
 		.featureDetail.loading);
 	const featureDetailError = useSelector((state) => state.product.productData
@@ -90,9 +92,9 @@ function FeatureCardContent({ featureId }) {
 				>
 					<MavieGauge
 						type="percentage"
-						value={feature.score}
-						importance={feature.importance}
-						percentages={percentages}
+						value={featureRating}
+						importance={feature?.importance}
+						percentages={percentages || [0.2, 0.2, 0.2, 0.2, 0.2]}
 						size={gaugeSize()}
 					/>
 				</Box>
@@ -123,8 +125,8 @@ function FeatureCardContent({ featureId }) {
 						justifyContent: 'end', // Center the content vertically if needed
 					}}
 				>
-					<ScoreRating score={feature.score} />
-					<ImportanceScore score={feature.importance} />
+					<ScoreRating score={featureRating} />
+					<ImportanceScore score={feature?.importance} />
 				</Box>
 			</Grid>
 			<Grid item xs={6} sm={8}>

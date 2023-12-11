@@ -9,6 +9,7 @@ import productPlaceHolder from '../../../../../images/productPlaceHolder.png';
 function ProductIntroContent() {
 	const productDetail = useSelector((state) => state.product.productInfo
 		.productDetail);
+	const productRating = useSelector((state) => state.product.productData.overall.data);
 
 	const productDescription = useSelector((state) => state.product.productInfo
 		.productDescription);
@@ -78,7 +79,7 @@ function ProductIntroContent() {
 
 					</Typography>
 					<MavieRating
-						value={productDetail?.rating}
+						value={productRating || 2}
 						readOnly
 						sx={{
 							marginBottom: '16px',

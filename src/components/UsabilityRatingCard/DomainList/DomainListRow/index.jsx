@@ -12,52 +12,51 @@ function DomainListRow({ domainId }) {
 	if (!domain) return null;
 	return (
 
-		<Grid container spacing={2} alignItems="center" sx={{ marginBottom: '10px' }}>
+		<Grid
+			container
+			spacing={2}
+			alignItems="center"
+			sx={{
+				marginBottom: '10px',
+				flexDirection: 'row',
+				justifyContent: 'space-between',
+				width: '100%',
+
+			}}
+		>
 			<Grid
 				item
-				sm={4}
-				lg={3}
-				xl={2}
-				sx={{
-					display: 'flex',
-					flexDirection: 'row',
-					alignItems: 'center',
-					justifyContent: 'space-between',
-					gap: '10px',
-				}}
+				xs={3}
 			>
-				<Grid container>
-					<Grid
-						item
-						columns={6}
-					>
-						<Typography
-							sx={{
-								fontFamily: 'Inter, sans-serif',
-								fontWeight: 500,
-								fontSize: ['10px', '12px', '14px'], // [mobile, tablet, desktop
-								textAlign: 'left',
-							}}
-						>
-							{domain.name}
-						</Typography>
-					</Grid>
-					<Grid
-						item
-						columns={6}
-					>
-						<DynamicSvg
-							svgData={domain.icon}
-						/>
-					</Grid>
-				</Grid>
+				<Typography
+					sx={{
+						fontFamily: 'Inter, sans-serif',
+						fontWeight: 500,
+						fontSize: ['10px', '12px', '14px'], // [mobile, tablet, desktop
+						textAlign: 'left',
+					}}
+				>
+					{domain.name}
+				</Typography>
 			</Grid>
-			<Grid item xs={6} sm={6} lg={8} xl={9}>
+			<Grid
+				item
+				xs={1}
+			>
+				<DynamicSvg
+					svgData={domain.icon}
+					sx={{
+						width: ['16x', '18px', '20px'], // [mobile, tablet, desktop
+						height: ['16px', '184px', '20px'], // [mobile, tablet, desktop
+					}}
+				/>
+			</Grid>
+			<Grid item xs={7}>
 				<ScoreBar
 					score={domainRating[domainId]}
 				/>
 			</Grid>
-			<Grid item xs={1} sm={2} lg={1}>
+			<Grid item xs={1}>
 				<Typography
 					sx={{
 						color: '#000000',

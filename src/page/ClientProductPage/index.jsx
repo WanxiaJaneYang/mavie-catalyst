@@ -24,8 +24,8 @@ function ClientProductPage() {
 
 	useEffect(() => {
 		console.log('dispatching getProductInfo and getProductFilter from client product page use effect');
-		dispatch(getProductInfo(productId));
-		dispatch(getProductFilter(productId));
+		// dispatch(getProductInfo(productId));
+		// dispatch(getProductFilter(productId));
 	}, [productId, dispatch]);
 
 	const renderSidebar = () => {

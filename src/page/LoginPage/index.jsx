@@ -20,13 +20,14 @@ export default function SignInSide() {
 
 	useEffect(
 		() => {
-			console.log('location: ', location);
-			if (location.state?.from) {
-				console.log('location.state.from: ', location.state.from);
-				navigate(location.state.from);
-			} else if (userId && currentProduct) {
+			// console.log('location: ', location);
+			// if (location.state?.from) {
+			// 	console.log('location.state.from: ', location.state.from);
+			// 	navigate(location.state.from);
+			// } else
+			if (userId && currentProduct) {
 				console.log('userId and selectedProductId from login page useEffect: ', userId, currentProduct.id);
-				navigate(`/client/${userId}/product/${currentProduct.id}`);
+				navigate(`/client/${userId}/product/${currentProduct.id}/metrics`);
 			} else if (userId) {
 				console.log('userId: ', userId);
 				navigate(`/client/${userId}`);

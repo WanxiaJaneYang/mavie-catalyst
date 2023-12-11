@@ -14,8 +14,8 @@ function ProductMetricPage() {
 
 	useEffect(
 		() => {
-			dispatch(getProductFilter(productId));
-			dispatch(getProductInfo(productId));
+			// dispatch(getProductFilter(productId));
+			// dispatch(getProductInfo(productId));
 			dispatch(getProductRating(productId));
 		},
 		[productId, dispatch],

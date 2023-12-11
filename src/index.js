@@ -5,12 +5,12 @@ import { HashRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// Import and start MSW
-import worker from './mock/browser/index';
+// // Import and start MSW
+// import worker from './mock/browser/index';
 
-if (process.env.NODE_ENV === 'development') {
-	worker.start();
-}
+// if (process.env.NODE_ENV === 'development') {
+// 	worker.start();
+// }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
