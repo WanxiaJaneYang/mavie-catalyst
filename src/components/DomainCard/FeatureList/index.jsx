@@ -72,8 +72,8 @@ function FeatureList({ domainId, importanceRatingOn }) {
 				sx={{
 					height: '150px',
 					width: '100%',
-					paddingRight: '16px',
-					paddingLeft: '16px',
+					paddingRight: '8px',
+					paddingLeft: '8px',
 				}}
 			>
 				{error && (

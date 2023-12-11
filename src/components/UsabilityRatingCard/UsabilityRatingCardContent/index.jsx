@@ -9,14 +9,16 @@ import ExpertOpinion from '../ExpertOpinion';
 function UsabilityRatingCardContent() {
 	const score = useSelector((state) => state.product.productData.overall.data);
 	const expertOpinionOn = useSelector((state) => state.filters.toggle.expertOpinionsOn);
-	const smallScreen = useMediaQuery('(min-width:600px)');
-	const mediumScreen = useMediaQuery('(min-width:900px)');
-	const largeScreen = useMediaQuery('(min-width:1200px)');
+	const isSmallScreen = useMediaQuery('(min-width:600px)');
+	const isMediumScreen = useMediaQuery('(min-width:900px)');
+	const isLargeScreen = useMediaQuery('(min-width:1200px)');
+	const isExtraLargeScreen = useMediaQuery('(min-width:1536px)');
 	const gaugeSize = () => {
-		if (largeScreen) return 2.5;
-		if (mediumScreen) return 2.2;
-		if (smallScreen) return 2;
-		return 1.5;
+		if (isExtraLargeScreen) return 1.5;
+		if (isLargeScreen) return 1.2;
+		if (isMediumScreen) return 1;
+		if (isSmallScreen) return 2;
+		return 1.2;
 	};
 
 	return (
@@ -34,39 +36,45 @@ function UsabilityRatingCardContent() {
 			>
 				<Grid
 					item
-					xs={2}
-					display="flex"
-					flexDirection="column"
-					justifyContent="space-between"
+					xs={5}
+					sm={4}
 				>
-					<Typography
+					<Box
 						sx={{
-							color: '#000000',
-							fontFamily: 'Inter, sans-serif',
-							fontWeight: 400,
-							fontSize: ['12px', '16px', '18px'], // [mobile, tablet, desktop
-							alignItems: 'flex-start',
-							marginLeft: '-30px',
-							marginBottom: ['10px', '18px', '28px'], // [mobile, tablet, desktop
-							justifyContent: 'start',
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'center',
+							justifyContent: 'space-between',
 						}}
 					>
-						This is the overall rating of the product
-					</Typography>
-					<Typography
-						sx={{
-							color: '#000000',
-							fontFamily: 'Inter, sans-serif',
-							fontWeight: 600,
-							fontSize: ['20px', '30px', '38px'],
-						}}
-					>
-						{score}
-					</Typography>
+						<Typography
+							sx={{
+								color: '#000000',
+								fontFamily: 'Inter, sans-serif',
+								fontWeight: 400,
+								fontSize: ['15px', '18px', '20px'], // [mobile, tablet, desktop
+								// marginLeft: '-30px',
+								marginBottom: 1,
+								textAlign: 'left',
+							}}
+						>
+							Oerall Rating
+						</Typography>
 
+						<Typography
+							sx={{
+								color: '#000000',
+								fontFamily: 'Inter, sans-serif',
+								fontWeight: 600,
+								fontSize: ['20px', '30px', '38px'],
+							}}
+						>
+							{score}
+						</Typography>
+					</Box>
 				</Grid>
 
-				<Grid item xs={8} display="flex" justifyContent="center" alignItems="center">
+				<Grid item xs={7} sm={8} display="flex" justifyContent="center" alignItems="center">
 					<MavieGauge type="default" value={score} size={gaugeSize()} />
 				</Grid>
 			</Grid>

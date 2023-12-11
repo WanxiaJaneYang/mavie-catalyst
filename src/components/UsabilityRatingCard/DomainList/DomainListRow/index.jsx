@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, Box } from '@mui/material';
 import propType from 'prop-types';
 import ScoreBar from '../../../ScoreBar';
 import DynamicSvg from '../../../DynamicSvgIcon';
@@ -28,32 +28,48 @@ function DomainListRow({ domainId }) {
 				item
 				xs={3}
 			>
-				<Typography
-					sx={{
-						fontFamily: 'Inter, sans-serif',
-						fontWeight: 500,
-						fontSize: ['10px', '12px', '14px'], // [mobile, tablet, desktop
-						textAlign: 'left',
-					}}
+				<Box sx={{
+					width: '100%',
+					display: 'flex',
+				}}
 				>
-					{domain.name}
-				</Typography>
+
+					<Typography
+						sx={{
+							fontFamily: 'Inter, sans-serif',
+							fontWeight: 500,
+							fontSize: ['10px', '12px', '14px'], // [mobile, tablet, desktop
+							textAlign: 'left',
+						}}
+					>
+						{domain.name}
+					</Typography>
+				</Box>
 			</Grid>
 			<Grid
 				item
 				xs={1}
 			>
-				<DynamicSvg
-					svgData={domain.icon}
-					sx={{
-						width: ['16x', '18px', '20px'], // [mobile, tablet, desktop
-						height: ['16px', '184px', '20px'], // [mobile, tablet, desktop
-					}}
-				/>
+				<Box sx={{
+					width: '100%',
+					display: 'flex',
+				}}
+				>
+					<DynamicSvg
+						svgData={domain.icon}
+						sx={{
+							width: ['16x', '18px', '20px'], // [mobile, tablet, desktop
+							height: ['16px', '184px', '20px'], // [mobile, tablet, desktop
+						}}
+					/>
+				</Box>
 			</Grid>
 			<Grid item xs={7}>
 				<ScoreBar
 					score={domainRating[domainId]}
+					sx={{
+						paddingLeft: '10px',
+					}}
 				/>
 			</Grid>
 			<Grid item xs={1}>
