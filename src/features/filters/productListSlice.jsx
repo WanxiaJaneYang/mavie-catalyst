@@ -5,19 +5,8 @@ import login from '../../thunk/authThunk';
 const productListSlice = createSlice({
 	name: 'productList',
 	initialState: {
-		currentProduct: {
-			id: 0,
-			name: 'Senior Smart Watch',
-		},
+		currentProduct: null,
 		products: [
-			{
-				id: 0,
-				name: 'Senior Smart Watch',
-			},
-			{
-				id: 1,
-				name: 'Senior Smart Watch 2',
-			},
 		],
 		loading: false,
 		error: null,
