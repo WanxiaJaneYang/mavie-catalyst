@@ -29,18 +29,19 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 
 	return (
 		<>
+
 			<Grid
 				container
 				spacing={1}
 				alignItems="center"
 				sx={{
-					marginBottom: ['5px', '8px', '10px', '10px'], // [mobile, tablet, desktop
+					// marginBottom: ['5px', '8px', '10px', '10px'], // [mobile, tablet, desktop
 					cursor: 'pointer',
 					justifyContent: 'space-between',
 				}}
 				onClick={handleClick}
 			>
-				<Grid item xs={5} sm={5} lg={4} xl={3}>
+				<Grid item xs={12} sx={{ marginTop: '10px' }}>
 					<Box
 						sx={
 							{ width: '100%' }
@@ -59,36 +60,26 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 						</Typography>
 					</Box>
 				</Grid>
-				<Grid item xs={5} sm={5} lg={6} xl={7}>
-					<Box
-						sx={
-							{ width: '100%' }
-						}
-					>
-						<ScoreBar
-							score={3.5} // Assuming this is a placeholder value
-							importance={feature.importance}
-							importanceRatingOn={importanceRatingOn}
-						/>
-					</Box>
+				<Grid item xs={8} sx={{ marginTop: '-5px' }}>
+					<ScoreBar
+						score={3.5} // Assuming this is a placeholder value
+						importance={feature.importance}
+						importanceRatingOn={importanceRatingOn}
+					/>
 				</Grid>
-				<Grid item xs={2} sm={2} lg={2} xl={2}>
-					<Box sx={
-						{ width: '100%' }
-					}
+				<Grid item xs={4} sx={{ marginTop: '-5px' }}>
+
+					<Typography
+						sx={{
+							color: '#000000',
+							fontFamily: 'Inter, sans-serif',
+							fontWeight: 600,
+							fontSize: ['12px', '13px', '14px'], // [mobile, tablet, desktop
+							textAlign: 'right',
+						}}
 					>
-						<Typography
-							sx={{
-								color: '#000000',
-								fontFamily: 'Inter, sans-serif',
-								fontWeight: 600,
-								fontSize: ['12px', '13px', '14px'], // [mobile, tablet, desktop
-								textAlign: 'left',
-							}}
-						>
-							{featureRating || 'N/A'}
-						</Typography>
-					</Box>
+						{featureRating || 'N/A'}
+					</Typography>
 				</Grid>
 			</Grid>
 			<FeatureCard

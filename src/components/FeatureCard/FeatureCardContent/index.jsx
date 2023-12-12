@@ -1,5 +1,5 @@
 import {
-	Grid, Box, useMediaQuery, Skeleton,
+	Grid, Box, useMediaQuery, Skeleton, Typography,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
@@ -103,11 +103,19 @@ function FeatureCardContent({ featureId }) {
 		return null;
 	};
 
+	const getFeatureDescription = () => {
+		// if too long, truncate
+		if (feature.description.length > 100) {
+			return `${feature.description.substring(0, 100)}...`;
+		}
+		return feature.description || 'No Feature Description';
+	};
 	return (
 		<Grid
 			container
 			spacing={2}
 			margin={2}
+			alignItems="center"
 		>
 			<Grid
 				item
@@ -121,12 +129,33 @@ function FeatureCardContent({ featureId }) {
 					sx={{
 						display: 'flex',
 						flexDirection: 'column',
-						alignItems: 'start', // Align the content horizontally
-						justifyContent: 'end', // Center the content vertically if needed
+
 					}}
 				>
-					<ScoreRating score={featureRating} />
-					<ImportanceScore score={feature?.importance} />
+					<Typography
+						sx={{
+							fontFamily: 'Inter, sans-serif',
+							fontWeight: 500,
+							fontSize: ['12px', '13px', '14px'], // [mobile, tablet, desktop
+							textAlign: 'left',
+							color: '#455468',
+							marginTop: '-20px',
+							marginBottom: '10px',
+						}}
+					>
+						{getFeatureDescription()}
+					</Typography>
+					<Box
+						sx={{
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'start', // Align the content horizontally
+							justifyContent: 'end', // Center the content vertically if needed
+						}}
+					>
+						<ScoreRating score={featureRating} />
+						<ImportanceScore score={feature?.importance} />
+					</Box>
 				</Box>
 			</Grid>
 			<Grid item xs={6} sm={8}>

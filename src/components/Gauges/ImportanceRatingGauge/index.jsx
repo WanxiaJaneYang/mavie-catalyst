@@ -6,6 +6,10 @@ import { scaleLinear } from 'd3-scale';
 function ImportanceRatingGauge({
 	value = 0, importance = 0.2, min = 0, max = 5, size = 1,
 }) {
+	if (importance > 1) {
+		// eslint-disable-next-line no-param-reassign
+		importance /= 5;
+	}
 	// set up the arc generator for the background
 	const backgroundArc = arc()
 		.innerRadius(0.65)
