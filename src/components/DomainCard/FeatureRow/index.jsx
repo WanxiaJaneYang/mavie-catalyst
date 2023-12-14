@@ -62,8 +62,8 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 				</Grid>
 				<Grid item xs={8} sx={{ marginTop: '-5px' }}>
 					<ScoreBar
-						score={3.5} // Assuming this is a placeholder value
-						importance={feature.importance}
+						score="3.5" // Assuming this is a placeholder value
+						importance={feature.importance || '0'}
 						importanceRatingOn={importanceRatingOn}
 					/>
 				</Grid>

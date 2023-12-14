@@ -41,5 +41,5 @@ function ImportanceScore({ score }) {
 }
 export default ImportanceScore;
 ImportanceScore.propTypes = {
-	score: PropTypes.number.isRequired,
+	score: PropTypes.string.isRequired,
 };

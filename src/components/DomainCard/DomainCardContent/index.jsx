@@ -66,5 +66,5 @@ function DomainCardContent({ domainId }) {
 export default DomainCardContent;
 
 DomainCardContent.propTypes = {
-	domainId: PropTypes.number.isRequired,
+	domainId: PropTypes.string.isRequired,
 };

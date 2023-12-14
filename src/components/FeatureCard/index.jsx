@@ -68,8 +68,8 @@ function FeatureCard({
 }
 
 FeatureCard.propTypes = {
-	domainId: propType.number.isRequired,
-	featureId: propType.number.isRequired,
+	domainId: propType.string.isRequired,
+	featureId: propType.string.isRequired,
 	handleCloseClick: propType.func.isRequired,
 	open: propType.bool.isRequired,
 };

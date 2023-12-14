@@ -52,7 +52,7 @@ function MavieGauge(props) {
 
 MavieGauge.propTypes = {
 	type: PropTypes.string.isRequired,
-	value: PropTypes.number.isRequired,
+	value: PropTypes.string.isRequired,
 	importance: PropTypes.number,
 	size: PropTypes.number,
 	percentages: PropTypes.arrayOf(PropTypes.number),

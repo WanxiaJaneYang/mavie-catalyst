@@ -8,7 +8,6 @@ const featureScoreDetailSlice = createSlice({
 		loading: false,
 		error: null,
 		questionImportance: null,
-		// questionImportance: [0.2, 0.2, 0.3, 0.1, 0.2],
 	},
 
 	reducers: {

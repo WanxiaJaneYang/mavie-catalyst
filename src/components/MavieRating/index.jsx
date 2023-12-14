@@ -16,7 +16,7 @@ function MavieRating(props) {
 	return (
 		<StyledRating
 			name="mavie-rating"
-			defaultValue={2}
+			defaultValue={0}
 			getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
 			precision={0.2}
 			icon={<FilledMavieIcon fontSize="inherit" />}

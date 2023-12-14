@@ -168,5 +168,5 @@ function FeatureCardContent({ featureId }) {
 export default FeatureCardContent;
 
 FeatureCardContent.propTypes = {
-	featureId: PropTypes.number.isRequired,
+	featureId: PropTypes.string.isRequired,
 };

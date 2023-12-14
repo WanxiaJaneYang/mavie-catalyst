@@ -50,7 +50,6 @@ function BrandCard() {
 			}}
 		>
 			{loading && <BrandCardSkeleton />}
-			{!loading && error && <Typography>{error}</Typography>}
 			{!loading && !error && !brandInfo && <Typography>No brand info</Typography>}
 			{!loading && brandInfo && getBrandInfoRendered()}
 		</Box>

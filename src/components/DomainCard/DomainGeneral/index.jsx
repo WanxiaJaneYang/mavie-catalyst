@@ -46,7 +46,7 @@ function DomainGeneral({
 }
 
 DomainGeneral.propTypes = {
-	domainId: propTypes.number.isRequired,
+	domainId: propTypes.string.isRequired,
 	importanceRatingOn: propTypes.bool.isRequired,
 
 };

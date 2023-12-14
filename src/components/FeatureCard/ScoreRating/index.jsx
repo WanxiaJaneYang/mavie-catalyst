@@ -42,5 +42,5 @@ function ScoreRating({ score }) {
 export default ScoreRating;
 
 ScoreRating.propTypes = {
-	score: PropTypes.number.isRequired,
+	score: PropTypes.string.isRequired,
 };

@@ -1,21 +1,25 @@
 // src/mocks/handlers.js
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { http, HttpResponse } from 'msw';
+import loginSuccessResponse from '../responses/loginSuccessRes/loginSuccessRes.json';
+import loginFailResponse from '../responses/loginFailRes/loginFailRes.json';
+
+const scenario = process.env.REACT_APP_TEST_SCENARIO;
 
 const handlers = [
-	http.post('http://localhost:8080/login', ({ request }) => HttpResponse.json(
-		{
-			user_id: '20296000000074005',
-			productList: [
-				{
-					id: '20296000000077013',
-					name: 'Washing Machine',
-				},
-			],
-		},
-	)),
+	http.post('/login', ({ request }) => {
+		console.log('scenario', scenario);
+		if (scenario === 'success') {
+			return HttpResponse.json(loginSuccessResponse);
+		}
+		return new HttpResponse(
+			loginFailResponse,
+			{ statusText: 'Unauthorized' },
+			{ status: 401 },
+		);
+	}),
 
-	http.get('http://localhost:8080/product/:productId', ({ request }) => HttpResponse.json({
+	http.get('/product/:productId', ({ request }) => HttpResponse.json({
 		brand: 'Asko',
 		brandIcon: '',
 		description: '',
@@ -25,7 +29,7 @@ const handlers = [
 		expertOpinion: '',
 	})),
 
-	http.get('http://localhost:8080/product/:productId/filter', ({ request }) => HttpResponse.json({
+	http.get('/product/:productId/filter', ({ request }) => HttpResponse.json({
 		domains: [
 			{
 				id: '20296000000032391',
@@ -340,7 +344,7 @@ const handlers = [
 		},
 	})),
 
-	http.get('http://localhost:8080/product/:productId/rating', ({ request }) => HttpResponse.json({
+	http.get('/product/:productId/rating', ({ request }) => HttpResponse.json({
 		overallRating: '3.28',
 		domainRatings: [
 			{

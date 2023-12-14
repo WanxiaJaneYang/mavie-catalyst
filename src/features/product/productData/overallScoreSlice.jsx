@@ -7,7 +7,7 @@ const featureScoreDetailSlice = createSlice({
 	initialState: {
 		loading: false,
 		error: null,
-		data: 0.5,
+		data: null,
 	},
 
 	reducers: {

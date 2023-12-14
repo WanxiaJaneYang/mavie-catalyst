@@ -91,7 +91,7 @@ function FeatureList({ domainId, importanceRatingOn }) {
 }
 
 FeatureList.propTypes = {
-	domainId: PropTypes.number.isRequired,
+	domainId: PropTypes.string.isRequired,
 	importanceRatingOn: PropTypes.bool.isRequired,
 };
 

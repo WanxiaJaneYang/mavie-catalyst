@@ -82,6 +82,6 @@ function DomainGeneralContent({ domainId, importanceRatingOn }) {
 export default DomainGeneralContent;
 
 DomainGeneralContent.propTypes = {
-	domainId: propType.number.isRequired,
+	domainId: propType.string.isRequired,
 	importanceRatingOn: propType.bool.isRequired,
 };
