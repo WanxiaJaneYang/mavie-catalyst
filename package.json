@@ -34,6 +34,8 @@
   },
   "scripts": {
     "start": "set \"GENERATE_SOURCEMAP=false\" && react-scripts start",
+    "start:success": "set \"REACT_APP_TEST_SCENARIO=success\" && react-scripts start",
+    "start:failure": "set \"REACT_APP_TEST_SCENARIO=failure\" && react-scripts start",
     "build": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

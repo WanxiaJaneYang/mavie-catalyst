@@ -24,6 +24,7 @@ const productListSlice = createSlice({
 				state.error = null;
 			})
 			.addCase(login.fulfilled, (state, action) => {
+				// console.log(`login fulfilled${action.payload}`);
 				const { productList } = action.payload;
 				state.loading = false;
 				state.currentProduct = productList[0] || state.currentProduct;
@@ -31,6 +32,7 @@ const productListSlice = createSlice({
 				state.error = null;
 			})
 			.addCase(login.rejected, (state, action) => {
+				// console.log(`login rejected ${action.payload}`);
 				state.loading = false;
 				state.error = action.payload;
 			});

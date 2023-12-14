@@ -1,21 +1,21 @@
 // src/mocks/handlers.js
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { http, HttpResponse } from 'msw';
+import { http, HttpResponse, delay } from 'msw';
 import loginSuccessResponse from '../responses/loginSuccessRes/loginSuccessRes.json';
 import loginFailResponse from '../responses/loginFailRes/loginFailRes.json';
 
 const scenario = process.env.REACT_APP_TEST_SCENARIO;
 
 const handlers = [
-	http.post('/login', ({ request }) => {
-		console.log('scenario', scenario);
+	http.post('/login', async () => {
+		await delay(1000);
 		if (scenario === 'success') {
 			return HttpResponse.json(loginSuccessResponse);
 		}
 		return new HttpResponse(
-			loginFailResponse,
-			{ statusText: 'Unauthorized' },
-			{ status: 401 },
+			{ erorr: 'email or password is incorrect' },
+			// null,
+			{ statusText: 'Unauthorized', status: '401' },
 		);
 	}),
 
