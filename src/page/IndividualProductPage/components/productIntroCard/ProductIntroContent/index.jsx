@@ -14,7 +14,7 @@ function ProductIntroContent() {
 	const productDescription = useSelector((state) => state.product.productInfo
 		.productDescription);
 
-	const productImage = useSelector((state) => state.product.productInfo
+	const productImage = useSelector((state) => state.product.productInfo.productDetail
 		.productImage);
 
 	const getProductDescription = () => {
@@ -25,6 +25,7 @@ function ProductIntroContent() {
 	};
 
 	const getProductImage = () => {
+		console.log('productImg:', productImage);
 		if (productImage) {
 			return productImage;
 		}

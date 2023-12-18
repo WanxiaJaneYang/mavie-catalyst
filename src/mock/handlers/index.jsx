@@ -23,7 +23,7 @@ const handlers = [
 		brand: 'Asko',
 		brandIcon: '',
 		description: '',
-		image: '',
+		image: 'https://previewengine.zohopublic.com.au/image/WD/87opqd88416571b334c348a5f43b35b6ed32d',
 		modelName: 'Washing Machine',
 		productCategoryName: 'Laundry and Cleaning',
 		expertOpinion: '',
