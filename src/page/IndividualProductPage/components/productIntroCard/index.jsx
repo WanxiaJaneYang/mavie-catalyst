@@ -40,7 +40,10 @@ function ProductIntroCard() {
 	return (
 		<Accordion
 			sx={
-				{ padding: '16px', marginBottom: '16px', backgroundColor: colors.white }
+				{
+					marginBottom: '10px',
+					padding: '10px',
+				}
 			}
 			defaultExpanded
 		>
@@ -50,10 +53,6 @@ function ProductIntroCard() {
 				id="panel1a-header"
 				sx={{
 					backgroundColor: colors.white,
-					padding: '0px',
-					'& .MuiAccordionSummary-content': {
-						margin: '10px',
-					},
 				}}
 			>
 				<ProductIntroCardHeader />
@@ -61,8 +60,10 @@ function ProductIntroCard() {
 			<AccordionDetails
 				sx={
 					{
-						marginTop: '-16x',
+						display: 'flex',
+						flexDirection: 'column',
 						paddingTop: '0px',
+						paddingBottom: '0px',
 					}
 				}
 			>

@@ -1,6 +1,6 @@
 {
     "name": "mavie",
-    "version": "0.0.3.9.7",
+    "version": "0.0.3.9.9",
     "homepage": "index.html",
-    "description": "fixed the browser warning and fixed the login error handling problem"
+    "description": "changed the product intro card layout in the cellphone view"
 }
