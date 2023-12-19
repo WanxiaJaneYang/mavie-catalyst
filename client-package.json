@@ -1,6 +1,6 @@
 {
     "name": "mavie",
-    "version": "0.0.3.9.9",
+    "version": "0.0.3.9.9.1",
     "homepage": "index.html",
-    "description": "changed the product intro card layout in the cellphone view"
+    "description": "changed the dynamic svg from receiving node to receiving url"
 }
