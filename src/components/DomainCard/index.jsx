@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
 	Card, CardContent, CardHeader, Typography, IconButton,
 } from '@mui/material';
-import { useState, useEffect } from 'react';
 import CloseIcon from '../icons/CloseIcon';
 import { setSelectedDomain } from '../../features/filters/domainFilterSlice';
 import DomainCardContent from './DomainCardContent';
