@@ -2,14 +2,16 @@ import {
 	Grid, Box, useMediaQuery, Skeleton, Typography,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import ImportanceScore from '../ImportanceScore';
 import ScoreRating from '../ScoreRating';
 import MavieGauge from '../../Gauges';
 import ErrorMessage from '../../ErrorMessage';
+import getFeatureScoreDetail from '../../../thunk/featureSocreDetailThunk';
 
 function FeatureCardContent({ featureId }) {
+	const dispatch = useDispatch();
 	const feature = useSelector((state) => state.feature.entities[featureId]);
 	const featureRating = useSelector((state) => state.product.productData
 		.features.data[featureId]);
@@ -56,6 +58,13 @@ function FeatureCardContent({ featureId }) {
 			}
 		},
 		[featureDetailError],
+	);
+
+	useEffect(
+		() => {
+			dispatch(getFeatureScoreDetail(featureId));
+		},
+		[featureId, dispatch],
 	);
 
 	const getImportanceRendered = () => {

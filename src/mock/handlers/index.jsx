@@ -495,6 +495,26 @@ const handlers = [
 			},
 		],
 	})),
+
+	http.get('http://localhost:8080/product/:productId/feature/:featureId', ({ request }) => HttpResponse.json({
+		features: [
+			{
+				importance: '0.0',
+			},
+			{
+				importance: '0.0',
+			},
+			{
+				importance: '1.0',
+			},
+			{
+				importance: '0.0',
+			},
+			{
+				importance: '0.0',
+			},
+		],
+	})),
 ];
 
 export default handlers;
