@@ -1,14 +1,16 @@
 import {
 	Dialog, Grid, Typography, Box, useMediaQuery,
 } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import ScoreBar from '../../ScoreBar';
 import FeatureCard from '../../FeatureCard';
 import wordParser from '../../../utils/wordParser';
+import { setCurrentFeatureId } from '../../../features/product/productData/featureScoreDetail';
 
 function FeatureRow({ domainId, featureId, importanceRatingOn }) {
+	const dispatch = useDispatch();
 	const [open, setOpen] = useState(false);
 	const features = useSelector((state) => state.feature.entities);
 	const feature = features[featureId];
@@ -18,6 +20,8 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 	if (!feature) return null;
 
 	const handleClick = () => {
+		console.log(`feature row clicked, set feature id as ${featureId}`);
+		dispatch(setCurrentFeatureId(featureId));
 		setOpen(true);
 	};
 

@@ -54,7 +54,7 @@ function ScoreBar({ score, importance, importanceRatingOn }) {
 					>
 						<ImportanceLinearProgress
 							variant="determinate"
-							value={importance * 100}
+							value={importance / 5 * 100}
 						/>
 					</Box>
 				)

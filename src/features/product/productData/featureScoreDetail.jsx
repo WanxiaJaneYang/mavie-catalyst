@@ -8,9 +8,13 @@ const featureScoreDetailSlice = createSlice({
 		loading: false,
 		error: null,
 		questionImportance: null,
+		currentFeatureId: null,
 	},
 
 	reducers: {
+		setCurrentFeatureId: (state, { payload }) => {
+			state.currentFeatureId = payload;
+		},
 		// getFeatureScoreDetail: (state) => {
 		// 	state.loading = true;
 		// },
@@ -31,8 +35,20 @@ const featureScoreDetailSlice = createSlice({
 			})
 			.addCase(getFeatureScoreDetail.fulfilled, (state, action) => {
 				state.loading = false;
-				state.questionImportance = action.payload.features.map((feature) => feature.importance);
+				// Filter out features where the importance is not zero and parse them to float
+				state.questionImportance = action.payload.features
+					.filter((feature) => parseFloat(feature.importance) !== 0)
+					.map((feature) => parseFloat(feature.importance));
+
+				// if percentages all add up not to 1, then set the question importance as null again,
+				// and set error
+				const sum = state.questionImportance.reduce((a, b) => a + b, 0);
+				if (sum !== 1) {
+					state.questionImportance = null;
+					state.error = 'Question importance does not add up to 1';
+				}
 			})
+
 			.addCase(getFeatureScoreDetail.rejected, (state, action) => {
 				state.loading = false;
 				state.error = action.payload;
@@ -41,10 +57,6 @@ const featureScoreDetailSlice = createSlice({
 
 });
 
-// export const {
-// 	// getFeatureScoreDetail,
-// 	// getFeatureScoreDetailSuccess,
-// 	// getFeatureScoreDetailFailure,
-// } = featureScoreDetailSlice.actions;
+export const { setCurrentFeatureId } = featureScoreDetailSlice.actions;
 
 export default featureScoreDetailSlice.reducer;

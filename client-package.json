@@ -1,6 +1,6 @@
 {
     "name": "mavie",
-    "version": "0.0.3.9.9.3",
+    "version": "0.0.3.9.9.4",
     "homepage": "index.html",
-    "description": "fixed the problem of share url"
+    "description": "fixed the percentage gauge"
 }

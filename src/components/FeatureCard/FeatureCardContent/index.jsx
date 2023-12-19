@@ -13,6 +13,9 @@ import getFeatureScoreDetail from '../../../thunk/featureSocreDetailThunk';
 function FeatureCardContent({ featureId }) {
 	const dispatch = useDispatch();
 	const feature = useSelector((state) => state.feature.entities[featureId]);
+	const currentProductId = useSelector((state) => state.filters.product.currentProduct.id);
+	const currentFeatureId = useSelector((state) => state.product.productData
+		.featureDetail.currentFeatureId);
 	const featureRating = useSelector((state) => state.product.productData
 		.features.data[featureId]);
 	const featureDetailLoading = useSelector((state) => state.product.productData
@@ -62,9 +65,17 @@ function FeatureCardContent({ featureId }) {
 
 	useEffect(
 		() => {
-			dispatch(getFeatureScoreDetail(featureId));
+			console.log('feature score detail api called, feature id: ', currentFeatureId);
+			console.log('feature score detail api called, product id: ', currentProductId);
+			if (currentProductId && currentFeatureId) {
+				console.log('feature id: ', currentFeatureId, 'product id: ', currentProductId);
+				dispatch(getFeatureScoreDetail({
+					productId: currentProductId,
+					featureId: currentFeatureId,
+				}));
+			}
 		},
-		[featureId, dispatch],
+		[currentFeatureId, dispatch, currentProductId],
 	);
 
 	const getImportanceRendered = () => {
