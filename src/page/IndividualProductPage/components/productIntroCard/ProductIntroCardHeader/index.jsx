@@ -16,6 +16,7 @@ function ProductIntroCardHeader() {
 				fontFamily: 'Inter, sans-serif',
 				fontWeight: 600,
 				fontSize: '18px',
+				textAlign: 'start',
 			}}
 		>
 			{productDetail?.modelName}

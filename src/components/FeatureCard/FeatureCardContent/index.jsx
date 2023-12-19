@@ -1,16 +1,21 @@
 import {
-	Grid, Box, useMediaQuery, Skeleton,
+	Grid, Box, useMediaQuery, Skeleton, Typography,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import ImportanceScore from '../ImportanceScore';
 import ScoreRating from '../ScoreRating';
 import MavieGauge from '../../Gauges';
 import ErrorMessage from '../../ErrorMessage';
+import getFeatureScoreDetail from '../../../thunk/featureSocreDetailThunk';
 
 function FeatureCardContent({ featureId }) {
+	const dispatch = useDispatch();
 	const feature = useSelector((state) => state.feature.entities[featureId]);
+	const currentProductId = useSelector((state) => state.filters.product.currentProduct.id);
+	const currentFeatureId = useSelector((state) => state.product.productData
+		.featureDetail.currentFeatureId);
 	const featureRating = useSelector((state) => state.product.productData
 		.features.data[featureId]);
 	const featureDetailLoading = useSelector((state) => state.product.productData
@@ -58,6 +63,21 @@ function FeatureCardContent({ featureId }) {
 		[featureDetailError],
 	);
 
+	useEffect(
+		() => {
+			console.log('feature score detail api called, feature id: ', currentFeatureId);
+			console.log('feature score detail api called, product id: ', currentProductId);
+			if (currentProductId && currentFeatureId) {
+				console.log('feature id: ', currentFeatureId, 'product id: ', currentProductId);
+				dispatch(getFeatureScoreDetail({
+					productId: currentProductId,
+					featureId: currentFeatureId,
+				}));
+			}
+		},
+		[currentFeatureId, dispatch, currentProductId],
+	);
+
 	const getImportanceRendered = () => {
 		if (featureDetailLoading) {
 			return (
@@ -103,11 +123,19 @@ function FeatureCardContent({ featureId }) {
 		return null;
 	};
 
+	const getFeatureDescription = () => {
+		// if too long, truncate
+		if (feature.description.length > 100) {
+			return `${feature.description.substring(0, 100)}...`;
+		}
+		return feature.description || 'No Feature Description';
+	};
 	return (
 		<Grid
 			container
 			spacing={2}
 			margin={2}
+			alignItems="center"
 		>
 			<Grid
 				item
@@ -121,12 +149,33 @@ function FeatureCardContent({ featureId }) {
 					sx={{
 						display: 'flex',
 						flexDirection: 'column',
-						alignItems: 'start', // Align the content horizontally
-						justifyContent: 'end', // Center the content vertically if needed
+
 					}}
 				>
-					<ScoreRating score={featureRating} />
-					<ImportanceScore score={feature?.importance} />
+					<Typography
+						sx={{
+							fontFamily: 'Inter, sans-serif',
+							fontWeight: 500,
+							fontSize: ['12px', '13px', '14px'], // [mobile, tablet, desktop
+							textAlign: 'left',
+							color: '#455468',
+							marginTop: '-20px',
+							marginBottom: '10px',
+						}}
+					>
+						{getFeatureDescription()}
+					</Typography>
+					<Box
+						sx={{
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'start', // Align the content horizontally
+							justifyContent: 'end', // Center the content vertically if needed
+						}}
+					>
+						<ScoreRating score={featureRating} />
+						<ImportanceScore score={feature?.importance} />
+					</Box>
 				</Box>
 			</Grid>
 			<Grid item xs={6} sm={8}>
@@ -139,5 +188,5 @@ function FeatureCardContent({ featureId }) {
 export default FeatureCardContent;
 
 FeatureCardContent.propTypes = {
-	featureId: PropTypes.number.isRequired,
+	featureId: PropTypes.string.isRequired,
 };

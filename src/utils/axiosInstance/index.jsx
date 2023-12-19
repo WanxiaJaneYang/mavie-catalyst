@@ -2,15 +2,14 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
 	// baseURL: process.env.REACT_APP_API_BASE_URL,
-	baseURL: 'http://localhost:8080',
-	// baseURL: 'http://mavie-backend.azurewebsites.net',
+	baseURL: 'http://localhost:3000',
 });
 
 axiosInstance.interceptors.response.use(
 	(response) => response.data,
 	(error) => {
 		if (error.response && error.response.status === 404) {
-			throw new Error('404 error, please check your internet connection');
+			throw new Error('Data Not found or Internet connection is required');
 		} else if (error.response) {
 			console.log(error);
 			throw new Error(error.response.data.error || 'an error occured, please try again');

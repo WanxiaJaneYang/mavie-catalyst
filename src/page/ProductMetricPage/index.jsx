@@ -5,8 +5,6 @@ import { useParams } from 'react-router-dom';
 import UsabilityRatingCard from '../../components/UsabilityRatingCard/UsabilityRatingCard';
 import SelectedDomainCards from './SelectedDomainCards';
 import getProductRating from '../../thunk/productMetricThunk';
-import getProductInfo from '../../thunk/productInfoThunk';
-import getProductFilter from '../../thunk/productFilterThunk';
 
 function ProductMetricPage() {
 	const dispatch = useDispatch();

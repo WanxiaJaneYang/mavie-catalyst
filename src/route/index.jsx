@@ -5,6 +5,7 @@ import IndividualProductPage from '../page/IndividualProductPage';
 import ProtectedRoute from './ProtectedRoute';
 import SharedLoginPage from '../page/SharedLoginPage';
 import ProductMetricPage from '../page/ProductMetricPage';
+import SharedProductPage from '../page/SharedProductPage';
 
 const routes = [
 	{
@@ -16,8 +17,8 @@ const routes = [
 		element: <LoginPage />,
 	},
 	{
-		path: '/shareProduct/:id',
-		element: <SharedLoginPage />,
+		path: '/sharedProduct',
+		element: <SharedProductPage />,
 	},
 	{
 		path: '/client/:clientId',

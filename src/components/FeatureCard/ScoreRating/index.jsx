@@ -21,7 +21,7 @@ function ScoreRating({ score }) {
 					textAlign: 'left',
 				}}
 			>
-				{score}
+				{parseFloat(score).toFixed(1)}
 			</Typography>
 			<Typography
 				sx={{
@@ -42,5 +42,5 @@ function ScoreRating({ score }) {
 export default ScoreRating;
 
 ScoreRating.propTypes = {
-	score: PropTypes.number.isRequired,
+	score: PropTypes.string.isRequired,
 };

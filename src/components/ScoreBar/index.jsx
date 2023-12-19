@@ -54,7 +54,7 @@ function ScoreBar({ score, importance, importanceRatingOn }) {
 					>
 						<ImportanceLinearProgress
 							variant="determinate"
-							value={importance * 100}
+							value={importance / 5 * 100}
 						/>
 					</Box>
 				)
@@ -64,13 +64,13 @@ function ScoreBar({ score, importance, importanceRatingOn }) {
 }
 
 ScoreBar.propTypes = {
-	score: PropTypes.number.isRequired,
-	importance: PropTypes.number,
+	score: PropTypes.string.isRequired,
+	importance: PropTypes.string,
 	importanceRatingOn: PropTypes.bool,
 };
 
 ScoreBar.defaultProps = {
-	importance: 0,
+	importance: '0',
 	importanceRatingOn: false,
 };
 

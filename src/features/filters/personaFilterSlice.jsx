@@ -4,15 +4,7 @@ import getProductFilter from '../../thunk/productFilterThunk';
 
 const personaSlice = createSlice({
 	name: 'personaFilter',
-	initialState: {
-		1: true,
-		2: true,
-		3: true,
-		4: true,
-		5: true,
-		6: true,
-
-	},
+	initialState: { },
 	reducers: {
 		setSelectedPersona(state, { payload }) {
 			Object.keys(payload).forEach((key) => {

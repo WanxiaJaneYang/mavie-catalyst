@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
 	Accordion, Typography, AccordionSummary, AccordionDetails,
 } from '@mui/material';

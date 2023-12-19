@@ -7,8 +7,6 @@ import { useDispatch } from 'react-redux';
 import MenuIcon from '@mui/icons-material/Menu';
 import ProductSidebar from './components/ProductSidebar';
 import theme from '../../theme';
-import getProductFilter from '../../thunk/productFilterThunk';
-import getProductInfo from '../../thunk/productInfoThunk';
 
 function ClientProductPage() {
 	const isMobile = useMediaQuery(theme.breakpoints.down('md'));

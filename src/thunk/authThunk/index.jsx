@@ -28,7 +28,7 @@ const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
 			productList: response.productList,
 		};
 	} catch (error) {
-		thunkAPI.rejectWithValue(error.message);
+		return thunkAPI.rejectWithValue(error.message);
 	}
 });
 

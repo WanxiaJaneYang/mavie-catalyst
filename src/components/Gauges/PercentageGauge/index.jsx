@@ -16,7 +16,10 @@ function PercentageGauge({
 	// 	.startAngle(-Math.PI / 2)
 	// 	.endAngle(Math.PI / 2)
 	// 	.cornerRadius(0)();
-
+	if (importance > 1) {
+		// eslint-disable-next-line no-param-reassign
+		importance /= 5;
+	}
 	const importanceAngle = importance * Math.PI - 0.5 * Math.PI;
 	const importanceArc = arc()
 		.innerRadius(0.65)

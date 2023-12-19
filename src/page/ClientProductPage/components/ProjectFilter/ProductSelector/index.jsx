@@ -17,7 +17,7 @@ function ProductSelector() {
 	const handleChange = (event) => {
 		const selectedProduct = productList.find((product) => product.id === event.target.value);
 		dispatch(setCurrentProduct(selectedProduct));
-		navigate(`/client/${clientId}/product/${selectedProduct.id}`);
+		navigate(`/client/${clientId}/product/${selectedProduct.id}/metrics`);
 	};
 
 	const selectedValue = currentProduct ? currentProduct.id : '';

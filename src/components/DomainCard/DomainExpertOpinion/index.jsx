@@ -32,5 +32,5 @@ function DomainExpertOpinion({ domainId }) {
 export default DomainExpertOpinion;
 
 DomainExpertOpinion.propTypes = {
-	domainId: propType.number.isRequired,
+	domainId: propType.string.isRequired,
 };

@@ -6,7 +6,7 @@ const productPersonaSlice = createSlice({
 	initialState: {
 		loading: false,
 		error: null,
-		productPersonas: [1, 2, 3, 4, 5, 6],
+		productPersonas: [],
 	},
 
 	reducers: {

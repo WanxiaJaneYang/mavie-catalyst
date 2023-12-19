@@ -8,8 +8,8 @@ const brandSlice = createSlice({
 		loading: false,
 		error: null,
 		data: {
-			name: '',
-			icon: '',
+			name: null,
+			icon: null,
 		},
 	},
 	reducers: {

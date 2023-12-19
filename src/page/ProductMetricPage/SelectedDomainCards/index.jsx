@@ -11,7 +11,7 @@ function SelectedDomainCards() {
 			{domainIds && domainIds.map((id) => (
 				selectedDomain[id]
 					&& (
-						<Grid item xs={12} sm={12} md={6} key={`${id}-domain-selectedDomainCard`}>
+						<Grid item xs={12} sm={12} md={4} key={`${id}-domain-selectedDomainCard`}>
 							<DomainCard
 								domainId={id}
 								key={`${id}-domain`}

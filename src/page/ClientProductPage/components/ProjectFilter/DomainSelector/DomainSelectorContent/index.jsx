@@ -34,6 +34,13 @@ function DomainSelectorContent() {
 		}
 	}, [allDomainIds]);
 
+	const getSvgData = (domainId) => {
+		if (domainInfo[domainId]) {
+			console.log('domainInfo[domainId].icon', domainInfo[domainId].icon);
+			return domainInfo[domainId].icon;
+		}
+		return defaultSvgData;
+	};
 	return (
 		<div>
 			{allDomainIds && allDomainIds.length > 0 && allDomainIds.map((domainId) => (
@@ -69,7 +76,7 @@ function DomainSelectorContent() {
 							marginRight: '8px',
 						}}
 						onClick={() => handleSelectCheckbox(domainId)}
-						svgData={domainInfo[domainId].icon !== '' ? domainInfo[domainId].icon : defaultSvgData}
+						svgData={getSvgData(domainId)}
 					/>
 					<span
 						key={`${domainId} checkbox label`}

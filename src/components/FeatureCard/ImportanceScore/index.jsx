@@ -22,7 +22,7 @@ function ImportanceScore({ score }) {
 					textAlign: 'left',
 				}}
 			>
-				{score}
+				{parseFloat(score).toFixed(1)}
 			</Typography>
 			<Typography
 				sx={{
@@ -41,5 +41,5 @@ function ImportanceScore({ score }) {
 }
 export default ImportanceScore;
 ImportanceScore.propTypes = {
-	score: PropTypes.number.isRequired,
+	score: PropTypes.string.isRequired,
 };

@@ -7,16 +7,7 @@ const productDomainsSlice = createSlice({
 	initialState: {
 		loading: false,
 		error: null,
-		data: {
-			1: 4.5,
-			2: 4.3,
-			3: 4.2,
-			4: 2.5,
-			5: 1.5,
-			6: 5,
-			7: 4.5,
-			8: 3.5,
-		},
+		data: null,
 	},
 	reducers: {
 	},

@@ -14,7 +14,7 @@ function ProductIntroContent() {
 	const productDescription = useSelector((state) => state.product.productInfo
 		.productDescription);
 
-	const productImage = useSelector((state) => state.product.productInfo
+	const productImage = useSelector((state) => state.product.productInfo.productDetail
 		.productImage);
 
 	const getProductDescription = () => {
@@ -25,6 +25,7 @@ function ProductIntroContent() {
 	};
 
 	const getProductImage = () => {
+		console.log('productImg:', productImage);
 		if (productImage) {
 			return productImage;
 		}
@@ -36,9 +37,9 @@ function ProductIntroContent() {
 			sx={{
 				display: 'flex',
 				flexDirection: 'row',
-				padding: '16px',
-				paddingTop: '0px',
-				marginTop: '0px',
+				// padding: '0px',
+				// paddingTop: '0px',
+				// marginTop: '0px',
 				width: '100%',
 				border: 'none',
 			}}
@@ -78,6 +79,19 @@ function ProductIntroContent() {
 						{productDetail?.productCategoryName}
 
 					</Typography>
+					<Box sx={{ display: { xs: 'block', md: 'none' } }}>
+						<CardMedia
+							component="img"
+							image={getProductImage()}
+							title={productDetail?.productModalName}
+							sx={{
+								width: '80%',
+								height: 'auto',
+								borderRadius: '8px',
+								marginBottom: '16px',
+							}}
+						/>
+					</Box>
 					<MavieRating
 						value={productRating || 2}
 						readOnly
@@ -108,9 +122,7 @@ function ProductIntroContent() {
 						{getProductDescription()}
 					</Typography>
 				</Grid>
-				<Grid
-					item
-				>
+				<Grid item xs={12} md={4} sx={{ display: { xs: 'none', md: 'block' } }}>
 					<CardMedia
 						component="img"
 						image={getProductImage()}
@@ -121,7 +133,6 @@ function ProductIntroContent() {
 							borderRadius: '8px',
 						}}
 					/>
-
 				</Grid>
 			</Grid>
 		</Card>
