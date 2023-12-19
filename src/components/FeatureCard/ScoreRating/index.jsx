@@ -21,7 +21,7 @@ function ScoreRating({ score }) {
 					textAlign: 'left',
 				}}
 			>
-				{score}
+				{parseFloat(score).toFixed(1)}
 			</Typography>
 			<Typography
 				sx={{

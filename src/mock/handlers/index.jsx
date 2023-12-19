@@ -192,7 +192,7 @@ const handlers = [
 			{
 				id: 0,
 				name: 'string',
-				icon: 'string',
+				icon: '',
 				roundButtonSelected: 'string',
 				roundButtonUnselected: 'string',
 				description: 'string',

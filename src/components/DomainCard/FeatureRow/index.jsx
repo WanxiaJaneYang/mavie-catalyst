@@ -82,7 +82,7 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 							textAlign: 'right',
 						}}
 					>
-						{featureRating || 'N/A'}
+						{featureRating ? parseFloat(featureRating).toFixed(1) : 'N/A'}
 					</Typography>
 				</Grid>
 			</Grid>

@@ -22,7 +22,7 @@ function ImportanceScore({ score }) {
 					textAlign: 'left',
 				}}
 			>
-				{score}
+				{parseFloat(score).toFixed(1)}
 			</Typography>
 			<Typography
 				sx={{
