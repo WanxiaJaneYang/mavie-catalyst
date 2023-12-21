@@ -1,6 +1,6 @@
 {
     "name": "mavie",
-    "version": "0.0.3.9.9.4",
+    "version": "0.0.3.9.9.5",
     "homepage": "index.html",
-    "description": "fixed the percentage gauge"
+    "description": "fixed the importance score bar"
 }
