@@ -1,7 +1,7 @@
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import { useEffect } from 'react';
 import { setCurrentProduct } from '../../../../../features/filters/productListSlice';
@@ -13,6 +13,7 @@ function ProductSelector() {
 	const currentProduct = useSelector((state) => state.filters.product.currentProduct);
 	const productList = useSelector((state) => state.filters.product.products);
 	const clientId = useSelector((state) => state.auth.userId);
+	const { productId } = useParams();
 
 	const handleChange = (event) => {
 		const selectedProduct = productList.find((product) => product.id === event.target.value);
@@ -23,10 +24,11 @@ function ProductSelector() {
 	const selectedValue = currentProduct ? currentProduct.id : '';
 
 	useEffect(() => {
-		console.log('product selector use effect');
-		console.log('currentProduct', currentProduct);
-		console.log('productList', productList);
-	}, [currentProduct, productList]);
+		if (currentProduct && productId !== currentProduct.id) {
+			const urlProduct = productList.find((product) => product.id === productId);
+			dispatch(setCurrentProduct(urlProduct));
+		}
+	}, [currentProduct, productList, productId, dispatch]);
 
 	return (
 		<div
