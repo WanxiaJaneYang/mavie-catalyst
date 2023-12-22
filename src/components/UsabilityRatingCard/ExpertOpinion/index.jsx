@@ -1,6 +1,11 @@
 import { Box, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 function ExpertOpinion() {
+	const expertOpinion = useSelector((state) => state.product.productInfo
+		.productDetail.expertOpinion);
+
 	return (
 		<Box
 			sx={{
@@ -29,7 +34,7 @@ function ExpertOpinion() {
 					textAlign: 'left',
 				}}
 			>
-				Expert opinion is not available for this product
+				{expertOpinion || 'No expert opinion available'}
 			</Typography>
 		</Box>
 	);

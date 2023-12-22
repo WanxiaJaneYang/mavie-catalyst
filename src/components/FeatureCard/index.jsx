@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-	Box, Card, CardContent, CardHeader, Dialog, IconButton, Typography,
+	Card, CardContent, CardHeader, Dialog, IconButton,
 } from '@mui/material';
 import propType from 'prop-types';
 import { useSelector } from 'react-redux';
