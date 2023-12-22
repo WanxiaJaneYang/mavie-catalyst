@@ -24,10 +24,12 @@ function FeatureCardContent({ featureId }) {
 		.featureDetail.error);
 	const percentages = useSelector((state) => state.product
 		.productData.featureDetail.questionImportance);
+
 	const extraLargeScreen = useMediaQuery('(min-width:1920px)');
 	const largeScreen = useMediaQuery('(min-width:1280px)');
 	const mediumScreen = useMediaQuery('(min-width:960px)');
 	const smallScreen = useMediaQuery('(min-width:600px)');
+
 	const gaugeSize = () => {
 		if (extraLargeScreen) {
 			return 2;
