@@ -8,9 +8,9 @@ import reportWebVitals from './reportWebVitals';
 // Import and start MSW
 import worker from './mock/browser/index';
 
-// if (process.env.NODE_ENV === 'development') {
-// 	worker.start();
-// }
+if (process.env.NODE_ENV === 'development') {
+	worker.start();
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -13,7 +13,6 @@ function FilterReset() {
 
 	const handleReset = () => {
 		dispatch(resetState());
-		navigate(`/client/${userId}`);
 	};
 
 	const handleApply = () => {

@@ -7,7 +7,6 @@ import productListSlice from './productListSlice';
 import genderFilterSlice from './genderFilterSlice';
 import toggleFilterSlice from './toggleFilterSlice';
 import shareSlice from './shareSlice';
-import { RESET_STATE } from '../../constants';
 
 const filters = combineReducers({
 	age: ageFilterSlice,
@@ -19,11 +18,4 @@ const filters = combineReducers({
 	share: shareSlice,
 });
 
-const filtersReducer = (state, action) => {
-	if (action.type === RESET_STATE) {
-		state = undefined;
-	}
-
-	return filters(state, action);
-};
-export default filtersReducer;
+export default filters;
