@@ -6,7 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 // Import and start MSW
-// import worker from './mock/browser/index';
+import worker from './mock/browser/index';
 
 // if (process.env.NODE_ENV === 'development') {
 // 	worker.start();
