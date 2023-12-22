@@ -58,7 +58,7 @@ function UsabilityRatingCardContent() {
 								textAlign: 'left',
 							}}
 						>
-							Oerall Rating
+							Overall Rating
 						</Typography>
 
 						<Typography
