@@ -3,6 +3,7 @@ import { Grid, Typography, Box } from '@mui/material';
 import propType from 'prop-types';
 import ScoreBar from '../../../ScoreBar';
 import DynamicSvg from '../../../DynamicSvgIcon';
+import theme from '../../../../theme';
 
 function DomainListRow({ domainId }) {
 	const domains = useSelector((state) => state.domain.entities);
@@ -37,9 +38,10 @@ function DomainListRow({ domainId }) {
 					<Typography
 						sx={{
 							fontFamily: 'Inter, sans-serif',
-							fontWeight: 500,
+							fontWeight: 600,
 							fontSize: ['10px', '12px', '14px'], // [mobile, tablet, desktop
 							textAlign: 'left',
+							color: theme.palette.primary.main,
 						}}
 					>
 						{domain.name}

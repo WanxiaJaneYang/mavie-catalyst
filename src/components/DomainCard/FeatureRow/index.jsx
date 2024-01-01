@@ -8,6 +8,7 @@ import ScoreBar from '../../ScoreBar';
 import FeatureCard from '../../FeatureCard';
 import wordParser from '../../../utils/wordParser';
 import { setCurrentFeatureId } from '../../../features/product/productData/featureScoreDetail';
+import theme from '../../../theme';
 
 function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 	const dispatch = useDispatch();
@@ -54,10 +55,11 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 						<Typography
 							sx={{
 								fontFamily: 'Inter, sans-serif',
-								fontWeight: 500,
+								fontWeight: 600,
 								// marginLeft: '-10px',
 								fontSize: ['12px', '13px', '14px'], // [mobile, tablet, desktop
 								textAlign: 'left',
+								color: theme.palette.primary.main,
 							}}
 						>
 							{getFeatureName()}
