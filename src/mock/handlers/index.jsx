@@ -927,25 +927,28 @@ const handlers = [
 		});
 	}),
 
-	http.get('/product/:productId/feature/:featureId', ({ request }) => HttpResponse.json({
-		features: [
-			{
-				importance: '0.4',
-			},
-			{
-				importance: '0.3',
-			},
-			{
-				importance: '0.3',
-			},
-			{
-				importance: '0.0',
-			},
-			{
-				importance: '0.0',
-			},
-		],
-	})),
+	http.get('/product/:productId/feature/:featureId', async () => {
+		await delay(1000);
+		return HttpResponse.json({
+			features: [
+				{
+					importance: '0.4',
+				},
+				{
+					importance: '0.3',
+				},
+				{
+					importance: '0.3',
+				},
+				{
+					importance: '0.0',
+				},
+				{
+					importance: '0.0',
+				},
+			],
+		});
+	}),
 ];
 
 export default handlers;

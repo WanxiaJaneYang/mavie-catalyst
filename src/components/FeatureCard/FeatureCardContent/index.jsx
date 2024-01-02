@@ -67,10 +67,10 @@ function FeatureCardContent({ featureId }) {
 
 	useEffect(
 		() => {
-			console.log('feature score detail api called, feature id: ', currentFeatureId);
-			console.log('feature score detail api called, product id: ', currentProductId);
+			// console.log('feature score detail api called, feature id: ', currentFeatureId);
+			// console.log('feature score detail api called, product id: ', currentProductId);
 			if (currentProductId && currentFeatureId) {
-				console.log('feature id: ', currentFeatureId, 'product id: ', currentProductId);
+				// console.log('feature id: ', currentFeatureId, 'product id: ', currentProductId);
 				dispatch(getFeatureScoreDetail({
 					productId: currentProductId,
 					featureId: currentFeatureId,
@@ -82,15 +82,25 @@ function FeatureCardContent({ featureId }) {
 
 	const getImportanceRendered = () => {
 		if (featureDetailLoading) {
+			// console.log('feature score detail api loading, rendering skeleton');
 			return (
-				<Skeleton
-					variant="rectangular"
-					width="90%"
-					height="120%"
+				<Box
 					sx={{
-						borderRadius: '10px',
+						display: 'flex',
+						justifyContent: 'center', // Center the gauge horizontally
+						alignItems: 'center', // Center the gauge vertically
+						paddingRight: '10px',
 					}}
-				/>
+				>
+					<Skeleton
+						variant="rectangular"
+						width={gaugeSize() * 150}
+						height={gaugeSize() * 100}
+						sx={{
+							borderRadius: '10px',
+						}}
+					/>
+				</Box>
 			);
 		}
 		if (featureDetailError) {
@@ -103,6 +113,7 @@ function FeatureCardContent({ featureId }) {
 			);
 		}
 		if (!featureDetailLoading && !featureDetailError) {
+			// console.log('feature score detail api success, feature id: ', currentFeatureId);
 			return (
 				<Box
 					sx={{
