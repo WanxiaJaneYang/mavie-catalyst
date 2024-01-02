@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-	// baseURL: process.env.REACT_APP_API_BASE_URL,
-	baseURL: 'http://localhost:3000',
+	baseURL: process.env.REACT_APP_API_BASE_URL,
+	// baseURL: 'http://localhost:3000',
 });
 
 axiosInstance.interceptors.response.use(
@@ -12,6 +12,9 @@ axiosInstance.interceptors.response.use(
 			// if error message contains rating then throw error data not complete
 			if (error.response.data.error.includes('rating')) {
 				throw new Error('This survey is not completed');
+			}
+			if (error.response.data.error === 'Product not found') {
+				throw new Error('This product information is not available');
 			}
 			throw new Error('Internet connection is required');
 		} else if (error.response) {

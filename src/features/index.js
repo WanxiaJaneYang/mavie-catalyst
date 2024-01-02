@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
 	persona: personaSlice,
 	brand: brandSlice,
 	feature: featureSlice,
-	errorMesssages: errorMessageSlice,
+	errorMessages: errorMessageSlice,
 	// personaCard: personaCardSlice,
 });
 

@@ -52,19 +52,19 @@ const errorMessageSlice = createSlice({
 
 	extraReducers: (builder) => {
 		builder.addCase(getProductFilter.rejected, (state, action) => {
-			state.messages.productFilter = action.error.message;
+			state.messages.productFilter = action.payload;
 		});
 		builder.addCase(getProductInfo.rejected, (state, action) => {
-			state.messages.productInfo = action.error.message;
+			state.messages.productInfo = action.payload;
 		});
 		builder.addCase(getProductRating.rejected, (state, action) => {
-			state.messages.productRating = action.error.message;
+			state.messages.productRating = action.payload;
 		});
 		builder.addCase(getFeatureScoreDetail.rejected, (state, action) => {
-			state.messages.featureScoreDetail = action.error.message;
+			state.messages.featureScoreDetail = action.payload;
 		});
 		builder.addCase(login.rejected, (state, action) => {
-			state.messages.login = action.error.message;
+			state.messages.login = action.payload;
 		});
 	},
 

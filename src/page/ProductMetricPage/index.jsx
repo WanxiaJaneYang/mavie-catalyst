@@ -12,10 +12,11 @@ function ProductMetricPage() {
 	const dispatch = useDispatch();
 	const { productId } = useParams();
 	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
-	const errorMessage = useSelector((state) => state.errorMessage.productRating);
-	const index = useSelector((state) => state.errorMessage.index.productRating);
-	const featureScoreErrorMessages = useSelector((state) => state.errorMessage.featureScoreDetail);
-	const featureScoreIndex = useSelector((state) => state.errorMessage.index.featureScoreDetail);
+	const errorMessage = useSelector((state) => state.errorMessages.messages.productRating);
+	const index = useSelector((state) => state.errorMessages.index.productRating);
+	const featureScoreErrorMessages = useSelector((state) => state.errorMessages
+		.messages.featureScoreDetail);
+	const featureScoreIndex = useSelector((state) => state.errorMessages.index.featureScoreDetail);
 	const [featureScoreErrorMessageOpen, setFeatureScoreErrorMessageOpen] = useState(false);
 	useEffect(
 		() => {

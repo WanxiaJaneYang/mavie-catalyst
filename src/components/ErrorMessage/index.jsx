@@ -13,7 +13,7 @@ function ErrorMessage({
 				vertical: 'top',
 				horizontal: 'center',
 			}}
-			style={{ top: 50 + index * 60 }} // Adjust position based on index
+			style={{ top: 50 + index * 80 }} // Adjust position based on index
 		>
 			<Alert
 				onClose={handleClose}

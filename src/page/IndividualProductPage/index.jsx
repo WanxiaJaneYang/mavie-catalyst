@@ -16,8 +16,8 @@ function IndividualProductPage() {
 	const dispatch = useDispatch();
 	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
 
-	const errorMessage = useSelector((state) => state.errorMessage.productInfo);
-	const index = useSelector((state) => state.errorMessage.index.productInfo);
+	const errorMessage = useSelector((state) => state.errorMessages.messages.productInfo);
+	const index = useSelector((state) => state.errorMessages.index.productInfo);
 
 	useEffect(() => {
 		console.log('dispatching getProductInfo and getProductFilter from individual product page use effect');

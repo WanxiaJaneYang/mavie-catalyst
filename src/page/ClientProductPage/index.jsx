@@ -11,8 +11,8 @@ import ErrorMessage from '../../components/ErrorMessage';
 import { clearProductFilterErrorMessage } from '../../features/errorMessages/errorMessageSlice';
 
 function ClientProductPage() {
-	const errorMessage = useSelector((state) => state.errorMessage.productFilter);
-	const index = useSelector((state) => state.errorMessage.index.productFilter);
+	const errorMessage = useSelector((state) => state.errorMessages.messages.productFilter);
+	const index = useSelector((state) => state.errorMessages.index.productFilter);
 	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
 
 	const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -30,6 +30,7 @@ function ClientProductPage() {
 		() => {
 			if (errorMessage) {
 				setErrorMessageOpen(true);
+				console.log('product filter error message: ', errorMessage);
 			}
 		},
 		[errorMessage],
