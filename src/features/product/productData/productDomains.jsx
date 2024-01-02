@@ -21,7 +21,10 @@ const productDomainsSlice = createSlice({
 			.addCase(getProductRating.fulfilled, (state, action) => {
 				state.loading = false;
 				const newData = action.payload.domainRatings.reduce((acc, domain) => {
-					acc[domain.id] = domain.rating;
+					acc[domain.id] = {
+						rating: domain.rating,
+						expertOpinion: domain.expertOpinion,
+					};
 					return acc;
 				}, {});
 				state.data = newData;

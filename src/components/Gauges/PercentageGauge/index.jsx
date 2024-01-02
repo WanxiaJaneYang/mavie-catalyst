@@ -20,6 +20,8 @@ function PercentageGauge({
 		// eslint-disable-next-line no-param-reassign
 		importance /= 5;
 	}
+
+	// convert importance to angle in radians
 	const importanceAngle = importance * Math.PI - 0.5 * Math.PI;
 	const importanceArc = arc()
 		.innerRadius(0.65)

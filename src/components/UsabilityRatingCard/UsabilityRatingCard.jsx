@@ -27,7 +27,6 @@ function UsabilityRatingCard() {
 		},
 		[error],
 	);
-
 	const getCardContentRendered = () => {
 		if (loading) {
 			return (

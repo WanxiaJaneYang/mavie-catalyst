@@ -9,6 +9,10 @@ axiosInstance.interceptors.response.use(
 	(response) => response.data,
 	(error) => {
 		if (error.response && error.response.status === 404) {
+			// if error message contains rating then throw error data not complete
+			if (error.response.data.error.includes('rating')) {
+				throw new Error('This survey is not completed');
+			}
 			throw new Error('This data is not complete or Internet connection is required');
 		} else if (error.response) {
 			console.log(error);

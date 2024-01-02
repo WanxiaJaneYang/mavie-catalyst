@@ -1,7 +1,11 @@
 import { Typography, Box } from '@mui/material';
 import propType from 'prop-types';
+import { useSelector } from 'react-redux';
 
 function DomainExpertOpinion({ domainId }) {
+	const expertOpinion = useSelector((state) => state.product.productData.domain
+		?.data[domainId]?.expertOpinion);
+
 	return (
 		<Box
 			sx={{
@@ -23,7 +27,7 @@ function DomainExpertOpinion({ domainId }) {
 				Expert Opinions
 			</Typography>
 			<Typography>
-				Expert opinion is not available for this product
+				{expertOpinion || 'No expert opinion available'}
 			</Typography>
 		</Box>
 	);

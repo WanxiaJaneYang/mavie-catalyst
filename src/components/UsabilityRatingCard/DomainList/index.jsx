@@ -12,7 +12,7 @@ function DomainList() {
 	const { loading, error } = useSelector((state) => state.product.productData.domain);
 
 	const getDomainScoreRows = () => domainIds.map((domainId) => (
-		<DomainListRow domainId={domainId} key={domainId} />
+		<DomainListRow domainId={domainId} key={`${domainId}-domain-row`} />
 	));
 
 	const [errorMessageOpen, setErrorMessageOpen] = useState(false);

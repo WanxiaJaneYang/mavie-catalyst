@@ -1,13 +1,15 @@
 import { useSelector } from 'react-redux';
 import { Grid, Typography, Box } from '@mui/material';
 import propType from 'prop-types';
+import { useEffect } from 'react';
 import ScoreBar from '../../../ScoreBar';
 import DynamicSvg from '../../../DynamicSvgIcon';
 import theme from '../../../../theme';
 
 function DomainListRow({ domainId }) {
 	const domains = useSelector((state) => state.domain.entities);
-	const domainRating = useSelector((state) => state.product.productData.domain.data);
+	const domainRating = useSelector((state) => state.product.productData.domain
+		?.data[domainId]?.rating);
 	const domain = domains[domainId];
 
 	if (!domain) return null;
@@ -68,7 +70,7 @@ function DomainListRow({ domainId }) {
 			</Grid>
 			<Grid item xs={7}>
 				<ScoreBar
-					score={domainRating[domainId]}
+					score={domainRating || '0'}
 					sx={{
 						paddingLeft: '10px',
 					}}
@@ -84,7 +86,7 @@ function DomainListRow({ domainId }) {
 						textAlign: 'left',
 					}}
 				>
-					{domainRating[domainId]}
+					{domainRating || 'N/A'}
 				</Typography>
 			</Grid>
 		</Grid>
