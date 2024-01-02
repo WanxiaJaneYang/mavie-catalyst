@@ -6,27 +6,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useEffect, useState } from 'react';
 import UsabilityRatingCardSkeleton from './UsabilityRatingCardSkeleton';
 import UsabilityRatingCardContent from './UsabilityRatingCardContent';
-import ErrorMessage from '../ErrorMessage';
 
 function UsabilityRatingCard() {
-	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
 	const { loading, error, data } = useSelector((state) => state.product.productData.overall);
 
-	const handleErrorMessageOpen = () => {
-		setErrorMessageOpen(true);
-	};
-
-	const handleErrorMessageClose = () => {
-		setErrorMessageOpen(false);
-	};
-	useEffect(
-		() => {
-			if (error) {
-				handleErrorMessageOpen();
-			}
-		},
-		[error],
-	);
 	const getCardContentRendered = () => {
 		if (loading) {
 			return (
@@ -34,13 +17,7 @@ function UsabilityRatingCard() {
 			);
 		}
 		if (error) {
-			return (
-				<ErrorMessage
-					open={errorMessageOpen}
-					handleClose={handleErrorMessageClose}
-					errorMessage={error}
-				/>
-			);
+			return null;
 		}
 		if (data) {
 			return (

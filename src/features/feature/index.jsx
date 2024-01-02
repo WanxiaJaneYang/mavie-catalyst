@@ -7,6 +7,7 @@ const featureSlice = createSlice({
 	initialState: {
 		loading: false,
 		entities: null,
+		error: null,
 		// entities: {
 		// 	1: {
 		// 		name: 'Ergonomics',
@@ -52,6 +53,7 @@ const featureSlice = createSlice({
 			})
 			.addCase(getProductFilter.rejected, (state, action) => {
 				state.loading = false;
+				state.error = action.error.message;
 			});
 	},
 });

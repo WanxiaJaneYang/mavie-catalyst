@@ -10,7 +10,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import colors from '../../../../theme/colors';
 import ProductIntroSkeleton from './ProductIntroSkeleton';
 import ProductIntroContent from './ProductIntroContent';
-import ErrorMessage from '../../../../components/ErrorMessage';
 import ProductIntroCardHeader from './ProductIntroCardHeader';
 
 function ProductIntroCard() {
@@ -18,23 +17,18 @@ function ProductIntroCard() {
 	const productDetail = useSelector((state) => state.product.productInfo
 		.productDetail);
 
-	useEffect(
-		() => {
-			if (error) {
-				handleErrorMessageOpen();
-			}
-		},
-		[error],
-	);
+	const renderProductIntroContent = () => {
+		if (error) {
+			return null;
+		}
+		if (loading) {
+			return <ProductIntroSkeleton />;
+		}
+		if (productDetail) {
+			return <ProductIntroContent />;
+		}
 
-	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
-
-	const handleErrorMessageOpen = () => {
-		setErrorMessageOpen(true);
-	};
-
-	const handleErrorMessageClose = () => {
-		setErrorMessageOpen(false);
+		return <Typography>No product info</Typography>;
 	};
 
 	return (
@@ -67,16 +61,7 @@ function ProductIntroCard() {
 					}
 				}
 			>
-				{loading && <ProductIntroSkeleton />}
-				{!loading && error && (
-					<ErrorMessage
-						message={error}
-						open={errorMessageOpen}
-						handleClose={handleErrorMessageClose}
-					/>
-				)}
-				{!loading && !error && !productDetail && <Typography>No product info</Typography>}
-				{!loading && productDetail && <ProductIntroContent />}
+				{renderProductIntroContent()}
 			</AccordionDetails>
 
 		</Accordion>

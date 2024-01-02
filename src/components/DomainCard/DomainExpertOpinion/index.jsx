@@ -3,8 +3,9 @@ import propType from 'prop-types';
 import { useSelector } from 'react-redux';
 
 function DomainExpertOpinion({ domainId }) {
-	const expertOpinion = useSelector((state) => state.product.productData.domain
-		?.data[domainId]?.expertOpinion);
+	const domainRatingData = useSelector((state) => state.product.productData
+		.domain.data);
+	const expertOpinion = domainRatingData ? domainRatingData[domainId]?.expertOpinion : null;
 
 	return (
 		<Box

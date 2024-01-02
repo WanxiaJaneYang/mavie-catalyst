@@ -5,12 +5,21 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import theme from '../../../../../theme';
-import ErrorMessage from '../../../../../components/ErrorMessage';
 import DomainSelectorSkeleton from './DomainSelectorSkeleton';
 import DomainSelectorContent from './DomainSelectorContent';
 
 function DomainSelector() {
 	const { loading, error } = useSelector((state) => state.domain);
+
+	const renderDomainSelectorContent = () => {
+		if (error) {
+			return null;
+		}
+		if (loading) {
+			return <DomainSelectorSkeleton />;
+		}
+		return <DomainSelectorContent />;
+	};
 
 	return (
 		<Accordion
@@ -53,9 +62,7 @@ function DomainSelector() {
 					padding: '0px',
 				}}
 			>
-				{loading && <DomainSelectorSkeleton />}
-				{error && <ErrorMessage message="error" />}
-				{!loading && !error && <DomainSelectorContent />}
+				{renderDomainSelectorContent()}
 			</AccordionDetails>
 		</Accordion>
 

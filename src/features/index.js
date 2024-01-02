@@ -7,6 +7,7 @@ import personaSlice from './persona';
 import brandSlice from './brand/brandSlice';
 import featureSlice from './feature';
 import cookie from './cookie';
+import errorMessageSlice from './errorMessages/errorMessageSlice';
 // import personaCardSlice from './product/productPage/personaCardSlice';
 
 const rootReducer = combineReducers({
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
 	persona: personaSlice,
 	brand: brandSlice,
 	feature: featureSlice,
+	errorMesssages: errorMessageSlice,
 	// personaCard: personaCardSlice,
 });
 

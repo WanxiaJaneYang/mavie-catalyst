@@ -3,12 +3,18 @@ import {
 } from '@mui/material';
 import { Outlet, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import MenuIcon from '@mui/icons-material/Menu';
 import ProductSidebar from './components/ProductSidebar';
 import theme from '../../theme';
+import ErrorMessage from '../../components/ErrorMessage';
+import { clearProductFilterErrorMessage } from '../../features/errorMessages/errorMessageSlice';
 
 function ClientProductPage() {
+	const errorMessage = useSelector((state) => state.errorMessage.productFilter);
+	const index = useSelector((state) => state.errorMessage.index.productFilter);
+	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
+
 	const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 	const [isSidebarOpen, setIsSidebarOpen] = useState(isMobile);
 	const handleSidebarOpen = () => {
@@ -19,6 +25,20 @@ function ClientProductPage() {
 	};
 	const dispatch = useDispatch();
 	const { productId } = useParams();
+
+	useEffect(
+		() => {
+			if (errorMessage) {
+				setErrorMessageOpen(true);
+			}
+		},
+		[errorMessage],
+	);
+
+	const handleClose = () => {
+		dispatch(clearProductFilterErrorMessage());
+		setErrorMessageOpen(false);
+	};
 
 	useEffect(() => {
 		console.log('dispatching getProductInfo and getProductFilter from client product page use effect');
@@ -104,6 +124,12 @@ function ClientProductPage() {
 				}
 			}
 		>
+			<ErrorMessage
+				open={errorMessageOpen}
+				handleClose={handleClose}
+				message={errorMessage}
+				index={index}
+			/>
 			{renderSidebar()}
 			<Grid
 				item

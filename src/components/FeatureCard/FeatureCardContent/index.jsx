@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react';
 import ImportanceScore from '../ImportanceScore';
 import ScoreRating from '../ScoreRating';
 import MavieGauge from '../../Gauges';
-import ErrorMessage from '../../ErrorMessage';
 import getFeatureScoreDetail from '../../../thunk/featureSocreDetailThunk';
 
 function FeatureCardContent({ featureId }) {
@@ -46,24 +45,6 @@ function FeatureCardContent({ featureId }) {
 
 		return 1;
 	};
-
-	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
-	const handleErrorMessageOpen = () => {
-		setErrorMessageOpen(true);
-	};
-
-	const handleErrorMessageClose = () => {
-		setErrorMessageOpen(false);
-	};
-
-	useEffect(
-		() => {
-			if (featureDetailError) {
-				handleErrorMessageOpen();
-			}
-		},
-		[featureDetailError],
-	);
 
 	useEffect(
 		() => {
@@ -104,13 +85,7 @@ function FeatureCardContent({ featureId }) {
 			);
 		}
 		if (featureDetailError) {
-			return (
-				<ErrorMessage
-					open={errorMessageOpen}
-					handleClose={handleErrorMessageClose}
-					message={featureDetailError}
-				/>
-			);
+			return null;
 		}
 		if (!featureDetailLoading && !featureDetailError) {
 			// console.log('feature score detail api success, feature id: ', currentFeatureId);

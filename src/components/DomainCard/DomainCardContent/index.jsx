@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import {
 	Typography, Box, Divider,
 } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import DomainGeneral from '../DomainGeneral';
 import FeatureList from '../FeatureList';
 import Toggle from '../../Toggle';

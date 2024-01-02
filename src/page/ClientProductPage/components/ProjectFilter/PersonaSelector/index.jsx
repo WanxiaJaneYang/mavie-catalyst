@@ -1,16 +1,25 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import PersonaSelectorSkeleton from './PersonaSelectorSkeleton';
-import ErrorMessage from '../../../../../components/ErrorMessage';
 import PersonaSelectorContent from './PersonaSelectorContent';
 import theme from '../../../../../theme';
 
 function PersonaSelector() {
 	const { loading, error } = useSelector((state) => state.persona);
+
+	const renderPersonaSelectorContent = () => {
+		if (error) {
+			return null;
+		}
+		if (loading) {
+			return <PersonaSelectorSkeleton />;
+		}
+		return <PersonaSelectorContent />;
+	};
 
 	return (
 		<Accordion
@@ -49,9 +58,7 @@ function PersonaSelector() {
 					padding: '0px',
 				}}
 			>
-				{loading && <PersonaSelectorSkeleton />}
-				{error && <ErrorMessage />}
-				{!loading && !error && <PersonaSelectorContent />}
+				{renderPersonaSelectorContent()}
 			</AccordionDetails>
 		</Accordion>
 

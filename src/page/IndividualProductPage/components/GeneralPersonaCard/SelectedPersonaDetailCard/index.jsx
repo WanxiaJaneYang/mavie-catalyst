@@ -9,7 +9,6 @@ import SelectedPersonaToggle from '../../../../../components/SelectedPersonaTogg
 import colors from '../../../../../theme/colors';
 import { setShowDetail } from '../../../../../features/product/generalProduct';
 import CloseIcon from '../../../../../components/icons/CloseIcon';
-import ErrorMessage from '../../../../../components/ErrorMessage';
 
 function SelectedPersonaDetailCard() {
 	const { loading, error } = useSelector((state) => state.persona);
@@ -19,25 +18,6 @@ function SelectedPersonaDetailCard() {
 
 	const showDetails = useSelector((state) => state.product.productInfo.showDetail);
 	const personaInfo = useSelector((state) => state.persona.entities);
-
-	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
-
-	useEffect(
-		() => {
-			if (error) {
-				handleErrorMessageOpen();
-			}
-		},
-		[error],
-	);
-
-	const handleErrorMessageOpen = () => {
-		setErrorMessageOpen(true);
-	};
-
-	const handleErrorMessageClose = () => {
-		setErrorMessageOpen(false);
-	};
 
 	const getPersonaIcons = () => (
 		personaIds.map((personaId) => (
@@ -112,13 +92,8 @@ function SelectedPersonaDetailCard() {
 			);
 		}
 		if (error) {
-			return (
-				<ErrorMessage
-					open={errorMessageOpen}
-					handleClose={handleErrorMessageClose}
-					message={error}
-				/>
-			);
+			// if error, donot render anything
+			return null;
 		}
 		return (
 			<>

@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { Snackbar, Alert } from '@mui/material';
 
-function ErrorMessage({ message, open, handleClose }) {
+function ErrorMessage({
+	message, open, handleClose, index,
+}) {
 	return (
 		<Snackbar
 			open={open}
@@ -11,6 +13,7 @@ function ErrorMessage({ message, open, handleClose }) {
 				vertical: 'top',
 				horizontal: 'center',
 			}}
+			style={{ top: 50 + index * 60 }} // Adjust position based on index
 		>
 			<Alert
 				onClose={handleClose}
@@ -39,6 +42,7 @@ ErrorMessage.propTypes = {
 	message: PropTypes.string.isRequired,
 	open: PropTypes.bool.isRequired,
 	handleClose: PropTypes.func.isRequired,
+	index: PropTypes.number.isRequired,
 };
 
 export default ErrorMessage;

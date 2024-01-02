@@ -8,8 +8,9 @@ import MavieGauge from '../../../Gauges';
 
 function DomainGeneralContent({ domainId, importanceRatingOn }) {
 	const domainInfo = useSelector((state) => state.domain.entities[domainId]);
-	const domainRating = useSelector((state) => state.product.productData
-		.domain?.data[domainId]?.rating);
+	const domainRatingData = useSelector((state) => state.product.productData
+		.domain.data);
+	const domainRating = domainRatingData ? domainRatingData[domainId]?.rating : null;
 
 	const isSmallScreen = useMediaQuery('(min-width:600px)');
 	const isMediumScreen = useMediaQuery('(min-width:900px)');

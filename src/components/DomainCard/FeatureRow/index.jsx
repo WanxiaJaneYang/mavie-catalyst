@@ -1,12 +1,11 @@
 import {
-	Dialog, Grid, Typography, Box, useMediaQuery,
+	Grid, Typography, Box, useMediaQuery,
 } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ScoreBar from '../../ScoreBar';
 import FeatureCard from '../../FeatureCard';
-import wordParser from '../../../utils/wordParser';
 import { setCurrentFeatureId } from '../../../features/product/productData/featureScoreDetail';
 import theme from '../../../theme';
 
@@ -16,12 +15,10 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 	const features = useSelector((state) => state.feature.entities);
 	const feature = features[featureId];
 	const featureRatings = useSelector((state) => state.product.productData.features.data);
-	const isLargeScreen = useMediaQuery('(min-width:900px)');
 	const featureRating = featureRatings[featureId];
 	if (!feature) return null;
 
 	const handleClick = () => {
-		console.log(`feature row clicked, set feature id as ${featureId}`);
 		dispatch(setCurrentFeatureId(featureId));
 		setOpen(true);
 	};

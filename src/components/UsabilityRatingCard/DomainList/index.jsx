@@ -5,7 +5,6 @@ import {
 import { useSelector } from 'react-redux';
 import DomainListRow from './DomainListRow';
 import DomainListSkeleton from './DomainListSkeleton';
-import ErrorMessage from '../../ErrorMessage';
 
 function DomainList() {
 	const domainIds = useSelector((state) => state.domain.ids);
@@ -15,25 +14,6 @@ function DomainList() {
 		<DomainListRow domainId={domainId} key={`${domainId}-domain-row`} />
 	));
 
-	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
-
-	const handleErrorMessageOpen = () => {
-		setErrorMessageOpen(true);
-	};
-
-	const handleErrorMessageClose = () => {
-		setErrorMessageOpen(false);
-	};
-
-	useEffect(
-		() => {
-			if (error) {
-				handleErrorMessageOpen();
-			}
-		},
-		[error],
-	);
-
 	const getDomainListRendered = () => {
 		if (loading) {
 			return (
@@ -41,15 +21,9 @@ function DomainList() {
 			);
 		}
 		if (error) {
-			return (
-				<ErrorMessage
-					open={errorMessageOpen}
-					handleClose={handleErrorMessageClose}
-					message={error}
-				/>
-			);
+			return null;
 		}
-		if (domainIds) {
+		if (domainIds && domainIds.length > 0 && !loading && !error) {
 			return (
 				<>
 					{getDomainScoreRows()}

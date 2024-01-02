@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Box from '@mui/material/Box';
@@ -9,29 +8,10 @@ import SelectedPersonaToggle from '../../../../../components/SelectedPersonaTogg
 import colors from '../../../../../theme/colors';
 import { setShowDetail } from '../../../../../features/product/generalProduct';
 import InfoIcon from '../../../../../components/icons/InfoIcon';
-import ErrorMessage from '../../../../../components/ErrorMessage';
 
 function SelectedPersonaCard() {
 	const { loading, error } = useSelector((state) => state.persona);
 	const personas = useSelector((state) => state.persona.ids);
-	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
-
-	useEffect(
-		() => {
-			if (error) {
-				handleErrorMessageOpen();
-			}
-		},
-		[error],
-	);
-
-	const handleErrorMessageOpen = () => {
-		setErrorMessageOpen(true);
-	};
-
-	const handleErrorMessageClose = () => {
-		setErrorMessageOpen(false);
-	};
 
 	const dispatch = useDispatch();
 
@@ -65,6 +45,9 @@ function SelectedPersonaCard() {
 	};
 
 	const getPersonaIdRendered = () => {
+		if (error) {
+			return null;
+		}
 		if (loading) {
 			return (
 				<Skeleton
@@ -80,16 +63,6 @@ function SelectedPersonaCard() {
 				/>
 			);
 		}
-		if (error) {
-			return (
-				<ErrorMessage
-					open={errorMessageOpen}
-					handleClose={handleErrorMessageClose}
-					message={error}
-				/>
-			);
-		}
-
 		return (
 			<>
 				{getPersonaIcons()}

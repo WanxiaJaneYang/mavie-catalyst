@@ -5,32 +5,15 @@ import {
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import FeatureRow from '../FeatureRow';
-import ErrorMessage from '../../ErrorMessage';
 
 function FeatureList({ domainId, importanceRatingOn }) {
 	const featureIds = useSelector((state) => state.domain.entities[domainId].featureIds);
 	const { loading, error, entities } = useSelector((state) => state.feature);
 
-	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
-
-	const handleErrorMessageOpen = () => {
-		setErrorMessageOpen(true);
-	};
-
-	const handleErrorMessageClose = () => {
-		setErrorMessageOpen(false);
-	};
-
-	useEffect(
-		() => {
-			if (error) {
-				handleErrorMessageOpen();
-			}
-		},
-		[error],
-	);
-
 	const getFeatureRowRendered = (featureId) => {
+		if (error) {
+			return null;
+		}
 		if (loading) {
 			return (
 				<Skeleton
@@ -82,13 +65,6 @@ function FeatureList({ domainId, importanceRatingOn }) {
 					paddingLeft: '8px',
 				}}
 			>
-				{error && (
-					<ErrorMessage
-						open={errorMessageOpen}
-						handleClose={handleErrorMessageClose}
-						message={error}
-					/>
-				)}
 				{getFeatureScoreRows()}
 			</Box>
 
