@@ -1,20 +1,21 @@
 import {
 	Grid, Box, useMediaQuery, Drawer, Button,
 } from '@mui/material';
-import { Outlet, useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import MenuIcon from '@mui/icons-material/Menu';
 import ProductSidebar from './components/ProductSidebar';
 import theme from '../../theme';
 import ErrorMessage from '../../components/ErrorMessage';
 import { clearProductFilterErrorMessage } from '../../features/errorMessages/errorMessageSlice';
+import ScrollToTopButton from '../../components/ScrollToTopButton';
 
 function ClientProductPage() {
 	const errorMessage = useSelector((state) => state.errorMessages.messages.productFilter);
 	const index = useSelector((state) => state.errorMessages.index.productFilter);
 	const [errorMessageOpen, setErrorMessageOpen] = useState(false);
-
+	const ref = useRef();
 	const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 	const [isSidebarOpen, setIsSidebarOpen] = useState(isMobile);
 	const handleSidebarOpen = () => {
@@ -24,13 +25,15 @@ function ClientProductPage() {
 		setIsSidebarOpen(false);
 	};
 	const dispatch = useDispatch();
-	const { productId } = useParams();
+
+	const onScroll = () => {
+		ref.current.scrollTop = 0;
+	};
 
 	useEffect(
 		() => {
 			if (errorMessage) {
 				setErrorMessageOpen(true);
-				console.log('product filter error message: ', errorMessage);
 			}
 		},
 		[errorMessage],
@@ -40,12 +43,6 @@ function ClientProductPage() {
 		dispatch(clearProductFilterErrorMessage());
 		setErrorMessageOpen(false);
 	};
-
-	useEffect(() => {
-		console.log('dispatching getProductInfo and getProductFilter from client product page use effect');
-		// dispatch(getProductInfo(productId));
-		// dispatch(getProductFilter(productId));
-	}, [productId, dispatch]);
 
 	const renderSidebar = () => {
 		if (isMobile) {
@@ -140,6 +137,7 @@ function ClientProductPage() {
 				lg={9}
 			>
 				<Box
+					ref={ref}
 					sx={
 						{
 							width: '100%',
@@ -148,6 +146,7 @@ function ClientProductPage() {
 							flexDirection: 'column',
 							justifyContent: 'start',
 							overflow: 'auto',
+							scrollBehavior: 'smooth',
 							marginTop: '10px',
 							marginBottom: '10px',
 							// alignItems: 'center',
@@ -156,6 +155,7 @@ function ClientProductPage() {
 				>
 					<Outlet />
 					{renderFloatingButton()}
+					<ScrollToTopButton onClick={onScroll} />
 				</Box>
 			</Grid>
 		</Grid>

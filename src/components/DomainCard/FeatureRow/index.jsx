@@ -1,5 +1,5 @@
 import {
-	Grid, Typography, Box, useMediaQuery,
+	Grid, Typography, Box,
 } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';

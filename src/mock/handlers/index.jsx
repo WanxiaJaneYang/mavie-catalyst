@@ -1,8 +1,6 @@
 // src/mocks/handlers.js
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { http, HttpResponse, delay } from 'msw';
-import loginSuccessResponse from '../responses/loginSuccessRes/loginSuccessRes.json';
-import loginFailResponse from '../responses/loginFailRes/loginFailRes.json';
 
 const scenario = process.env.REACT_APP_TEST_SCENARIO;
 

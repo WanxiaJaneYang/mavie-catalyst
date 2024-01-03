@@ -25,7 +25,7 @@ function ProductIntroContent() {
 	};
 
 	const getProductImage = () => {
-		console.log('productImg:', productImage);
+		// console.log('productImg:', productImage);
 		if (productImage) {
 			return productImage;
 		}

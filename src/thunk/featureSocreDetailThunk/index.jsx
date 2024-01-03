@@ -3,7 +3,7 @@ import { getProductFeature } from '../../api';
 
 const getFeatureScoreDetail = createAsyncThunk('featureScoreDetail/getFeatureScoreDetail', async ({ productId, featureId }, thunkAPI) => {
 	try {
-		console.log('feature score detail api called', productId, featureId);
+		// console.log('feature score detail api called', productId, featureId);
 		const response = await getProductFeature(productId, featureId);
 		return response;
 	} catch (error) {

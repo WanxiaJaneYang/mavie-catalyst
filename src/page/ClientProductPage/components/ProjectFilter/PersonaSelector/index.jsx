@@ -24,7 +24,7 @@ function PersonaSelector() {
 	return (
 		<Accordion
 			elevation={0}
-			defaultExpanded
+			// defaultExpanded
 		>
 			<AccordionSummary
 				expandIcon={<ExpandMoreIcon />}

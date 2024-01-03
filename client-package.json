@@ -1,6 +1,6 @@
 {
     "name": "mavie",
-    "version": "0.0.4.1.1.2",
+    "version": "0.0.4.1.1.4",
     "homepage": "index.html",
-    "description": "changed the feature card"
+    "description": "changed the persona card layout and set persona filter panel default folded"
 }

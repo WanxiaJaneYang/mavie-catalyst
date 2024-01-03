@@ -20,7 +20,6 @@ function IndividualProductPage() {
 	const index = useSelector((state) => state.errorMessages.index.productInfo);
 
 	useEffect(() => {
-		console.log('dispatching getProductInfo and getProductFilter from individual product page use effect');
 		dispatch(getProductInfo(productId));
 		dispatch(getProductFilter(productId));
 	}, [productId, dispatch]);

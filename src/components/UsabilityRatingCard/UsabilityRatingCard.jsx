@@ -3,7 +3,6 @@ import {
 	Accordion, Typography, AccordionSummary, AccordionDetails,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useEffect, useState } from 'react';
 import UsabilityRatingCardSkeleton from './UsabilityRatingCardSkeleton';
 import UsabilityRatingCardContent from './UsabilityRatingCardContent';
 

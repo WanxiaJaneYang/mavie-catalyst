@@ -1,5 +1,4 @@
 import propTypes from 'prop-types';
-import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import DomainGeneralSkeleton from './DomainGeneralSkeleton';
 import DomainGeneralContent from './DomainGeneralContent';

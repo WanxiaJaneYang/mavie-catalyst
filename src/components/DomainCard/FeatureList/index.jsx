@@ -3,7 +3,6 @@ import {
 	Box, Skeleton, Typography,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
 import FeatureRow from '../FeatureRow';
 
 function FeatureList({ domainId, importanceRatingOn }) {

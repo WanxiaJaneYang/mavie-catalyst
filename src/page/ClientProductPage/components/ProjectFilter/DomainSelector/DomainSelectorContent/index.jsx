@@ -30,13 +30,13 @@ function DomainSelectorContent() {
 
 	useEffect(() => {
 		if (allDomainIds && allDomainIds.length > 0) {
-			console.log('allDomainIds', allDomainIds);
+			// console.log('allDomainIds', allDomainIds);
 		}
 	}, [allDomainIds]);
 
 	const getSvgData = (domainId) => {
 		if (domainInfo[domainId]) {
-			console.log('domainInfo[domainId].icon', domainInfo[domainId].icon);
+			// console.log('domainInfo[domainId].icon', domainInfo[domainId].icon);
 			return domainInfo[domainId].icon;
 		}
 		return defaultSvgData;

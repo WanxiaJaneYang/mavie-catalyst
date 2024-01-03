@@ -20,8 +20,9 @@ function SelectedPersonaToggle({ personaId, ...props }) {
 
 	const getSVG = () => {
 		if (selectedPersonas[personaId] && personasEntities[personaId].roundButtonSelected) {
-			console.log('selectedPersonas[personaId]', selectedPersonas[personaId]);
-			console.log('personasEntities[personaId].roundButtonSelected', personasEntities[personaId].roundButtonSelected);
+			// console.log('selectedPersonas[personaId]', selectedPersonas[personaId]);
+			// console.log('personasEntities[personaId].roundButtonSelected',
+			//  personasEntities[personaId].roundButtonSelected);
 			return personasEntities[personaId].roundButtonSelected;
 		}
 		if (selectedPersonas[personaId]) {

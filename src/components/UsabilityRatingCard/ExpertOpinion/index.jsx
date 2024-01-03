@@ -1,6 +1,5 @@
 import { Box, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 
 function ExpertOpinion() {
 	const expertOpinion = useSelector((state) => state.product.productInfo

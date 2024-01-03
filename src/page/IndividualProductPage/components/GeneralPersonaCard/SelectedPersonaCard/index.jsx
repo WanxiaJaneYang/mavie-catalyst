@@ -23,9 +23,11 @@ function SelectedPersonaCard() {
 				personas.map((id) => (
 					<Grid
 						item
-						md={3}
-						lg={2}
-						xl={1}
+						xs={2}
+						sm={1}
+						md={1.5}
+						lg={1}
+						xl={0.5}
 						key={`${id}-selected-grid`}
 					>
 						<SelectedPersonaToggle
@@ -115,17 +117,13 @@ function SelectedPersonaCard() {
 			</Box>
 			<Grid
 				container
+				spacing={0.5}
 				sx={{
-					// display: 'flex',
-					// alignItems: 'center',
-					// flexDirection: 'row',
-					// justifyContent: 'start',
 					paddingBottom: '8px',
 					paddingLeft: '16px',
 					paddingRight: '16px',
 					paddingTop: '8px',
 					width: '100%',
-					gap: ['8px', '16px', '16px'],
 				}}
 			>
 				{getPersonaIdRendered()}

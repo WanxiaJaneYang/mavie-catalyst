@@ -26,10 +26,11 @@ export default function SignInSide() {
 			// 	navigate(location.state.from);
 			// } else
 			if (userId && currentProduct) {
-				console.log('userId and selectedProductId from login page useEffect: ', userId, currentProduct.id);
+				// console.log('userId and selectedProductId from login page useEffect:
+				//  ', userId, currentProduct.id);
 				navigate(`/client/${userId}/product/${currentProduct.id}/metrics`);
 			} else if (userId) {
-				console.log('userId: ', userId);
+				// console.log('userId: ', userId);
 				navigate(`/client/${userId}`);
 			}
 		},

@@ -7,7 +7,7 @@ const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
 	// Check if user is already logged in
 	const isLoggedIn = cookie.load('isLoggedIn');
 	if (isLoggedIn) {
-		console.log('User is already logged in, loading data from cookies');
+		// console.log('User is already logged in, loading data from cookies');
 		return {
 			isLoggedIn: true,
 			user_id: cookie.load('user_id'),
@@ -21,7 +21,7 @@ const login = createAsyncThunk('auth/login', async (data, thunkAPI) => {
 		cookie.save('isLoggedIn', true, { path: '/' });
 		cookie.save('user_id', response.user_id, { path: '/' });
 		cookie.save('productList', response.productList, { path: '/' });
-		console.log('User logged in successfully and data saved in cookies');
+		// console.log('User logged in successfully and data saved in cookies');
 		return {
 			isLoggedIn: true,
 			user_id: response.user_id,
