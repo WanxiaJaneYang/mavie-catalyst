@@ -1,7 +1,17 @@
 import { Box, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import QuestionIcon from '../QuestionIcon';
+import { setExplanationOn } from '../../../features/featureCard/featureCardSlice';
 
 function ScoreRating({ score }) {
+	const dispatch = useDispatch();
+	const explanationOn = useSelector((state) => state.featureCard.explanationOn);
+
+	const handleClick = () => {
+		dispatch(setExplanationOn(!explanationOn));
+	};
+
 	return (
 		<Box
 			sx={{
@@ -35,6 +45,7 @@ function ScoreRating({ score }) {
 			>
 				/5
 			</Typography>
+			<QuestionIcon onClick={handleClick} />
 		</Box>
 	);
 }

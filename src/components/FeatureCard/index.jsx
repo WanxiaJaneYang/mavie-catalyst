@@ -18,12 +18,11 @@ function FeatureCard({
 			open={open}
 			sx={{
 				'& .MuiDialog-paper': {
-					display: 'flex',
-					flexDirection: 'column',
 					alignItems: 'center',
 					justifyContent: 'center',
-					width: ['300px', '400px', '600px'], // Breakpoints: ['xs', 'sm', 'md', 'lg', 'xl'
+					width: ['350px', '600px', '800px'], // Breakpoints: ['xs', 'sm', 'md', 'lg', 'xl'
 					maxHeight: '90vh',
+					margin: 'auto',
 				},
 			}}
 		>
@@ -31,7 +30,8 @@ function FeatureCard({
 				sx={{
 					width: '100%', // Adjust as needed, or use maxWidth for responsiveness
 					maxWidth: '600px',
-					marginBottom: '16px',
+					maxHeight: '90vh',
+					// marginBottom: '16px',
 					overflow: 'visible', // Ensures shadows and such are not clipped
 				}}
 				elevation={0}
@@ -59,7 +59,7 @@ function FeatureCard({
 						</IconButton>
 					)}
 				/>
-				<CardContent>
+				<CardContent sx={{ padding: ['8px', '16px', '16px'] }}>
 					<FeatureCardContent featureId={featureId} />
 				</CardContent>
 			</Card>

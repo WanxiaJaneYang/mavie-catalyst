@@ -8,10 +8,12 @@ import ImportanceScore from '../ImportanceScore';
 import ScoreRating from '../ScoreRating';
 import MavieGauge from '../../Gauges';
 import getFeatureScoreDetail from '../../../thunk/featureSocreDetailThunk';
+import FeatureExplanation from '../FeatureExplanation';
 
 function FeatureCardContent({ featureId }) {
 	const dispatch = useDispatch();
 	const feature = useSelector((state) => state.feature.entities[featureId]);
+	const explanationOn = useSelector((state) => state.featureCard.explanationOn);
 	const currentProductId = useSelector((state) => state.filters.product.currentProduct.id);
 	const currentFeatureId = useSelector((state) => state.product.productData
 		.featureDetail.currentFeatureId);
@@ -31,13 +33,13 @@ function FeatureCardContent({ featureId }) {
 
 	const gaugeSize = () => {
 		if (extraLargeScreen) {
-			return 2;
+			return 1.9;
 		}
 		if (largeScreen) {
 			return 1.8;
 		}
 		if (mediumScreen) {
-			return 1.5;
+			return 1.8;
 		}
 		if (smallScreen) {
 			return 1.5;
@@ -95,7 +97,14 @@ function FeatureCardContent({ featureId }) {
 						display: 'flex',
 						justifyContent: 'center', // Center the gauge horizontally
 						alignItems: 'center', // Center the gauge vertically
-						paddingRight: '10px',
+						paddingRight: '5px', // [mobile, tablet, desktop
+						marginRight: '5px', // [mobile, tablet, desktop
+						marginLeft: '-5px', // [mobile, tablet, desktop
+						paddingLeft: '-5px', // [mobile, tablet, desktop
+						marginBottom: ['0px', '0px', '5px'], // [mobile, tablet, desktop
+						paddingBottom: ['0px', '0px', '5px'], // [mobile, tablet, desktop
+						marginTop: ['0px', '0px', '-5px'], // [mobile, tablet, desktop
+						paddingTop: ['0px', '0px', '-5px'], // [mobile, tablet, desktop
 					}}
 				>
 					<MavieGauge
@@ -119,57 +128,61 @@ function FeatureCardContent({ featureId }) {
 		return feature.description || 'No Feature Description';
 	};
 	return (
-		<Grid
-			container
-			spacing={2}
-			margin={2}
-			alignItems="center"
-		>
+		<>
 			<Grid
-				item
-				xs={6}
-				sm={4}
-				sx={{
-					display: 'flex',
-				}}
+				container
+				spacing={1}
+				margin={1}
+				alignItems="center"
 			>
-				<Box
+				<Grid
+					item
+					xs={5}
+					sm={4}
+					md={6}
 					sx={{
 						display: 'flex',
-						flexDirection: 'column',
-
 					}}
 				>
-					<Typography
-						sx={{
-							fontFamily: 'Inter, sans-serif',
-							fontWeight: 500,
-							fontSize: ['12px', '13px', '14px'], // [mobile, tablet, desktop
-							textAlign: 'left',
-							color: '#455468',
-							marginTop: '-20px',
-							marginBottom: '10px',
-						}}
-					>
-						{getFeatureDescription()}
-					</Typography>
 					<Box
 						sx={{
 							display: 'flex',
 							flexDirection: 'column',
-							alignItems: 'start', // Align the content horizontally
-							justifyContent: 'end', // Center the content vertically if needed
+
 						}}
 					>
-						<ScoreRating score={featureRating} />
-						<ImportanceScore score={feature?.importance} />
+						<Typography
+							sx={{
+								fontFamily: 'Inter, sans-serif',
+								fontWeight: 500,
+								fontSize: ['12px', '13px', '14px'], // [mobile, tablet, desktop
+								textAlign: 'left',
+								color: '#455468',
+								marginTop: '-20px',
+								marginBottom: '10px',
+							}}
+						>
+							{getFeatureDescription()}
+						</Typography>
+						<Box
+							sx={{
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'start', // Align the content horizontally
+								justifyContent: 'end', // Center the content vertically if needed
+							}}
+						>
+							<ScoreRating score={featureRating} />
+							<ImportanceScore score={feature?.importance} />
+						</Box>
 					</Box>
-				</Box>
+				</Grid>
+				<Grid item xs={7} sm={8} md={6}>
+					{getImportanceRendered()}
+				</Grid>
 			</Grid>
-			<Grid item xs={6} sm={8}>
-				{getImportanceRendered()}
-			</Grid>
-		</Grid>
+			{explanationOn && <FeatureExplanation />}
+		</>
 	);
 }
 

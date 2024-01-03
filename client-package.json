@@ -1,6 +1,6 @@
 {
     "name": "mavie",
-    "version": "0.0.4.1.1.1",
+    "version": "0.0.4.1.1.2",
     "homepage": "index.html",
-    "description": "changed the location of the error message"
+    "description": "changed the feature card"
 }
