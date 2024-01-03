@@ -27,7 +27,6 @@ function SelectedPersonaCard() {
 						sm={1}
 						md={1.5}
 						lg={1}
-						xl={0.5}
 						key={`${id}-selected-grid`}
 					>
 						<SelectedPersonaToggle

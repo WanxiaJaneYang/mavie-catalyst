@@ -1,12 +1,14 @@
 /* eslint-disable react/function-component-definition */
 import {
-	Box, Checkbox, FormControlLabel, Link, Snackbar, TextField,
+	Box, Checkbox, FormControlLabel, Link, TextField, IconButton,
 } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
+
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useRef, useState, useEffect } from 'react';
 import { LoadingButton } from '@mui/lab';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 import theme from '../../theme';
 import { ReactComponent as EmailIcon } from '../../images/svg/EnvelopeSimple.svg';
 import { ReactComponent as PasswordIcon } from '../../images/svg/LockKey.svg';
@@ -15,7 +17,6 @@ import login from '../../thunk/authThunk';
 import ErrorMessage from '../ErrorMessage';
 import Copyright from '../Copyright';
 import WelcomeComponent from './WelcomeComponent';
-import CookieAcceptSnackbar from './CookieAcceptSnackbar';
 
 const Login = () => {
 	const {
@@ -24,6 +25,11 @@ const Login = () => {
 	// const { allowCookie } = useSelector((state) => state.cookie);
 	const [emailError, setEmailError] = useState('');
 	const [passwordError, setPasswordError] = useState('');
+	const [showPassword, setShowPassword] = useState(false);
+
+	const handleClickShowPassword = () => {
+		setShowPassword(!showPassword);
+	};
 
 	const dispatch = useDispatch();
 
@@ -132,7 +138,7 @@ const Login = () => {
 					fullWidth
 					name="password"
 					label="Password"
-					type="password"
+					type={showPassword ? 'text' : 'password'}
 					id="password"
 					autoComplete="current-password"
 					error={!!passwordError}
@@ -141,6 +147,17 @@ const Login = () => {
 						startAdornment: (
 							<InputAdornment position="start">
 								<PasswordIcon />
+							</InputAdornment>
+						),
+						endAdornment: (
+							<InputAdornment position="end">
+								<IconButton
+									aria-label="toggle password visibility"
+									onClick={handleClickShowPassword}
+									edge="end"
+								>
+									{showPassword ? <VisibilityOff /> : <Visibility />}
+								</IconButton>
 							</InputAdornment>
 						),
 					}}
