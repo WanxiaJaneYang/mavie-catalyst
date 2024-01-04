@@ -28,6 +28,11 @@ const generalProductSlice = createSlice({
 			.addCase(getProductInfo.pending, (state) => {
 				state.loading = true;
 				state.error = null;
+				state.productDetail.modelName = null;
+				state.productDetail.productImage = null;
+				state.productDetail.description = null;
+				state.productDetail.productCategoryName = null;
+				state.productDetail.expertOpinion = null;
 			})
 			.addCase(getProductInfo.fulfilled, (state, action) => {
 				state.loading = false;
@@ -40,6 +45,11 @@ const generalProductSlice = createSlice({
 			.addCase(getProductInfo.rejected, (state, action) => {
 				state.loading = false;
 				state.error = action.payload;
+				state.productDetail.modelName = null;
+				state.productDetail.productImage = null;
+				state.productDetail.description = null;
+				state.productDetail.productCategoryName = null;
+				state.productDetail.expertOpinion = null;
 			});
 	},
 

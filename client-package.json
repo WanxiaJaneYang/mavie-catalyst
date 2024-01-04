@@ -1,6 +1,6 @@
 {
     "name": "mavie",
-    "version": "0.0.4.1.1.5",
+    "version": "0.0.4.1.1.8",
     "homepage": "index.html",
-    "description": "added the visibility change of password"
+    "description": "fixed the navigate to top button not being shadowed by new pop up error "
 }

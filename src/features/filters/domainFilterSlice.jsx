@@ -16,6 +16,10 @@ const domainFilterSlice = createSlice({
 	},
 
 	extraReducers: (builder) => {
+		builder.addCase(getProductFilter.pending, (state) => {
+			// reset to all true, clear all filters, reset to initial state
+			state = undefined;
+		});
 		builder.addCase(getProductFilter.fulfilled, (state, action) => {
 			const domainList = action.payload.domains.reduce(
 				(acc, domain) => {

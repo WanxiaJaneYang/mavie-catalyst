@@ -15,6 +15,10 @@ const personaSlice = createSlice({
 	},
 
 	extraReducers: (builder) => {
+		builder.addCase(getProductFilter.pending, (state) => {
+			// reset to all true, clear all filters, reset to initial state
+			state = undefined;
+		});
 		builder.addCase(getProductFilter.fulfilled, (state, action) => {
 			const personaList = action.payload.personas.reduce(
 				(acc, persona) => {

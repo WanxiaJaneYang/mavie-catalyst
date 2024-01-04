@@ -20,6 +20,7 @@ const FeatureCardSlice = createSlice({
 			.addCase(getFeatureScoreDetail.pending, (state) => {
 				state.loading = true;
 				state.error = null;
+				state.array = [];
 			})
 			.addCase(getFeatureScoreDetail.fulfilled, (state, action) => {
 				state.loading = false;
@@ -28,6 +29,7 @@ const FeatureCardSlice = createSlice({
 			.addCase(getFeatureScoreDetail.rejected, (state, action) => {
 				state.loading = false;
 				state.error = action.payload;
+				state.array = [];
 			});
 	},
 });

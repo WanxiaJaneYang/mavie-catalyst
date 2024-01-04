@@ -42,6 +42,9 @@ const featureSlice = createSlice({
 		builder
 			.addCase(getProductFilter.pending, (state) => {
 				state.loading = true;
+				state.error = null;
+				state.entities = {};
+				state.ids = [];
 			})
 			.addCase(getProductFilter.fulfilled, (state, action) => {
 				state.loading = false;
@@ -54,6 +57,8 @@ const featureSlice = createSlice({
 			.addCase(getProductFilter.rejected, (state, action) => {
 				state.loading = false;
 				state.error = action.error.message;
+				state.entities = {};
+				state.ids = [];
 			});
 	},
 });

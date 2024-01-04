@@ -29,7 +29,6 @@ function ScrollToTopButton({ onClick }) {
 				'&:hover': {
 					backgroundColor: theme.palette.primary.light,
 				},
-				zIndex: 2000,
 				fontFamily: 'Inter, sans-serif',
 				fontWeight: 500,
 				fontSize: '18px',

@@ -79,7 +79,8 @@ const handlers = [
 		);
 	}),
 
-	http.get('/product/:productId', ({ params }) => {
+	http.get('/product/:productId', async ({ params }) => {
+		await delay(500);
 		const { productId } = params;
 		if (productId === '20296000000089007') {
 			return HttpResponse.json({
@@ -113,7 +114,8 @@ const handlers = [
 		});
 	}),
 
-	http.get('/product/:productId/filter', ({ params }) => {
+	http.get('/product/:productId/filter', async ({ params }) => {
+		await delay(1500);
 		const { productId } = params;
 		if (productId === '20296000000089007') {
 			return HttpResponse.json({
@@ -1363,7 +1365,8 @@ const handlers = [
 		});
 	}),
 
-	http.get('/product/:productId/rating', ({ params }) => {
+	http.get('/product/:productId/rating', async ({ params }) => {
+		await delay(1000);
 		const { productId } = params;
 		if (productId === '20296000000089007') {
 			return HttpResponse.json({

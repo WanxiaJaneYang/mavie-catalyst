@@ -60,6 +60,8 @@ const personaSlice = createSlice({
 			.addCase(getProductFilter.pending, (state) => {
 				state.loading = true;
 				state.error = null;
+				state.entities = null;
+				state.ids = null;
 			})
 			.addCase(getProductFilter.fulfilled, (state, action) => {
 				state.loading = false;
@@ -72,6 +74,8 @@ const personaSlice = createSlice({
 			.addCase(getProductFilter.rejected, (state, action) => {
 				state.loading = false;
 				state.error = action.payload;
+				state.entities = null;
+				state.ids = null;
 			});
 	},
 });

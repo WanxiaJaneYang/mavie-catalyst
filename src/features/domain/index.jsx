@@ -41,6 +41,9 @@ const domainSlice = createSlice({
 		builder
 			.addCase(getProductFilter.pending, (state) => {
 				state.loading = true;
+				state.error = null;
+				state.entities = null;
+				state.ids = null;
 			})
 			.addCase(getProductFilter.fulfilled, (state, action) => {
 				state.loading = false;
@@ -53,6 +56,8 @@ const domainSlice = createSlice({
 			.addCase(getProductFilter.rejected, (state, action) => {
 				state.loading = false;
 				state.error = action.error.message;
+				state.entities = null;
+				state.ids = null;
 			});
 	},
 });

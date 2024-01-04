@@ -20,6 +20,8 @@ const brandSlice = createSlice({
 			.addCase(getProductInfo.pending, (state) => {
 				state.loading = true;
 				state.error = null;
+				state.data.name = null;
+				state.data.icon = null;
 			})
 			.addCase(getProductInfo.fulfilled, (state, action) => {
 				state.loading = false;
@@ -34,6 +36,8 @@ const brandSlice = createSlice({
 			.addCase(getProductInfo.rejected, (state, action) => {
 				state.loading = false;
 				state.error = action.payload;
+				state.data.name = null;
+				state.data.icon = null;
 			});
 	},
 });
