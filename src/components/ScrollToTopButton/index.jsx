@@ -1,29 +1,29 @@
-import { Button } from '@mui/material';
+import { Button, useMediaQuery } from '@mui/material';
 import propType from 'prop-types';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import theme from '../../theme';
 
 function ScrollToTopButton({ onClick }) {
+	const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+	const title = isMobile ? <KeyboardArrowUpIcon /> : 'Navigate to Top';
+	const startIcon = isMobile ? null : <KeyboardArrowUpIcon />;
+	const variant = isMobile ? 'text' : 'outlined';
+
 	return (
 		<Button
-			variant="outlined"
+			variant={variant}
 			sx={{
-				mt: 2,
-				mb: 2,
 				borderRadius: {
-					xs: 40,
-					sm: 40,
-					md: 52,
+					xs: 100,
+					sm: 100,
+					md: 100,
+					lg: 52,
 				},
 				height: {
 					xs: 26,
 					sm: 28,
 					md: 30,
 				},
-				// fixed location at bottom right
-				position: 'fixed',
-				bottom: 10,
-				right: 10,
 				backgroundColor: theme.palette.primary.main,
 				color: theme.palette.primary.contrastText,
 				'&:hover': {
@@ -34,11 +34,13 @@ function ScrollToTopButton({ onClick }) {
 				fontSize: '18px',
 				fontStyle: 'normal',
 				lineHeight: '30px',
+				boxShadow: '2px 4px 4px rgba(0, 0, 0, 0.25)',
 			}}
-			startIcon={<KeyboardArrowUpIcon />}
+			startIcon={startIcon}
 			onClick={onClick}
+
 		>
-			Navigate to Top
+			{title}
 		</Button>
 	);
 }

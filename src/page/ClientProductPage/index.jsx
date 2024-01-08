@@ -4,12 +4,11 @@ import {
 import { Outlet } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import MenuIcon from '@mui/icons-material/Menu';
 import ProductSidebar from './components/ProductSidebar';
 import theme from '../../theme';
 import ErrorMessage from '../../components/ErrorMessage';
 import { clearProductFilterErrorMessage } from '../../features/errorMessages/errorMessageSlice';
-import ScrollToTopButton from '../../components/ScrollToTopButton';
+import FloatingButtons from './components/FloatingButton';
 
 function ClientProductPage() {
 	const errorMessage = useSelector((state) => state.errorMessages.messages.productFilter);
@@ -79,39 +78,49 @@ function ClientProductPage() {
 		);
 	};
 
-	const renderFloatingButton = () => {
-		if (isMobile && !isSidebarOpen) {
-			return (
-				<Box
-					sx={{
-						position: 'fixed',
-						bottom: 16,
-						right: 16,
-					}}
-				>
-					<Button
-						color="primary"
-						variant="circular"
-						onClick={handleSidebarOpen}
-						sx={{
-							width: 40,
-							height: 40,
-							borderRadius: '20%',
-							backgroundColor: theme.palette.primary.main,
-							color: theme.palette.primary.contrastText,
-							'&:hover': {
-								backgroundColor: theme.palette.primary.light,
-							},
-							boxShadow: '2px 4px 4px rgba(0, 0, 0, 0.25)',
-						}}
-					>
-						<MenuIcon />
-					</Button>
-				</Box>
-			);
-		}
-		return null;
-	};
+	// const renderFloatingButton = () => {
+	// 	if (isMobile && !isSidebarOpen) {
+	// 		return (
+	// 			<Box
+	// 				sx={{
+	// 					position: 'fixed',
+	// 					bottom: 10,
+	// 					right: 1,
+	// 				}}
+	// 			>
+	// 				<Button
+	// 					color="primary"
+	// 					variant="outlined"
+	// 					onClick={handleSidebarOpen}
+	// 					sx={{
+	// 						mt: 2,
+	// 						mb: 2,
+	// 						borderRadius: {
+	// 							xs: 40,
+	// 							sm: 40,
+	// 							md: 52,
+	// 						},
+	// 						height: {
+	// 							xs: 26,
+	// 							sm: 28,
+	// 							md: 30,
+	// 						},
+	// 						// fixe
+	// 						backgroundColor: theme.palette.primary.main,
+	// 						color: theme.palette.primary.contrastText,
+	// 						'&:hover': {
+	// 							backgroundColor: theme.palette.primary.light,
+	// 						},
+	// 						boxShadow: '2px 4px 4px rgba(0, 0, 0, 0.25)',
+	// 					}}
+	// 				>
+	// 					<MenuIcon />
+	// 				</Button>
+	// 			</Box>
+	// 		);
+	// 	}
+	// 	return null;
+	// };
 
 	return (
 		<Grid
@@ -154,8 +163,9 @@ function ClientProductPage() {
 					}
 				>
 					<Outlet />
-					{renderFloatingButton()}
-					<ScrollToTopButton onClick={onScroll} />
+					{/* {renderFloatingButton()} */}
+					{/* {!isMobile && <ScrollToTopButton onClick={onScroll} />} */}
+					<FloatingButtons handleMenuClick={handleSidebarOpen} handleScrollToTopClick={onScroll} />
 				</Box>
 			</Grid>
 		</Grid>

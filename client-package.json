@@ -1,6 +1,6 @@
 {
     "name": "mavie",
-    "version": "0.0.4.1.22",
+    "version": "0.0.4.1.23",
     "homepage": "index.html",
-    "description": "changed all the 0.0 rating to N/A "
+    "description": "fixed the mobile layout floating button overlapping problem "
 }
