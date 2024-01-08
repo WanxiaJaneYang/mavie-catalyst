@@ -11,15 +11,11 @@ function ProductIntroContent() {
 		.productDetail);
 	const productRating = useSelector((state) => state.product.productData.overall.data);
 
-	const productDescription = useSelector((state) => state.product.productInfo
-		.productDescription);
-
-	const productImage = useSelector((state) => state.product.productInfo.productDetail
-		.productImage);
+	const { productImage, description } = productDetail;
 
 	const getProductDescription = () => {
-		if (productDescription) {
-			return productDescription;
+		if (description) {
+			return description;
 		}
 		return 'No description Available';
 	};

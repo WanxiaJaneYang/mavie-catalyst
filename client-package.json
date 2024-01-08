@@ -1,6 +1,6 @@
 {
     "name": "mavie",
-    "version": "0.0.4.1.1.8",
+    "version": "0.0.4.1.20",
     "homepage": "index.html",
-    "description": "fixed the navigate to top button not being shadowed by new pop up error "
+    "description": "created a gauge placeholder for non data when no rating data for feature given "
 }

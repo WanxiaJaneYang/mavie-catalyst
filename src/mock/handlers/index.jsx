@@ -96,11 +96,16 @@ const handlers = [
 		}
 		if (productId === '20296000000087097') {
 			// 404, error message product not found
-			return new HttpResponse(
-				{ error: 'product not found' },
-				// null,
-				{ statusText: 'Not Found', status: '404' },
-			);
+			return HttpResponse.json({
+				brand: 'One Touch',
+				brandIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv265e1b0c21f64534bcf485308d9b6ac9',
+				description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+				image: 'https://previewengine.zohopublic.com.au/image/WD/87opq47894e5160f64a308e06d399c944d1b5',
+				modelName: 'Automatic Jar Opener',
+				productCategoryName: 'Assistive Technology',
+				expertOpinion: 'ttes',
+				overallRating: '3.71',
+			});
 		}
 
 		return HttpResponse.json({
@@ -804,8 +809,8 @@ const handlers = [
 					{
 						id: '20296000000032391',
 						name: 'Ergonomics',
-						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niivbabf0f41157f409c91f0c964f6543387',
-						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niivce5498ce48634058872762bc4eb12ff8',
+						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv1705ae844afb486998fbb6788d7988af',
+						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv270e6c50f1a64df58cd2a9a4e5f586e7',
 						featureIds: [
 							'20296000000020023',
 							'20296000000020027',
@@ -821,8 +826,8 @@ const handlers = [
 					{
 						id: '20296000000032387',
 						name: 'Usefulness',
-						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niivd7831fe8ed0f4c538e68de297540809d',
-						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv62015ebbe1d447b88a9e138516e21dc4',
+						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv2ccc8917b36540f885f6ca1d7a898461',
+						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiva3ed29a98bb34151ae8008dec41f6864',
 						featureIds: [
 							'20296000000032231',
 							'20296000000032235',
@@ -833,8 +838,8 @@ const handlers = [
 					{
 						id: '20296000000032383',
 						name: 'User-friendliness',
-						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv9fd797136d404b44acf3f41a26f2632e',
-						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv49adbe3b86ad4982a4201a663230162f',
+						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiva2a34a15fdad48019c4277d165e6d5f1',
+						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niivf5e41e277a02427a98f0a657eb4e15b0',
 						featureIds: [
 							'20296000000032239',
 							'20296000000032243',
@@ -849,8 +854,8 @@ const handlers = [
 					{
 						id: '20296000000032379',
 						name: 'Aesthetic Design',
-						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv314e341136fd4a1b8e05deec82e02254',
-						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv4a3f850002174acda2e13631e08529cd',
+						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv0e960d0f075f434fb5e43f9e76e9f876',
+						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv9f586c4efc764b1fa57b0c0ee251e1fe',
 						featureIds: [
 							'20296000000032263',
 							'20296000000032267',
@@ -863,8 +868,8 @@ const handlers = [
 					{
 						id: '20296000000032375',
 						name: 'Safety',
-						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv8d505a547b1246adaa2256c971538e25',
-						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv22d01cf8b7a741d6b8e8c958fb870ba9',
+						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv9e22767a5c8b4cbca14edff2e5603abe',
+						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv96a8df073cd64a9ebc126bdbfa98c982',
 						featureIds: [
 							'20296000000032279',
 							'20296000000032283',
@@ -880,8 +885,8 @@ const handlers = [
 					{
 						id: '20296000000032371',
 						name: 'Maintenance and Cleaning',
-						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv19f1f160c5d04616be6c353a117b2b45',
-						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv46d14fee01004440a8547e1a7fc6ec4d',
+						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv2499b58497064e70b787157e69409365',
+						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niivf0dded87cd6144a18bb0ae178cc0ee9e',
 						featureIds: [
 							'20296000000032307',
 							'20296000000032311',
@@ -898,8 +903,8 @@ const handlers = [
 					{
 						id: '20296000000032367',
 						name: 'Packaging',
-						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv02864702f38a47e491bffe0c71787be5',
-						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv8593a327552f4b0fb6eead52d57e23a3',
+						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv846bf9e636114bbb80ac643e8dccab2a',
+						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv8db65a96d98d4c98a9ee4a26fddfd70d',
 						featureIds: [
 							'20296000000032339',
 							'20296000000032343',
@@ -914,8 +919,8 @@ const handlers = [
 					{
 						id: '20296000000019011',
 						name: 'Value for Money',
-						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv1011fd9ec6924585a2128ee8f0ca6c94',
-						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niivcf15d8a373e14ea9832ba7f6015641b0',
+						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv0775d39530d24d668e2d4a1c5db7cddb',
+						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv6b9aa0bca11546faaf80772c3d0e5f7a',
 						featureIds: [
 							'20296000000032363',
 						],
@@ -925,8 +930,8 @@ const handlers = [
 					{
 						id: '20296000000019015',
 						name: 'Overall Opinion',
-						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv663b9d79d6084732867ed2b6629db9df',
-						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv1ad81d5ce2194d17b4262255cf9a55b1',
+						icon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv357acca821534a46bcf5cc9cfbfae4d0',
+						roundIcon: 'https://previewengine.zohopublic.com.au/image/WD/7niiv80b7ebe00efb4f63b97a770e93ffc9b6',
 						featureIds: [
 							'20296000000070017',
 						],
@@ -988,7 +993,6 @@ const handlers = [
 					minAge: 18,
 					maxAge: 65,
 				},
-
 			});
 		}
 
@@ -1551,11 +1555,229 @@ const handlers = [
 		}
 
 		if (productId === '20296000000087097') {
-			// 404 product domain rating not found
+			return HttpResponse.json({
+				overallRating: '3.71',
+				domainRatings: [
+					{
+						id: '20296000000032391',
+						rating: '4.40',
+						expertOpinion: 'Ergonomics expert opinion',
+					},
+					{
+						id: '20296000000032387',
+						rating: '3.63',
+						expertOpinion: 'Usefulness expert opinion',
+					},
+					{
+						id: '20296000000032383',
+						rating: '3.42',
+						expertOpinion: 'User-friendliness expert opinion',
+					},
+					{
+						id: '20296000000032379',
+						rating: '3.06',
+						expertOpinion: 'Aesthetic Design expert opinion',
+					},
+					{
+						id: '20296000000032375',
+						rating: '3.68',
+						expertOpinion: 'Safety expert opinion',
+					},
+					{
+						id: '20296000000032371',
+						rating: '3.51',
+						expertOpinion: 'Maintenance and Cleaning expert opinion',
+					},
+					{
+						id: '20296000000032367',
+						rating: '4.00',
+						expertOpinion: 'Packaging expert opinion',
+					},
+					{
+						id: '20296000000019011',
+						rating: '3.00',
+						expertOpinion: 'Value for Money expert opinion',
+					},
+					{
+						id: '20296000000019015',
+						rating: '0.00',
+						expertOpinion: '',
+					},
+				],
+				featureRatings: [
+					{
+						id: '20296000000032363',
+						rating: '3.00',
+					},
+					{
+						id: '20296000000032359',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032355',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032351',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032347',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032343',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032339',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032335',
+						rating: '3.00',
+					},
+					{
+						id: '20296000000032331',
+						rating: '3.00',
+					},
+					{
+						id: '20296000000032327',
+						rating: '5.00',
+					},
+					{
+						id: '20296000000032323',
+						rating: '5.00',
+					},
+					{
+						id: '20296000000032319',
+						rating: '0.00',
+					},
+					{
+						id: '20296000000032315',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032311',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032307',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032303',
+						rating: '5.00',
+					},
+					{
+						id: '20296000000032299',
+						rating: '0.00',
+					},
+					{
+						id: '20296000000032295',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032291',
+						rating: '0.00',
+					},
+					{
+						id: '20296000000032287',
+						rating: '5.00',
+					},
+					{
+						id: '20296000000032283',
+						rating: '0.00',
+					},
+					{
+						id: '20296000000032279',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032275',
+						rating: '4.33',
+					},
+					{
+						id: '20296000000032271',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032267',
+						rating: '3.67',
+					},
+					{
+						id: '20296000000032263',
+						rating: '0.00',
+					},
+					{
+						id: '20296000000032259',
+						rating: '0.00',
+					},
+					{
+						id: '20296000000032255',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032251',
+						rating: '5.00',
+					},
+					{
+						id: '20296000000032247',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032243',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032239',
+						rating: '3.22',
+					},
+					{
+						id: '20296000000032235',
+						rating: '0.00',
+					},
+					{
+						id: '20296000000032231',
+						rating: '3.67',
+					},
+					{
+						id: '20296000000076003',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032227',
+						rating: '5.00',
+					},
+					{
+						id: '20296000000032395',
+						rating: '4.00',
+					},
+					{
+						id: '20296000000032223',
+						rating: '4.40',
+					},
+					{
+						id: '20296000000020031',
+						rating: '5.00',
+					},
+					{
+						id: '20296000000020027',
+						rating: '5.00',
+					},
+					{
+						id: '20296000000020023',
+						rating: '3.20',
+					},
+				],
+			});
+		}
+		if (productId === '20296000000087098') {
+			// 500 product domain rating not found
 			return new HttpResponse(
 				{ erorr: 'Product domain rating not found' },
 				// null,
-				{ statusText: 'Not Found', status: '404' },
+				{ statusText: 'Internal Server Error', status: '500' },
 			);
 		}
 
@@ -1601,8 +1823,30 @@ const handlers = [
 		});
 	}),
 
-	http.get('/product/:productId/feature/:featureId', async () => {
+	http.get('/product/:productId/feature/:featureId', async ({ params }) => {
 		await delay(1000);
+		const { productId, featureId } = params;
+		if (productId === '20296000000087097' && featureId === '20296000000032263') {
+			return HttpResponse.json({
+				features: [
+					{
+						importance: '0.00',
+					},
+					{
+						importance: '0.00',
+					},
+					{
+						importance: '0.00',
+					},
+					{
+						importance: '0.00',
+					},
+					{
+						importance: '0.00',
+					},
+				],
+			});
+		}
 		return HttpResponse.json({
 			features: [
 				{

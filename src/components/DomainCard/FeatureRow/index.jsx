@@ -29,6 +29,13 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 
 	const getFeatureName = () => feature.name || 'No Feature Name';
 
+	const getFeatureRatingFromatted = () => {
+		if (featureRating && parseFloat(featureRating) !== 0) {
+			return parseFloat(featureRating).toFixed(1);
+		}
+		return 'N/A';
+	};
+
 	return (
 		<>
 
@@ -81,7 +88,7 @@ function FeatureRow({ domainId, featureId, importanceRatingOn }) {
 							textAlign: 'right',
 						}}
 					>
-						{featureRating ? parseFloat(featureRating).toFixed(1) : 'N/A'}
+						{getFeatureRatingFromatted()}
 					</Typography>
 				</Grid>
 			</Grid>

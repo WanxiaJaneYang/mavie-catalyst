@@ -52,7 +52,7 @@ function FeatureCardContent({ featureId }) {
 		() => {
 			// console.log('feature score detail api called, feature id: ', currentFeatureId);
 			// console.log('feature score detail api called, product id: ', currentProductId);
-			if (currentProductId && currentFeatureId) {
+			if (currentProductId && currentFeatureId && parseFloat(featureRating) !== 0) {
 				// console.log('feature id: ', currentFeatureId, 'product id: ', currentProductId);
 				dispatch(getFeatureScoreDetail({
 					productId: currentProductId,
@@ -60,7 +60,7 @@ function FeatureCardContent({ featureId }) {
 				}));
 			}
 		},
-		[currentFeatureId, dispatch, currentProductId],
+		[currentFeatureId, dispatch, currentProductId, featureRating],
 	);
 
 	const getImportanceRendered = () => {
@@ -86,11 +86,36 @@ function FeatureCardContent({ featureId }) {
 				</Box>
 			);
 		}
-		if (featureDetailError) {
+		if (featureDetailError && parseFloat(featureRating) !== 0) {
+			// console.log('feature rating isnt 0 and error, rating is: ', featureRating);
 			return null;
 		}
-		if (!featureDetailLoading && !featureDetailError) {
-			// console.log('feature score detail api success, feature id: ', currentFeatureId);
+		if (parseFloat(featureRating) === 0 && !featureDetailLoading && !featureDetailError) {
+			// console.log('feature score 0, special case');
+			return (
+				<Box
+					sx={{
+						display: 'flex',
+						justifyContent: 'center', // Center the gauge horizontally
+						alignItems: 'center', // Center the gauge vertically
+						paddingRight: '5px', // [mobile, tablet, desktop
+						marginRight: '5px', // [mobile, tablet, desktop
+						marginLeft: '-5px', // [mobile, tablet, desktop
+						paddingLeft: '-5px', // [mobile, tablet, desktop
+						marginBottom: ['0px', '0px', '5px'], // [mobile, tablet, desktop
+						paddingBottom: ['0px', '0px', '5px'], // [mobile, tablet, desktop
+						marginTop: ['0px', '0px', '-5px'], // [mobile, tablet, desktop
+						paddingTop: ['0px', '0px', '-5px'], // [mobile, tablet, desktop
+					}}
+				>
+					<MavieGauge
+						type="placeholder"
+						size={gaugeSize()}
+					/>
+				</Box>
+			);
+		}
+		if (parseFloat(featureRating) !== 0 && !featureDetailLoading && !featureDetailError) {
 			return (
 				<Box
 					sx={{

@@ -10,18 +10,23 @@ function FeatureExplanation() {
 		const baseContent = 'Percentages split: representation of the percentage of individual rating scores from 1 to 5.';
 		let specialContent = 'Out of the total respondents';
 		let containsZero = false;
+		let sum = 0;
 		// if
 		if (array && array.length > 0) {
 			for (let i = 0; i < array.length; i += 1) {
+				sum += parseFloat(array[i].importance);
 				if (array[i].importance == 0) {
 					containsZero = true;
 				} else {
 					const tempPercent = parseFloat(array[i].importance) * 100;
-					specialContent += `, ${tempPercent}% gave a rating of ${i}`;
+					specialContent += `, ${tempPercent.toFixed(0)}% gave a rating of ${i + 1}`;
 				}
 			}
 		}
 
+		if (sum === 0) {
+			return 'This feature has not yet been rated by users';
+		}
 		if (containsZero) {
 			return `${specialContent}.`;
 		}

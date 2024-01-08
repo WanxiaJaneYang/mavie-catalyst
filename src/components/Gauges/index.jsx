@@ -1,9 +1,9 @@
 /* eslint-disable react/require-default-props */
-import { SvgIcon } from '@mui/material';
 import PropTypes from 'prop-types';
 import Gauge from './Gauge';
 import ImportanceRatingGauge from './ImportanceRatingGauge';
 import PercentageGauge from './PercentageGauge';
+import PlaceholderGauge from './PlaceholderGauge';
 
 function MavieGauge(props) {
 	const {
@@ -35,6 +35,15 @@ function MavieGauge(props) {
 			/>
 			// </SvgIcon>
 		);
+	case 'placeholder':
+		return (
+			// <SvgIcon {...other}>
+			<PlaceholderGauge
+				size={size}
+				{...other}
+			/>
+			// </SvgIcon>
+		);
 	default:
 		return (
 			// <SvgIcon
@@ -52,7 +61,7 @@ function MavieGauge(props) {
 
 MavieGauge.propTypes = {
 	type: PropTypes.string.isRequired,
-	value: PropTypes.string.isRequired,
+	value: PropTypes.string,
 	importance: PropTypes.number,
 	size: PropTypes.number,
 	percentages: PropTypes.arrayOf(PropTypes.number),

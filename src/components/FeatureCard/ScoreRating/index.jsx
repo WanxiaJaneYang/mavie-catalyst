@@ -12,6 +12,20 @@ function ScoreRating({ score }) {
 		dispatch(setExplanationOn(!explanationOn));
 	};
 
+	const getScoreFromatted = () => {
+		if (score && parseFloat(score) !== 0) {
+			return parseFloat(score).toFixed(1);
+		}
+		return '';
+	};
+
+	const getBaseFormatted = () => {
+		if (score && parseFloat(score) !== 0) {
+			return '/5';
+		}
+		return 'N/A';
+	};
+
 	return (
 		<Box
 			sx={{
@@ -31,7 +45,7 @@ function ScoreRating({ score }) {
 					textAlign: 'left',
 				}}
 			>
-				{parseFloat(score).toFixed(1)}
+				{getScoreFromatted()}
 			</Typography>
 			<Typography
 				sx={{
@@ -43,7 +57,7 @@ function ScoreRating({ score }) {
 					marginLeft: '4px',
 				}}
 			>
-				/5
+				{getBaseFormatted()}
 			</Typography>
 			<QuestionIcon onClick={handleClick} />
 		</Box>
