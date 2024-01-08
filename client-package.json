@@ -1,6 +1,6 @@
 {
     "name": "mavie",
-    "version": "0.0.4.1.20",
+    "version": "0.0.4.1.22",
     "homepage": "index.html",
-    "description": "created a gauge placeholder for non data when no rating data for feature given "
+    "description": "changed all the 0.0 rating to N/A "
 }

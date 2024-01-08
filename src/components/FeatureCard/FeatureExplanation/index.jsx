@@ -1,66 +1,27 @@
 import {
-	Divider, Grid, Typography, Box, Skeleton,
+	Divider, Grid, Typography, Box,
 } from '@mui/material';
 import { useSelector } from 'react-redux';
+import PercentSplit from './PercentageSplit';
+import ImportanceRating from './ImportanceRating';
 
 function FeatureExplanation() {
-	const { loading, error, array } = useSelector((state) => state.featureCard);
+	const {
+		loading,
+		error, array,
+	} = useSelector((state) => state.featureCard);
+	const { currentFeatureId } = useSelector((state) => state.product.productData
+		.featureDetail);
+	const featureRating = parseFloat(useSelector((state) => state.product.productData
+		.features.data[currentFeatureId]));
 
-	const getPercentSplitContent = () => {
-		const baseContent = 'Percentages split: representation of the percentage of individual rating scores from 1 to 5.';
-		let specialContent = 'Out of the total respondents';
-		let containsZero = false;
-		let sum = 0;
-		// if
-		if (array && array.length > 0) {
-			for (let i = 0; i < array.length; i += 1) {
-				sum += parseFloat(array[i].importance);
-				if (array[i].importance == 0) {
-					containsZero = true;
-				} else {
-					const tempPercent = parseFloat(array[i].importance) * 100;
-					specialContent += `, ${tempPercent.toFixed(0)}% gave a rating of ${i + 1}`;
-				}
-			}
-		}
-
-		if (sum === 0) {
+	const getScoreExplanation = () => {
+		if (featureRating === 0) {
 			return 'This feature has not yet been rated by users';
 		}
-		if (containsZero) {
-			return `${specialContent}.`;
-		}
-		return baseContent;
+		return 'The score is a measure of how well the product performs in this feature.';
 	};
 
-	const getPercentageSplitExplanationRendered = () => {
-		if (error) {
-			return null;
-		}
-		if (loading) {
-			return (
-				<Skeleton
-					variant="rectangular"
-					width="100%"
-					height={20}
-					sx={{ margin: '5px' }}
-				/>
-			);
-		}
-		if (array && array.length > 0) {
-			return (
-				<Typography sx={{
-					fontFamily: 'Inter, sans-serif',
-					fontWeight: 400,
-					fontSize: '12px',
-				}}
-				>
-					{getPercentSplitContent()}
-				</Typography>
-			);
-		}
-		return null;
-	};
 	return (
 		<>
 			<Divider
@@ -86,25 +47,7 @@ function FeatureExplanation() {
 							flexDirection: 'column',
 						}}
 					>
-						<Box sx={{ paddingTop: '0px', paddingBottom: '8px' }}>
-							<Typography sx={{
-								fontFamily: 'Inter, sans-serif',
-								fontWeight: 600,
-								fontSize: '14px',
-							}}
-							>
-								Importance Rating
-							</Typography>
-							<Typography sx={{
-								fontFamily: 'Inter, sans-serif',
-								fontWeight: 400,
-								fontSize: '12px',
-							}}
-							>
-								The importance rating is a measure of
-								how important a feature is to the overall score of the product.
-							</Typography>
-						</Box>
+						<ImportanceRating />
 						<Box>
 							<Typography sx={{
 								fontFamily: 'Inter, sans-serif',
@@ -120,7 +63,7 @@ function FeatureExplanation() {
 								fontSize: '12px',
 							}}
 							>
-								The score is a measure of how well the product performs in this feature.
+								{getScoreExplanation()}
 							</Typography>
 
 						</Box>
@@ -135,17 +78,12 @@ function FeatureExplanation() {
 						marginTop: '0px',
 					}}
 				>
-					<Box sx={{ flexDirection: 'column' }}>
-						<Typography sx={{
-							fontFamily: 'Inter, sans-serif',
-							fontWeight: 600,
-							fontSize: '14px',
-						}}
-						>
-							Percentage Split
-						</Typography>
-						{getPercentageSplitExplanationRendered()}
-					</Box>
+					<PercentSplit
+						error={error}
+						loading={loading}
+						array={array}
+						featureRating={featureRating}
+					/>
 				</Grid>
 			</Grid>
 		</>

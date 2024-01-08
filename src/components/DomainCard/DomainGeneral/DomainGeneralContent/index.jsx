@@ -23,6 +23,14 @@ function DomainGeneralContent({ domainId, importanceRatingOn }) {
 		if (isSmallScreen) return 2;
 		return 1.2;
 	};
+	const getDomainRatingFormatted = () => {
+		let floatRating = parseFloat(domainRating);
+		if (floatRating === 0) {
+			return 'N/A';
+		}
+		floatRating = floatRating.toFixed(1);
+		return floatRating;
+	};
 	return (
 		<Grid container spacing={2} alignItems="center" justifyContent="space-between">
 			<Grid
@@ -54,7 +62,7 @@ function DomainGeneralContent({ domainId, importanceRatingOn }) {
 							textAlign: 'center',
 						}}
 					>
-						{domainRating}
+						{getDomainRatingFormatted()}
 					</Typography>
 				</Box>
 			</Grid>

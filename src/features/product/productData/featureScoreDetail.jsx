@@ -6,7 +6,7 @@ const featureScoreDetailSlice = createSlice({
 	name: 'featureScoreDetail',
 	initialState: {
 		loading: false,
-		error: null,
+		error: false,
 		questionImportance: null,
 		currentFeatureId: null,
 	},
@@ -31,7 +31,7 @@ const featureScoreDetailSlice = createSlice({
 		builder
 			.addCase(getFeatureScoreDetail.pending, (state) => {
 				state.loading = true;
-				state.error = null;
+				state.error = false;
 			})
 			.addCase(getFeatureScoreDetail.fulfilled, (state, action) => {
 				state.loading = false;
@@ -43,9 +43,11 @@ const featureScoreDetailSlice = createSlice({
 				// if percentages all add up not to 1, then set the question importance as null again,
 				// and set error
 				const sum = state.questionImportance.reduce((a, b) => a + b, 0);
-				if (sum !== 1) {
+				if (sum !== 1 && sum !== 0) {
 					state.questionImportance = null;
 					state.error = 'Question importance does not add up to 1';
+				} else {
+					state.error = false;
 				}
 			})
 

@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Grid, Typography, Box } from '@mui/material';
 import propType from 'prop-types';
-import { useEffect } from 'react';
 import ScoreBar from '../../../ScoreBar';
 import DynamicSvg from '../../../DynamicSvgIcon';
 import theme from '../../../../theme';
@@ -11,7 +10,14 @@ function DomainListRow({ domainId }) {
 	const domainRating = useSelector((state) => state.product.productData.domain
 		?.data[domainId]?.rating);
 	const domain = domains[domainId];
-
+	const getDomainRatingFormatted = () => {
+		let floatRating = parseFloat(domainRating);
+		if (floatRating === 0) {
+			return 'N/A';
+		}
+		floatRating = floatRating.toFixed(1);
+		return floatRating;
+	};
 	if (!domain) return null;
 	return (
 
@@ -86,7 +92,7 @@ function DomainListRow({ domainId }) {
 						textAlign: 'left',
 					}}
 				>
-					{domainRating || 'N/A'}
+					{getDomainRatingFormatted()}
 				</Typography>
 			</Grid>
 		</Grid>
